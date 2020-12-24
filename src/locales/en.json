@@ -1,0 +1,10 @@
+{
+  "navbar": {
+    "news": "News",
+    "scores": "Scores",
+    "standings": "Standings",
+    "stats": "Stats",
+    "schedule": "Schedule",
+    "login": "Login"
+  }
+}
