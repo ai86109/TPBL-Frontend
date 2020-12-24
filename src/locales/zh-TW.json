@@ -1,0 +1,10 @@
+{
+  "navbar": {
+    "news": "新聞",
+    "scores": "比賽",
+    "standings": "戰績",
+    "stats": "數據",
+    "schedule": "賽程",
+    "login": "登入"
+  }
+}
