@@ -166,13 +166,13 @@ const Table = styled.table`
   }
 `
 
-function SelectButtons({t}) {
+function SelectButtons({t, setSeason}) {
   return (
     <SelectButtonsContainer>
       <Seasons>
-        <Season>{t('standings.firstHalf')}</Season>
-        <Season>{t('standings.secondHalf')}</Season>
-        <Season>{t('standings.fullseason')}</Season>
+        <Season onClick={() => setSeason('firstHalf')}>{t('standings.firstHalf')}</Season>
+        <Season onClick={() => setSeason('secondHalf')}>{t('standings.secondHalf')}</Season>
+        <Season onClick={() => setSeason('full')}>{t('standings.fullseason')}</Season>
       </Seasons>
       <YearsAndStandingsDataType>
         <SelectForm>
@@ -229,6 +229,8 @@ function Form({titles, standings, currentLng, handleStrkLng}) {
 }
 
 export default function StandingsPage() {
+  const [ year, setYear ] = useState(2020)
+  const [ season, setSeason ] = useState('full')
   const { t, i18n } = useTranslation();
   const [ standings, setStandings ] = useState([])
   const currentLng = i18n.language
@@ -260,18 +262,18 @@ export default function StandingsPage() {
   }
   
   useEffect(() => {
-    fetch('https://floating-river-74889.herokuapp.com/standingsApi')
+    fetch(`https://floating-river-74889.herokuapp.com/standingsApi/${year}/${season}`)
       .then(res => res.json())
       .then(data => setStandings(data))
       .catch(err => console.log(err))
-  }, [])
+  }, [season])
 
   return (
     <Root>
       <Container>
         <Header>
           <PageTitle>{t('navbar.standings')}</PageTitle>
-          <SelectButtons t={t} />
+          <SelectButtons t={t} setSeason={setSeason} />
         </Header>
         <Form 
           titles={titles} 
