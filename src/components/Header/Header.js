@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MEDIA_QUERY_SM, MEDIA_QUERY_MD, MEDIA_QUERY_LG } from '../../constants/breakpoint';
+import { MEDIA_QUERY_SM, MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
 
 const largeDevice = `(min-width: 1024px)`
@@ -14,8 +14,9 @@ const NavbarContainer = styled.div`
   right: 0;
   background: #0A1E40;
   display: flex;
-  padding: 0 14px;
+  padding: 0 32px;
   justify-content: space-between;
+  box-shadow: 1px 0 5px #000;
   ${MEDIA_QUERY_SM} {
     height: 100px;
     flex-direction: column;
@@ -121,7 +122,7 @@ export default function Header() {
     const handleMatch = q => setMatch(q.matches)
     query.addListener(handleMatch)
     return () => query.removeListener(handleMatch)
-  })
+  }, )
   
   if(match) {
     return (
