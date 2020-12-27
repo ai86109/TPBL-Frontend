@@ -38,6 +38,10 @@
     "player": "球員",
     "team": "隊伍",
     "hitting": "打擊",
-    "pitching": "投球"
+    "pitching": "投球",
+    "AVG": {
+      "title": "AVG",
+      "desc": "打擊率 = 安打 ÷ 打數"
+    }
   }
 }

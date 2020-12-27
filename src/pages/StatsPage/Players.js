@@ -3,8 +3,16 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
 
-export default function Players() {
+export default function Players({year, subNav, statsType}) {
+  const standardTitles = [
+
+  ]
+
+  const advancedTitles = [
+
+  ]
+
   return (
-    <span>players</span>
+    <Players
   )
 }

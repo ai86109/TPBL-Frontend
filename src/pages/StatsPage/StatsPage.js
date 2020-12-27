@@ -1,20 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
-import Players from './Players';
-import Teams from './Teams';
-
-const Root = styled.div`
-  background-color: #f3f3f3;
-  width: 100%;
-  min-height: 700px;
-`
+import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
+import Form from './Form';
 
 const Container = styled.div`
   background-color: #fff;
-  border-color: #fff;
-  max-width: 1400px;
   width: 100%;
   min-height: 700px;
   margin: 0 auto;
@@ -22,9 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   font-size: 16px;
-  ${MEDIA_QUERY_LG} {
-    padding: 2rem;
-  }
+  padding: 2rem;
 `
 
 const Header = styled.div`
@@ -93,10 +82,32 @@ const SelectForm = styled.select`
   }
 `
 
+const StatsDataType = styled.div`
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  ${MEDIA_QUERY_MD} {
+    display: flex;
+    align-items: center;
+  }
+`
+
+const DataType = styled.button`
+  padding: 10px 20px;
+  min-width: 12rem;
+  max-width: 20rem;
+  cursor: pointer;
+  height: 100%;
+  ${(props) => props.$active && `background-color: grey;`}
+`
+
 const StatsType = styled.div`
   display: flex;
   align-items: center;
   overflow: scroll;
+  margin-top: 10px;
+  ${MEDIA_QUERY_SMtoMD} {
+    display: none;
+  }
 `
 
 const Type = styled.button`
@@ -110,34 +121,35 @@ const Type = styled.button`
   ${(props) => props.$active && `background-color: #0A1E40; color: #fff`}
 `
 
-const Form = styled.div``
-
-
-function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, statsTypeTitles}) {
+function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, statsTypeTitles, dataType, setDataType}) {
   return (
     <SelectButtonsContainer>
       <NavList>
         <Nav
           onClick={() => setNav('player')}
           $active={nav === 'player'}
-        >{t('stats.player')}
+        >
+          {t('stats.player')}
         </Nav>
         <Nav
           onClick={() => setNav('team')}
           $active={nav === 'team'}
-        >{t('stats.team')}
+        >
+          {t('stats.team')}
         </Nav>
       </NavList>
       <NavList>
         <SubNav
           onClick={() => setSubNav('hitting')}
           $active={subNav === 'hitting'}
-        >{t('stats.hitting')}
+        >
+          {t('stats.hitting')}
         </SubNav>
         <SubNav
           onClick={() => setSubNav('pitching')}
           $active={subNav === 'pitching'}
-        >{t('stats.pitching')}
+        >
+          {t('stats.pitching')}
         </SubNav>
       </NavList>
       <YearsAndStatsType>
@@ -146,27 +158,41 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
           <option value="2019">2019</option>
           <option value="2018">2018</option>
         </SelectForm>
-        <StatsType>
+        <StatsDataType>
+          <DataType
+            onClick={() => setDataType('standard')}
+            $active={dataType === 'standard'}
+          >{t('standings.standard')}
+          </DataType>
+          <DataType
+            onClick={() => setDataType('advanced')}
+            $active={dataType === 'advanced'}
+          >{t('standings.advanced')}
+          </DataType>
+        </StatsDataType>
+      </YearsAndStatsType>
+      <StatsType>
           {statsTypeTitles.map((title, key) => (
             <Type
               key={key}
               onClick={() => setStatsType(title)}
               $active={statsType === title}
-            >{title}
+            >
+              {title}
             </Type>
           ))}
         </StatsType>
-      </YearsAndStatsType>
     </SelectButtonsContainer>
   )
 }
 
 export default function StandingsPage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [ year, setYear ] = useState(2020)
   const [ nav, setNav ] = useState('player')
   const [ subNav, setSubNav ] = useState('hitting')
   const [ statsType, setStatsType ] = useState('AVG')
+  const [ dataType, setDataType ] = useState('standard')
 
   const statsTypeTitles = [
     'avg'.toUpperCase(),
@@ -187,43 +213,32 @@ export default function StandingsPage() {
     'slg'.toUpperCase(),
   ]
 
-  const standardTitles = [
-
-  ]
-
-  const advancedTitles = [
-
-  ]
-  
-  /*useEffect(() => {
-    fetch(`https://floating-river-74889.herokuapp.com/standingsApi/${year}/${season}`)
-      .then(res => res.json())
-      .then(data => setStandings(data))
-      .catch(err => console.log(err))
-  }, [year, season])*/
-
   return (
-    <Root>
-      <Container>
-        <Header>
-          <PageTitle>{t('navbar.stats')}</PageTitle>
-          <SelectButtons 
-            t={t}
-            nav={nav}
-            setNav={setNav}
-            subNav={subNav}
-            setSubNav={setSubNav}
-            year={year}
-            setYear={setYear}
-            statsType={statsType}
-            setStatsType={setStatsType}
-            statsTypeTitles={statsTypeTitles}
-          />
-        </Header>
-        <Form>
-          {nav === 'player' ? <Players/> : <Teams/>}
-        </Form>
-      </Container>
-    </Root>
+    <Container>
+      <Header>
+        <PageTitle>{t('navbar.stats')}</PageTitle>
+        <SelectButtons 
+          t={t}
+          nav={nav}
+          setNav={setNav}
+          subNav={subNav}
+          setSubNav={setSubNav}
+          year={year}
+          setYear={setYear}
+          statsType={statsType}
+          dataType={dataType}
+          setDataType={setDataType}
+          setStatsType={setStatsType}
+          statsTypeTitles={statsTypeTitles}
+        />
+      </Header>
+      <Form 
+        nav={nav}
+        year={year}
+        subNav={subNav}
+        dataType={dataType}
+        statsType={statsType}
+      />
+    </Container>
   )
 }
