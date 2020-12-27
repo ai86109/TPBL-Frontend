@@ -33,5 +33,11 @@
     "vsMonkeys": "vs. Monkeys",
     "vsLions": "vs. Lions",
     "vsGuardians": "vs. Guardians"
+  },
+  "stats": {
+    "player": "Player",
+    "team": "Team",
+    "hitting": "Hitting",
+    "pitching": "Pitching"
   }
 }

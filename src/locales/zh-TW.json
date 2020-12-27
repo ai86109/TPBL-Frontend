@@ -33,5 +33,11 @@
     "vsMonkeys": "vs. 樂天桃猿",
     "vsLions": "vs. 統一7-ELEVEn獅",
     "vsGuardians": "vs. 富邦悍將"
+  },
+  "stats": {
+    "player": "球員",
+    "team": "隊伍",
+    "hitting": "打擊",
+    "pitching": "投球"
   }
 }
