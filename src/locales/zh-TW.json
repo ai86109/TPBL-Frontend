@@ -26,6 +26,12 @@
     "ra": "失分",
     "diff": "得失分差",
     "strk": "連續勝敗",
-    "l10": "近十場"
+    "l10": "近十場",
+    "xtra": "延長賽",
+    "oneRun": "一分差",
+    "vsBrothers": "vs. 中信兄弟",
+    "vsMonkeys": "vs. 樂天桃猿",
+    "vsLions": "vs. 統一7-ELEVEn獅",
+    "vsGuardians": "vs. 富邦悍將"
   }
 }

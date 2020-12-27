@@ -26,6 +26,12 @@
     "ra": "RA",
     "diff": "DIFF",
     "strk": "STRK",
-    "l10": "L10"
+    "l10": "L10",
+    "xtra": "XTRA",
+    "oneRun": "1RUN",
+    "vsBrothers": "vs. Brothers",
+    "vsMonkeys": "vs. Monkeys",
+    "vsLions": "vs. Lions",
+    "vsGuardians": "vs. Guardians"
   }
 }
