@@ -1,10 +1,37 @@
 {
+  "blank": "",
   "navbar": {
     "news": "新聞",
     "scores": "比賽",
-    "standings": "戰績",
+    "standings": "球隊戰績",
     "stats": "數據",
     "schedule": "賽程",
     "login": "登入"
+  },
+  "standings": {
+    "firstHalf": "上半季",
+    "secondHalf": "下半季",
+    "fullseason": "全年度",
+    "standard": "標準",
+    "advanced": "進階",
+    "win": "勝",
+    "lose": "敗",
+    "tied": "合",
+    "pct": "勝率",
+    "gb": "勝差",
+    "eliminationNum": "淘汰指數",
+    "home": "主場",
+    "away": "客場",
+    "rs": "得分",
+    "ra": "失分",
+    "diff": "得失分差",
+    "strk": "連續勝敗",
+    "l10": "近十場",
+    "xtra": "延長賽",
+    "oneRun": "一分差",
+    "vsBrothers": "vs. 中信兄弟",
+    "vsMonkeys": "vs. 樂天桃猿",
+    "vsLions": "vs. 統一7-ELEVEn獅",
+    "vsGuardians": "vs. 富邦悍將"
   }
 }

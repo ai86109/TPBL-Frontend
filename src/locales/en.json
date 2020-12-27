@@ -1,4 +1,5 @@
 {
+  "blank": "",
   "navbar": {
     "news": "News",
     "scores": "Scores",
@@ -6,5 +7,31 @@
     "stats": "Stats",
     "schedule": "Schedule",
     "login": "Login"
+  },
+  "standings": {
+    "firstHalf": "1st Half",
+    "secondHalf": "2nd Half",
+    "fullseason": "Full Season",
+    "standard": "Standard",
+    "advanced": "Advanced",
+    "win": "W",
+    "lose": "L",
+    "tied": "T",
+    "pct": "PCT",
+    "gb": "GB",
+    "eliminationNum": "E",
+    "home": "HOME",
+    "away": "AWAY",
+    "rs": "RS",
+    "ra": "RA",
+    "diff": "DIFF",
+    "strk": "STRK",
+    "l10": "L10",
+    "xtra": "XTRA",
+    "oneRun": "1RUN",
+    "vsBrothers": "vs. Brothers",
+    "vsMonkeys": "vs. Monkeys",
+    "vsLions": "vs. Lions",
+    "vsGuardians": "vs. Guardians"
   }
 }
