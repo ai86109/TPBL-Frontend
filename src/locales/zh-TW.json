@@ -39,7 +39,7 @@
     "team": "隊伍",
     "hitting": "打擊",
     "pitching": "投球",
-    "AVG": {
+    "avg": {
       "title": "AVG",
       "desc": "打擊率 = 安打 ÷ 打數"
     }

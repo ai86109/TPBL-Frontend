@@ -39,7 +39,7 @@
     "team": "Team",
     "hitting": "Hitting",
     "pitching": "Pitching",
-    "AVG": {
+    "avg": {
       "title": "AVG",
       "desc": "Batting Average = H / AB"
     }

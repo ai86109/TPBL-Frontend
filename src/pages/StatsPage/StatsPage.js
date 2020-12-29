@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
 import Form from './Form';
+
+const largeDevice = `(min-width: 600px)`
 
 const Container = styled.div`
   background-color: #fff;
@@ -121,7 +123,7 @@ const Type = styled.button`
   ${(props) => props.$active && `background-color: #0A1E40; color: #fff`}
 `
 
-function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, statsTypeTitles, dataType, setDataType}) {
+function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, statsTypeTitles, dataType, setDataType, match}) {
   return (
     <SelectButtonsContainer>
       <NavList>
@@ -158,27 +160,29 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
           <option value="2019">2019</option>
           <option value="2018">2018</option>
         </SelectForm>
-        <StatsDataType>
-          <DataType
-            onClick={() => setDataType('standard')}
-            $active={dataType === 'standard'}
-          >{t('standings.standard')}
-          </DataType>
-          <DataType
-            onClick={() => setDataType('advanced')}
-            $active={dataType === 'advanced'}
-          >{t('standings.advanced')}
-          </DataType>
-        </StatsDataType>
+        {match && 
+          <StatsDataType>
+            <DataType
+              onClick={() => setDataType('standard')}
+              $active={dataType === 'standard'}
+            >{t('standings.standard')}
+            </DataType>
+            <DataType
+              onClick={() => setDataType('advanced')}
+              $active={dataType === 'advanced'}
+            >{t('standings.advanced')}
+            </DataType>
+          </StatsDataType>
+        }
       </YearsAndStatsType>
       <StatsType>
           {statsTypeTitles.map((title, key) => (
             <Type
               key={key}
-              onClick={() => setStatsType(title)}
-              $active={statsType === title}
+              onClick={() => setStatsType(title[1])}
+              $active={statsType === title[1]}
             >
-              {title}
+              {title[0]}
             </Type>
           ))}
         </StatsType>
@@ -187,31 +191,42 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
 }
 
 export default function StandingsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [ year, setYear ] = useState(2020)
   const [ nav, setNav ] = useState('player')
   const [ subNav, setSubNav ] = useState('hitting')
-  const [ statsType, setStatsType ] = useState('AVG')
+  const [ statsType, setStatsType ] = useState('avg')
   const [ dataType, setDataType ] = useState('standard')
+  const [ sort, setSort ] = useState('desc')
+  const [ stats, setStats ] = useState([])
+  const currentLng = i18n.language
+  const query = window.matchMedia(largeDevice)
+  const [match, setMatch] = useState(query.matches)
 
   const statsTypeTitles = [
-    'avg'.toUpperCase(),
-    'ops'.toUpperCase(),
-    'hr'.toUpperCase(),
-    'h'.toUpperCase(),
-    '2b'.toUpperCase(),
-    '3b'.toUpperCase(),
-    'rbi'.toUpperCase(),
-    'bb'.toUpperCase(),
-    'so'.toUpperCase(),
-    'r'.toUpperCase(),
-    'g'.toUpperCase(),
-    'ab'.toUpperCase(),
-    'sb'.toUpperCase(),
-    'cs'.toUpperCase(),
-    'obp'.toUpperCase(),
-    'slg'.toUpperCase(),
+    ['AVG', 'avg'], ['OPS', 'ops'], ['HR', 'hr'], ['H', 'h'], ['1B', '1B'], ['2B', '2B'], ['3B', '3B'],
+    ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], ['R', 'r'], ['G','games'], ['AB', 'ab'], ['SB', 'sb'], 
+    ['CS', 'cs'], ['OBP', 'obp'], ['SLG', 'slg'], ['PA', 'pa'], ['HBP', 'hbp'], ['SAC', 'sac'], 
+    ['SF', 'sf'], ['GIDP', 'gidp'], ['GO/AO', 'goao'], ['XBH', 'xbh'], ['TB', 'tb'], ['IBB', 'ibb'], 
+    ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
   ]
+
+  useEffect(() => {
+    if(nav === 'player') {
+      if(subNav === 'hitting') {
+        fetch(`https://floating-river-74889.herokuapp.com/batterStatsApi/${year}/${statsType}/${sort}`)
+          .then(res => res.json())
+          .then(data => setStats(data))
+          .catch(err => console.log(err))
+      }
+    }
+  }, [nav, subNav, year, statsType, sort, stats])
+
+  useEffect(() => {
+    const handleMatch = q => setMatch(q.matches)
+    query.addListener(handleMatch)
+    return () => query.removeListener(handleMatch)
+  }, )
 
   return (
     <Container>
@@ -230,6 +245,7 @@ export default function StandingsPage() {
           setDataType={setDataType}
           setStatsType={setStatsType}
           statsTypeTitles={statsTypeTitles}
+          match={match}
         />
       </Header>
       <Form 
@@ -238,6 +254,12 @@ export default function StandingsPage() {
         subNav={subNav}
         dataType={dataType}
         statsType={statsType}
+        setStatsType={setStatsType}
+        stats={stats}
+        sort={sort}
+        setSort={setSort}
+        currentLng={currentLng}
+        match={match}
       />
     </Container>
   )

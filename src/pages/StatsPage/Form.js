@@ -11,6 +11,13 @@ const FormContainer = styled.div`
 
   const BoxHeader = styled.div`
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+  `
+
+  const BoxHeaderLeft = styled.div`
+    display: flex;
+    flex-direction: column;
   `
 
   const Title = styled.div`
@@ -22,6 +29,20 @@ const FormContainer = styled.div`
   const Description = styled.div`
     font-weight: 700;
     margin: 10px 0;
+  `
+
+  const Caret = styled.div`
+    display: flex;
+    align-items: flex-end;
+    font-weight: 900;
+    color: grey;
+  `
+
+  const CaretItem = styled.div`
+    height: 10px;
+    width: 20px;
+    cursor: pointer;
+    ${(props) => props.$active && `color: #0A1E40;`}
   `
 
   const BoxBody = styled.div`
@@ -55,11 +76,12 @@ const FormContainer = styled.div`
   const PlayerProfilePic = styled.div`
     display: flex;
     align-items: center;
-    background-color: red;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
     margin-right: 10px;
+    & img {
+      border-radius: 50%;
+      max-width: 50px;
+      max-height: 50px;
+    }
   `
 
   const PlayerInfo = styled.div`
@@ -94,66 +116,195 @@ const FormContainer = styled.div`
     font-weight: 600;
   `
 
-  function Profile({nav}) {
+  const TableContainer = styled.div`
+    overflow: scroll;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #0A1E40;
+  `
+
+  const Table = styled.table`
+    border-collapse: collapse;
+    width: 100%;
+    white-space: nowrap;
+    colgroup {
+      border-right: 1px solid grey;
+    }
+    th {
+      border-right: 1px solid #0A1E40;
+      background-color: #0A1E40;
+      color: white;
+      &:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        border-right: none;
+      }
+      &:nth-child(n+3) {
+        cursor: pointer;
+      }
+    }
+    tbody tr th {
+      background-color: #ffffff;
+      color: black;
+    }
+    tbody tr {
+      background-color: #ffffff;
+      text-align: center;
+    }
+    td, th {
+      padding: 10px 15px;
+    }
+    tbody > tr:hover {
+      background-color: #efefef;
+      & th {
+        background-color: #efefef;
+      }
+    }
+    ${MEDIA_QUERY_LG} {
+      th:first-child {
+        position: static;
+      }
+    }
+  `
+
+  function Profile({nav, stat, currentLng}) {
     if(nav === 'team') {
       return (
         <ProfileContainer>
-          <TeamName>中信兄弟</TeamName>
+          <TeamName>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</TeamName>
         </ProfileContainer>
       )
     }
     return (
       <ProfileContainer>
-        <PlayerProfilePic></PlayerProfilePic>
+        <PlayerProfilePic>
+          <img src={stat.image}/>
+        </PlayerProfilePic>
         <PlayerInfo>
           <PlayerInfoTop>
-            <PlayerName>田澤純一</PlayerName>
+            <PlayerName>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</PlayerName>
             <PlayerPosition>P</PlayerPosition>
           </PlayerInfoTop>
-          <PlayerTeam>味全龍</PlayerTeam>
+          <PlayerTeam>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</PlayerTeam>
         </PlayerInfo>
       </ProfileContainer>
     )
   }
 
-export default function Form({nav, year, subNav, dataType, statsType}) {
+export default function Form({nav, year, subNav, dataType, statsType, setStatsType, stats, sort, setSort, currentLng, match}) {
   const { t } = useTranslation();
 
-  const standardTitles = [
-
+  const batterStandardTitles = [
+    ['G', 'games'], ['AB', 'ab'], ['R', 'r'], ['H', 'h'], ['1B', '1B'], ['2B', '2B'], ['3B', '3B'], 
+    ['HR', 'hr'], ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], ['SB', 'sb'], ['CS', 'cs'], ['AVG', 'avg'], 
+    ['OBP', 'obp'], ['SLG', 'slg'], ['OPS', 'ops']
   ]
 
-  const advancedTitles = [
-
+  const batterAdvancedTitles = [
+    ['PA', 'pa'], ['HBP', 'hbp'], ['SAC', 'sac'], ['SF', 'sf'], ['GIDP', 'gidp'], ['GO/AO', 'goao'], 
+    ['XBH', 'xbh'], ['TB', 'tb'], ['IBB', 'ibb'], ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], 
+    ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
   ]
+  if(match){
+    if(dataType === 'advanced') {
+      return (
+        <TableContainer>
+          <Table>
+            <colgroup span="2" />
+            <colgroup span="1" />
+            <colgroup span="5" />
+            <colgroup span="3" />
+            <thead>
+              <tr>
+                <th>PLAYER</th>
+                <th>TEAM</th>
+                {batterAdvancedTitles.map((title, key) => (
+                  <th 
+                    key={key}
+                    onClick={() => setStatsType(title[1])}
+                  >{title[0]}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {stats.map((stat, x) => (
+                <tr key={x}>
+                  <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
+                  <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
+                  {batterAdvancedTitles.map((title, key) => (
+                    <td key={key}>{stat[title[1]]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </TableContainer>
+      )
+    }
+    return (
+      <TableContainer>
+        <Table>
+          <colgroup span="2" />
+          <colgroup span="2" />
+          <colgroup span="7" />
+          <colgroup span="2" />
+          <colgroup span="2" />
+          <thead>
+            <tr>
+              <th>PLAYER</th>
+              <th>TEAM</th>
+              {batterStandardTitles.map((title, key) => (
+                <th 
+                  key={key}
+                  onClick={() => setStatsType(title[1])}
+                >{title[0]}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {stats.map((stat, x) => (
+              <tr key={x}>
+                <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
+                <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
+                {batterStandardTitles.map((title, key) => (
+                  <td key={key}>{stat[title[1]]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </TableContainer>
+    )
+  }
 
   return (
     <FormContainer>
       <BoxHeader>
-        <Title>{t(`stats.${statsType}.title`)}</Title>
-        <Description>{t(`stats.${statsType}.desc`)}</Description>
+        <BoxHeaderLeft>
+          <Title>{t(`stats.${statsType}.title`)}</Title>
+          <Description>{t(`stats.${statsType}.desc`)}</Description>
+        </BoxHeaderLeft>
+        <Caret>
+          <CaretItem 
+            onClick={() => setSort('asc')}
+            $active={sort === 'asc'}
+          >∧</CaretItem>
+          <CaretItem 
+            onClick={() => setSort('desc')}
+            $active={sort === 'desc'}
+          >∨</CaretItem>
+        </Caret>
       </BoxHeader>
-      <BoxBody>
-        <BoxBodyLeft>
-          <Rank>1</Rank>
-          <Profile nav={nav} />
-        </BoxBodyLeft>
-        <BoxBodyRight>.364</BoxBodyRight>
-      </BoxBody>
-      <BoxBody>
-        <BoxBodyLeft>
-          <Rank>1</Rank>
-          <Profile />
-        </BoxBodyLeft>
-        <BoxBodyRight>.364</BoxBodyRight>
-      </BoxBody>
-      <BoxBody>
-        <BoxBodyLeft>
-          <Rank>1</Rank>
-          <Profile />
-        </BoxBodyLeft>
-        <BoxBodyRight>.364</BoxBodyRight>
-      </BoxBody>
+      {stats.map((stat, key) => (
+        <BoxBody key={key}>
+          <BoxBodyLeft>
+            <Rank>1</Rank>
+            <Profile nav={nav} stat={stat} currentLng={currentLng} />
+          </BoxBodyLeft>
+          <BoxBodyRight>{stat[`${statsType}`]}</BoxBodyRight>
+        </BoxBody>
+      ))}
     </FormContainer>
   )
 }
