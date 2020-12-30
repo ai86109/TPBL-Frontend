@@ -123,7 +123,7 @@ const Type = styled.button`
   ${(props) => props.$active && `background-color: #0A1E40; color: #fff`}
 `
 
-function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, statsTypeTitles, dataType, setDataType, match}) {
+function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, batterStatsTypeTitles, pitcherStatsTypeTitles, dataType, setDataType, match}) {
   return (
     <SelectButtonsContainer>
       <NavList>
@@ -142,13 +142,21 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
       </NavList>
       <NavList>
         <SubNav
-          onClick={() => setSubNav('hitting')}
+          onClick={() => {
+            setSubNav('hitting')
+            setDataType('standard')
+            setStatsType('avg')
+          }}
           $active={subNav === 'hitting'}
         >
           {t('stats.hitting')}
         </SubNav>
         <SubNav
-          onClick={() => setSubNav('pitching')}
+          onClick={() => {
+            setSubNav('pitching')
+            setDataType('standard')
+            setStatsType('win')
+          }}
           $active={subNav === 'pitching'}
         >
           {t('stats.pitching')}
@@ -176,7 +184,16 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
         }
       </YearsAndStatsType>
       <StatsType>
-          {statsTypeTitles.map((title, key) => (
+          {nav === 'player' && subNav === 'hitting' && batterStatsTypeTitles.map((title, key) => (
+            <Type
+              key={key}
+              onClick={() => setStatsType(title[1])}
+              $active={statsType === title[1]}
+            >
+              {title[0]}
+            </Type>
+          ))}
+          {nav === 'player' && subNav === 'pitching' && pitcherStatsTypeTitles.map((title, key) => (
             <Type
               key={key}
               onClick={() => setStatsType(title[1])}
@@ -203,7 +220,7 @@ export default function StandingsPage() {
   const query = window.matchMedia(largeDevice)
   const [match, setMatch] = useState(query.matches)
 
-  const statsTypeTitles = [
+  const batterStatsTypeTitles = [
     ['AVG', 'avg'], ['OPS', 'ops'], ['HR', 'hr'], ['H', 'h'], ['1B', '1B'], ['2B', '2B'], ['3B', '3B'],
     ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], ['R', 'r'], ['G','games'], ['AB', 'ab'], ['SB', 'sb'], 
     ['CS', 'cs'], ['OBP', 'obp'], ['SLG', 'slg'], ['PA', 'pa'], ['HBP', 'hbp'], ['SAC', 'sac'], 
@@ -211,10 +228,23 @@ export default function StandingsPage() {
     ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
   ]
 
+  const pitcherStatsTypeTitles = [
+    ['W', 'win'], ['L', 'lose'], ['SV', 'sv'], ['HLD', 'hld'], ['ERA', 'era'], ['G', 'games'], ['GS', 'gs'],
+    ['CG', 'cg'], ['SHO', 'sho'], ['GR', 'gr'], ['BS', 'bs'], ['IP','ip'], ['H', 'h'], ['R', 'r'], 
+    ['ER', 'er'], ['BB', 'hbp'], ['SO', 'so'], ['WHIP', 'whip'], ['TBF', 'tbf'], ['NP', 'np'], 
+    ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], ['AO', 'GO/AO'], 
+    ['SO/9', 'so9'], ['BB/9', 'bb9'], ['SO/BB', 'sobb']
+  ]
+
   useEffect(() => {
     if(nav === 'player') {
       if(subNav === 'hitting') {
         fetch(`https://floating-river-74889.herokuapp.com/batterStatsApi/${year}/${statsType}/${sort}`)
+          .then(res => res.json())
+          .then(data => setStats(data))
+          .catch(err => console.log(err))
+      } else if (subNav === 'pitching') {
+        fetch(`https://floating-river-74889.herokuapp.com/pitcherStatsApi/${year}/${statsType}/${sort}`)
           .then(res => res.json())
           .then(data => setStats(data))
           .catch(err => console.log(err))
@@ -244,7 +274,8 @@ export default function StandingsPage() {
           dataType={dataType}
           setDataType={setDataType}
           setStatsType={setStatsType}
-          statsTypeTitles={statsTypeTitles}
+          batterStatsTypeTitles={batterStatsTypeTitles}
+          pitcherStatsTypeTitles={pitcherStatsTypeTitles}
           match={match}
         />
       </Header>

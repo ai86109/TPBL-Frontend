@@ -206,6 +206,17 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
     ['XBH', 'xbh'], ['TB', 'tb'], ['IBB', 'ibb'], ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], 
     ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
   ]
+
+  const pitcherStandardTitles = [
+    ['W', 'win'], ['L', 'lose'], ['SV', 'sv'], ['HLD', 'hld'], ['ERA', 'era'], ['G', 'games'], ['GS', 'gs'], 
+    ['CG', 'cg'], ['SHO', 'sho'], ['GR', 'gr'], ['BS', 'bs'], ['IP', 'ip'], ['H', 'h'], ['R', 'r'], 
+    ['ER', 'er'], ['BB', 'bb'], ['HBP', 'hbp'], ['SO', 'so'], ['WHIP', 'whip']
+  ]
+
+  const pitcherAdvancedTitles = [
+    ['TBF', 'tbf'], ['NP', 'np'], ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], 
+    ['AO', 'GO/AO'], ['SO/9', 'so9'], ['BB/9', 'bb9'], ['SO/BB', 'sobb']
+  ]
   if(match){
     if(dataType === 'advanced') {
       return (
@@ -219,7 +230,13 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
               <tr>
                 <th>PLAYER</th>
                 <th>TEAM</th>
-                {batterAdvancedTitles.map((title, key) => (
+                {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                  <th 
+                    key={key}
+                    onClick={() => setStatsType(title[1])}
+                  >{title[0]}</th>
+                ))}
+                {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => setStatsType(title[1])}
@@ -232,7 +249,10 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
                 <tr key={x}>
                   <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                   <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
-                  {batterAdvancedTitles.map((title, key) => (
+                  {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                    <td key={key}>{stat[title[1]]}</td>
+                  ))}
+                  {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
                 </tr>
@@ -254,7 +274,13 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
             <tr>
               <th>PLAYER</th>
               <th>TEAM</th>
-              {batterStandardTitles.map((title, key) => (
+              {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
+                <th 
+                  key={key}
+                  onClick={() => setStatsType(title[1])}
+                >{title[0]}</th>
+              ))}
+              {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
                 <th 
                   key={key}
                   onClick={() => setStatsType(title[1])}
@@ -267,7 +293,10 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
               <tr key={x}>
                 <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                 <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
-                {batterStandardTitles.map((title, key) => (
+                {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
+                  <td key={key}>{stat[title[1]]}</td>
+                ))}
+                {subNav === 'pitching' && batterStandardTitles.map((title, key) => (
                   <td key={key}>{stat[title[1]]}</td>
                 ))}
               </tr>
