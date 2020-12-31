@@ -39,9 +39,133 @@
     "team": "隊伍",
     "hitting": "打擊",
     "pitching": "投球",
+    "games": {
+      "title": "G",
+      "desc": "出賽次數"
+    },
+    "ab": {
+      "title": "AB",
+      "desc": "打數"
+    },
+    "r": {
+      "title": "R",
+      "desc": "得分"
+    },
+    "h": {
+      "title": "H",
+      "desc": "安打"
+    },
+    "1B": {
+      "title": "1B",
+      "desc": "一壘安打"
+    },
+    "2B": {
+      "title": "2B",
+      "desc": "二壘安打"
+    },
+    "3B": {
+      "title": "3B",
+      "desc": "三壘安打"
+    },
+    "hr": {
+      "title": "HR",
+      "desc": "全壘打"
+    },
+    "rbi": {
+      "title": "RBI",
+      "desc": "打點"
+    },
+    "bb": {
+      "title": "BB",
+      "desc": "保送"
+    },
+    "so": {
+      "title": "SO",
+      "desc": "三振"
+    },
+    "sb": {
+      "title": "SB",
+      "desc": "盜壘"
+    },
+    "cs": {
+      "title": "CS",
+      "desc": "盜壘失敗"
+    },
     "avg": {
       "title": "AVG",
       "desc": "打擊率 = 安打 ÷ 打數"
+    },
+    "obp": {
+      "title": "OBP",
+      "desc": "上壘率"
+    },
+    "slg": {
+      "title": "SLG",
+      "desc": "長打率"
+    },
+    "ops": {
+      "title": "OPS",
+      "desc": "整體攻擊指數"
+    },
+    "pa": {
+      "title": "PA",
+      "desc": "打席"
+    },
+    "hbp": {
+      "title": "HBP",
+      "desc": "觸身球"
+    },
+    "sac": {
+      "title": "SH",
+      "desc": "犧牲觸擊"
+    },
+    "sf": {
+      "title": "SF",
+      "desc": "高飛犧牲打"
+    },
+    "gidp": {
+      "title": "GIDP",
+      "desc": "雙殺"
+    },
+    "goao": {
+      "title": "GO/AO",
+      "desc": "滾飛比"
+    },
+    "xbh": {
+      "title": "XBH",
+      "desc": "長打"
+    },
+    "tb": {
+      "title": "TB",
+      "desc": "壘打數"
+    },
+    "ibb": {
+      "title": "IBB",
+      "desc": "故意四壞球"
+    },
+    "babip": {
+      "title": "BABIP",
+      "desc": "場內安打率"
+    },
+    "iso": {
+      "title": "ISO",
+      "desc": "純長打率"
+    },
+    "abhr": {
+      "title": "AB/HR",
+      "desc": "全壘打率"
+    },
+    "bbso": {
+      "title": "BB/K",
+      "desc": "保送、三振比"
+    },
+    "bbpa": {
+      "title": "BB%",
+      "desc": "保送率"
+    },
+    "sopa": {
+      "title": "SO%",
+      "desc": "三振率"
     }
   }
 }

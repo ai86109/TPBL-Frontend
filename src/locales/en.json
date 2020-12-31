@@ -39,9 +39,133 @@
     "team": "Team",
     "hitting": "Hitting",
     "pitching": "Pitching",
+    "games": {
+      "title": "G",
+      "desc": "Games Played"
+    },
+    "ab": {
+      "title": "AB",
+      "desc": "At Bats"
+    },
+    "r": {
+      "title": "R",
+      "desc": "Runs"
+    },
+    "h": {
+      "title": "H",
+      "desc": "Hits"
+    },
+    "1B": {
+      "title": "1B",
+      "desc": "Single"
+    },
+    "2B": {
+      "title": "2B",
+      "desc": "Double"
+    },
+    "3B": {
+      "title": "3B",
+      "desc": "Triple"
+    },
+    "hr": {
+      "title": "HR",
+      "desc": "Home Runs"
+    },
+    "rbi": {
+      "title": "RBI",
+      "desc": "Run Batted In"
+    },
+    "bb": {
+      "title": "BB",
+      "desc": "Base On Balls"
+    },
+    "so": {
+      "title": "SO",
+      "desc": "Strike Out"
+    },
+    "sb": {
+      "title": "SB",
+      "desc": "Stolen Bases"
+    },
+    "cs": {
+      "title": "CS",
+      "desc": "Caught Stealing"
+    },
     "avg": {
       "title": "AVG",
-      "desc": "Batting Average = H / AB"
+      "desc": "Batting Average"
+    },
+    "obp": {
+      "title": "OBP",
+      "desc": "On Base Percentage"
+    },
+    "slg": {
+      "title": "SLG",
+      "desc": "Slugging Percentage"
+    },
+    "ops": {
+      "title": "OPS",
+      "desc": "On-base Plus Slugging"
+    },
+    "pa": {
+      "title": "PA",
+      "desc": "Plate Appearances"
+    },
+    "hbp": {
+      "title": "HBP",
+      "desc": "Hit By Pitch"
+    },
+    "sac": {
+      "title": "SH",
+      "desc": "Sacrifice Hits"
+    },
+    "sf": {
+      "title": "SF",
+      "desc": "Sacrifice Flies"
+    },
+    "gidp": {
+      "title": "GIDP",
+      "desc": "Double play"
+    },
+    "goao": {
+      "title": "GO/AO",
+      "desc": "Ground ball fly ball ratio"
+    },
+    "xbh": {
+      "title": "XBH",
+      "desc": "Extra base hit"
+    },
+    "tb": {
+      "title": "TB",
+      "desc": "Total Bases"
+    },
+    "ibb": {
+      "title": "IBB",
+      "desc": "Intentional Walks"
+    },
+    "babip": {
+      "title": "BABIP",
+      "desc": "Batting Average on Balls put Into Play"
+    },
+    "iso": {
+      "title": "ISO",
+      "desc": "Isolated Power"
+    },
+    "abhr": {
+      "title": "AB/HR",
+      "desc": "At Bats per Home Run"
+    },
+    "bbso": {
+      "title": "BB/K",
+      "desc": "walk-to-strikeout ratio"
+    },
+    "bbpa": {
+      "title": "BB%",
+      "desc": "Walk Percentage"
+    },
+    "sopa": {
+      "title": "SO%",
+      "desc": "Strikeout Percentage"
     }
   }
 }

@@ -123,7 +123,7 @@ const Type = styled.button`
   ${(props) => props.$active && `background-color: #0A1E40; color: #fff`}
 `
 
-function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, batterStatsTypeTitles, pitcherStatsTypeTitles, dataType, setDataType, match}) {
+function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, batterStatsTypeTitles, pitcherStatsTypeTitles, dataType, setDataType, match, teamBatterStatsTypeTitles, teamPitcherStatsTypeTitles}) {
   return (
     <SelectButtonsContainer>
       <NavList>
@@ -168,7 +168,7 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
           <option value="2019">2019</option>
           <option value="2018">2018</option>
         </SelectForm>
-        {match && 
+        {match && nav === 'player' &&
           <StatsDataType>
             <DataType
               onClick={() => setDataType('standard')}
@@ -194,6 +194,24 @@ function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsT
             </Type>
           ))}
           {nav === 'player' && subNav === 'pitching' && pitcherStatsTypeTitles.map((title, key) => (
+            <Type
+              key={key}
+              onClick={() => setStatsType(title[1])}
+              $active={statsType === title[1]}
+            >
+              {title[0]}
+            </Type>
+          ))}
+          {nav === 'team' && subNav === 'hitting' && teamBatterStatsTypeTitles.map((title, key) => (
+            <Type
+              key={key}
+              onClick={() => setStatsType(title[1])}
+              $active={statsType === title[1]}
+            >
+              {title[0]}
+            </Type>
+          ))}
+          {nav === 'team' && subNav === 'pitching' && teamPitcherStatsTypeTitles.map((title, key) => (
             <Type
               key={key}
               onClick={() => setStatsType(title[1])}
@@ -231,9 +249,20 @@ export default function StandingsPage() {
   const pitcherStatsTypeTitles = [
     ['W', 'win'], ['L', 'lose'], ['SV', 'sv'], ['HLD', 'hld'], ['ERA', 'era'], ['G', 'games'], ['GS', 'gs'],
     ['CG', 'cg'], ['SHO', 'sho'], ['GR', 'gr'], ['BS', 'bs'], ['IP','ip'], ['H', 'h'], ['R', 'r'], 
-    ['ER', 'er'], ['BB', 'hbp'], ['SO', 'so'], ['WHIP', 'whip'], ['TBF', 'tbf'], ['NP', 'np'], 
-    ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], ['AO', 'GO/AO'], 
+    ['ER', 'er'], ['BB', 'bb'], ['HBP', 'hbp'], ['SO', 'so'], ['WHIP', 'whip'], ['TBF', 'tbf'], ['NP', 'np'], 
+    ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], ['AO', 'ao'], ['GO/AO', 'goao'],
     ['SO/9', 'so9'], ['BB/9', 'bb9'], ['SO/BB', 'sobb']
+  ]
+
+  const teamBatterStatsTypeTitles = [
+    ['AVG', 'avg'], ['OPS', 'ops'], ['HR', 'hr'], ['H', 'h'], ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], 
+    ['R', 'r'], ['G','games'], ['AB', 'ab'], ['SB', 'sb'], ['CS', 'cs'], ['OBP', 'obp'], ['SLG', 'slg'], ['AB/HR', 'abhr']
+  ]
+
+  const teamPitcherStatsTypeTitles = [
+    ['W', 'win'], ['L', 'lose'], ['T', 'tied'], ['ERA', 'era'], ['G', 'games'], ['H', 'h'], ['R', 'r'], ['ER', 'er'], 
+    ['BB', 'bb'], ['SO', 'so'], ['WHIP', 'whip'], ['TBF', 'tbf'], ['NP', 'np'], ['WP', 'wp'], ['BK', 'bk'], 
+    ['SO/BB', 'sobb']
   ]
 
   useEffect(() => {
@@ -245,6 +274,18 @@ export default function StandingsPage() {
           .catch(err => console.log(err))
       } else if (subNav === 'pitching') {
         fetch(`https://floating-river-74889.herokuapp.com/pitcherStatsApi/${year}/${statsType}/${sort}`)
+          .then(res => res.json())
+          .then(data => setStats(data))
+          .catch(err => console.log(err))
+      }
+    } else {
+      if(subNav === 'hitting') {
+        fetch(`https://floating-river-74889.herokuapp.com/teamBatterStatsApi/${year}/${statsType}/${sort}`)
+          .then(res => res.json())
+          .then(data => setStats(data))
+          .catch(err => console.log(err))
+      } else if (subNav === 'pitching') {
+        fetch(`https://floating-river-74889.herokuapp.com/teamPitcherStatsApi/${year}/${statsType}/${sort}`)
           .then(res => res.json())
           .then(data => setStats(data))
           .catch(err => console.log(err))
@@ -276,6 +317,8 @@ export default function StandingsPage() {
           setStatsType={setStatsType}
           batterStatsTypeTitles={batterStatsTypeTitles}
           pitcherStatsTypeTitles={pitcherStatsTypeTitles}
+          teamBatterStatsTypeTitles={teamBatterStatsTypeTitles}
+          teamPitcherStatsTypeTitles={teamPitcherStatsTypeTitles}
           match={match}
         />
       </Header>

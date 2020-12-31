@@ -184,7 +184,7 @@ const FormContainer = styled.div`
         <PlayerInfo>
           <PlayerInfoTop>
             <PlayerName>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</PlayerName>
-            <PlayerPosition>P</PlayerPosition>
+            <PlayerPosition>{stat.position}</PlayerPosition>
           </PlayerInfoTop>
           <PlayerTeam>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</PlayerTeam>
         </PlayerInfo>
@@ -202,7 +202,7 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
   ]
 
   const batterAdvancedTitles = [
-    ['PA', 'pa'], ['HBP', 'hbp'], ['SAC', 'sac'], ['SF', 'sf'], ['GIDP', 'gidp'], ['GO/AO', 'goao'], 
+    ['PA', 'pa'], ['HBP', 'hbp'], ['SH', 'sac'], ['SF', 'sf'], ['GIDP', 'gidp'], ['GO/AO', 'goao'], 
     ['XBH', 'xbh'], ['TB', 'tb'], ['IBB', 'ibb'], ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], 
     ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
   ]
@@ -217,26 +217,83 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
     ['TBF', 'tbf'], ['NP', 'np'], ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], 
     ['AO', 'GO/AO'], ['SO/9', 'so9'], ['BB/9', 'bb9'], ['SO/BB', 'sobb']
   ]
+
+  const teamBatterStatsTitles = [
+    ['G','games'], ['AB', 'ab'], ['R', 'r'], ['H', 'h'], ['HR', 'hr'], ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'],
+    ['SB', 'sb'], ['AVG', 'avg'], ['OBP', 'obp'], ['SLG', 'slg'], ['OPS', 'ops'], ['AB/HR', 'abhr']
+  ]
+
+  const teamPitcherStatsTitles = [
+    ['W', 'win'], ['L', 'lose'], ['T', 'tied'], ['ERA', 'era'], ['G', 'games'], ['H', 'h'], ['R', 'r'], ['ER', 'er'], 
+    ['BB', 'bb'], ['SO', 'so'], ['WHIP', 'whip'], ['BF', 'bf'], ['NP', 'np'], ['WP', 'wp'], ['BK', 'bk'], 
+    ['SO/BB', 'sobb']
+  ]
+
   if(match){
-    if(dataType === 'advanced') {
+    if(nav === 'player') {
+      if(dataType === 'advanced') {
+        return (
+          <TableContainer>
+            <Table>
+              <colgroup span="2" />
+              <colgroup span="1" />
+              <colgroup span="5" />
+              <colgroup span="3" />
+              <thead>
+                <tr>
+                  <th>PLAYER</th>
+                  <th>TEAM</th>
+                  {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                    <th 
+                      key={key}
+                      onClick={() => setStatsType(title[1])}
+                    >{title[0]}</th>
+                  ))}
+                  {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
+                    <th 
+                      key={key}
+                      onClick={() => setStatsType(title[1])}
+                    >{title[0]}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {stats.map((stat, x) => (
+                  <tr key={x}>
+                    <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
+                    <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
+                    {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                      <td key={key}>{stat[title[1]]}</td>
+                    ))}
+                    {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
+                      <td key={key}>{stat[title[1]]}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </TableContainer>
+        )
+      }
       return (
         <TableContainer>
           <Table>
             <colgroup span="2" />
-            <colgroup span="1" />
-            <colgroup span="5" />
-            <colgroup span="3" />
+            <colgroup span="2" />
+            <colgroup span="7" />
+            <colgroup span="2" />
+            <colgroup span="2" />
             <thead>
               <tr>
                 <th>PLAYER</th>
                 <th>TEAM</th>
-                {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => setStatsType(title[1])}
                   >{title[0]}</th>
                 ))}
-                {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
+                {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => setStatsType(title[1])}
@@ -249,10 +306,50 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
                 <tr key={x}>
                   <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                   <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
-                  {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                  {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
-                  {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
+                  {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
+                    <td key={key}>{stat[title[1]]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </TableContainer>
+      )
+    } else {
+      return (
+        <TableContainer>
+          <Table>
+            <colgroup span="2" />
+            <colgroup span="1" />
+            <colgroup span="5" />
+            <thead>
+              <tr>
+                <th>TEAM</th>
+                {subNav === 'hitting' && teamBatterStatsTitles.map((title, key) => (
+                  <th 
+                    key={key}
+                    onClick={() => setStatsType(title[1])}
+                  >{title[0]}</th>
+                ))}
+                {subNav === 'pitching' && teamPitcherStatsTitles.map((title, key) => (
+                  <th 
+                    key={key}
+                    onClick={() => setStatsType(title[1])}
+                  >{title[0]}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {stats.map((stat, x) => (
+                <tr key={x}>
+                  <th>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</th>
+                  {subNav === 'hitting' && teamBatterStatsTitles.map((title, key) => (
+                    <td key={key}>{stat[title[1]]}</td>
+                  ))}
+                  {subNav === 'pitching' && teamPitcherStatsTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
                 </tr>
@@ -262,49 +359,6 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
         </TableContainer>
       )
     }
-    return (
-      <TableContainer>
-        <Table>
-          <colgroup span="2" />
-          <colgroup span="2" />
-          <colgroup span="7" />
-          <colgroup span="2" />
-          <colgroup span="2" />
-          <thead>
-            <tr>
-              <th>PLAYER</th>
-              <th>TEAM</th>
-              {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
-                <th 
-                  key={key}
-                  onClick={() => setStatsType(title[1])}
-                >{title[0]}</th>
-              ))}
-              {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
-                <th 
-                  key={key}
-                  onClick={() => setStatsType(title[1])}
-                >{title[0]}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {stats.map((stat, x) => (
-              <tr key={x}>
-                <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
-                <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
-                {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
-                  <td key={key}>{stat[title[1]]}</td>
-                ))}
-                {subNav === 'pitching' && batterStandardTitles.map((title, key) => (
-                  <td key={key}>{stat[title[1]]}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </TableContainer>
-    )
   }
 
   return (
