@@ -6,16 +6,26 @@ import Form from './Form';
 
 const largeDevice = `(min-width: 600px)`
 
+const Root = styled.div`
+  background-color: #f3f3f3;
+  width: 100%;
+  min-height: 700px;
+  padding: 0;
+  ${MEDIA_QUERY_LG} {
+    padding: 0 2rem;
+  }
+`
+
 const Container = styled.div`
   background-color: #fff;
   width: 100%;
   min-height: 700px;
-  margin: 0 auto;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-size: 16px;
-  padding: 2rem;
+  ${(props) => props.$active && `padding: 0 2rem;`}
 `
 
 const Header = styled.div`
@@ -236,7 +246,7 @@ export default function StandingsPage() {
   const [ stats, setStats ] = useState([])
   const currentLng = i18n.language
   const query = window.matchMedia(largeDevice)
-  const [match, setMatch] = useState(query.matches)
+  const [ match, setMatch ] = useState(query.matches)
 
   const batterStatsTypeTitles = [
     ['AVG', 'avg'], ['OPS', 'ops'], ['HR', 'hr'], ['H', 'h'], ['1B', '1B'], ['2B', '2B'], ['3B', '3B'],
@@ -261,7 +271,7 @@ export default function StandingsPage() {
 
   const teamPitcherStatsTypeTitles = [
     ['W', 'win'], ['L', 'lose'], ['T', 'tied'], ['ERA', 'era'], ['G', 'games'], ['H', 'h'], ['R', 'r'], ['ER', 'er'], 
-    ['BB', 'bb'], ['SO', 'so'], ['WHIP', 'whip'], ['TBF', 'tbf'], ['NP', 'np'], ['WP', 'wp'], ['BK', 'bk'], 
+    ['BB', 'bb'], ['SO', 'so'], ['WHIP', 'whip'], ['BF', 'bf'], ['NP', 'np'], ['WP', 'wp'], ['BK', 'bk'], 
     ['SO/BB', 'sobb']
   ]
 
@@ -278,7 +288,7 @@ export default function StandingsPage() {
           .then(data => setStats(data))
           .catch(err => console.log(err))
       }
-    } else {
+    } else if(nav === 'team') {
       if(subNav === 'hitting') {
         fetch(`https://floating-river-74889.herokuapp.com/teamBatterStatsApi/${year}/${statsType}/${sort}`)
           .then(res => res.json())
@@ -300,41 +310,43 @@ export default function StandingsPage() {
   }, )
 
   return (
-    <Container>
-      <Header>
-        <PageTitle>{t('navbar.stats')}</PageTitle>
-        <SelectButtons 
-          t={t}
+    <Root>
+      <Container $active={!match}>
+        <Header>
+          <PageTitle>{t('navbar.stats')}</PageTitle>
+          <SelectButtons 
+            t={t}
+            nav={nav}
+            setNav={setNav}
+            subNav={subNav}
+            setSubNav={setSubNav}
+            year={year}
+            setYear={setYear}
+            statsType={statsType}
+            dataType={dataType}
+            setDataType={setDataType}
+            setStatsType={setStatsType}
+            batterStatsTypeTitles={batterStatsTypeTitles}
+            pitcherStatsTypeTitles={pitcherStatsTypeTitles}
+            teamBatterStatsTypeTitles={teamBatterStatsTypeTitles}
+            teamPitcherStatsTypeTitles={teamPitcherStatsTypeTitles}
+            match={match}
+          />
+        </Header>
+        <Form 
           nav={nav}
-          setNav={setNav}
-          subNav={subNav}
-          setSubNav={setSubNav}
           year={year}
-          setYear={setYear}
-          statsType={statsType}
+          subNav={subNav}
           dataType={dataType}
-          setDataType={setDataType}
+          statsType={statsType}
           setStatsType={setStatsType}
-          batterStatsTypeTitles={batterStatsTypeTitles}
-          pitcherStatsTypeTitles={pitcherStatsTypeTitles}
-          teamBatterStatsTypeTitles={teamBatterStatsTypeTitles}
-          teamPitcherStatsTypeTitles={teamPitcherStatsTypeTitles}
+          stats={stats}
+          sort={sort}
+          setSort={setSort}
+          currentLng={currentLng}
           match={match}
         />
-      </Header>
-      <Form 
-        nav={nav}
-        year={year}
-        subNav={subNav}
-        dataType={dataType}
-        statsType={statsType}
-        setStatsType={setStatsType}
-        stats={stats}
-        sort={sort}
-        setSort={setSort}
-        currentLng={currentLng}
-        match={match}
-      />
-    </Container>
+      </Container>
+    </Root>
   )
 }

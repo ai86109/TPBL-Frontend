@@ -214,8 +214,8 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
   ]
 
   const pitcherAdvancedTitles = [
-    ['TBF', 'tbf'], ['NP', 'np'], ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], 
-    ['AO', 'GO/AO'], ['SO/9', 'so9'], ['BB/9', 'bb9'], ['SO/BB', 'sobb']
+    ['BF', 'bf'], ['NP', 'np'], ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], 
+    ['AO', 'GO/AO'], ['SO/9', 'so9'], ['BB/9', 'bb9'], ['K/BB', 'sobb']
   ]
 
   const teamBatterStatsTitles = [

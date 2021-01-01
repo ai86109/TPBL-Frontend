@@ -166,6 +166,98 @@
     "sopa": {
       "title": "SO%",
       "desc": "三振率"
+    },
+    "win": {
+      "title": "W",
+      "desc": "勝投"
+    },
+    "lose": {
+      "title": "L",
+      "desc": "敗投"
+    },
+    "sv": {
+      "title": "SV",
+      "desc": "救援成功"
+    },
+    "hld": {
+      "title": "HLD",
+      "desc": "中繼成功"
+    },
+    "era": {
+      "title": "ERA",
+      "desc": "防禦率"
+    },
+    "gs": {
+      "title": "GS",
+      "desc": "先發"
+    },
+    "cg": {
+      "title": "CG",
+      "desc": "完投"
+    },
+    "sho": {
+      "title": "SHO",
+      "desc": "完封"
+    },
+    "gr": {
+      "title": "GR",
+      "desc": "後援"
+    },
+    "bs": {
+      "title": "BS",
+      "desc": "救援失敗"
+    },
+    "ip": {
+      "title": "IP",
+      "desc": "投球局數"
+    },
+    "er": {
+      "title": "ER",
+      "desc": "自責分"
+    },
+    "whip": {
+      "title": "WHIP",
+      "desc": "每局被上壘率"
+    },
+    "bf": {
+      "title": "BF",
+      "desc": "投球人次"
+    },
+    "np": {
+      "title": "NP",
+      "desc": "投球數"
+    },
+    "pip": {
+      "title": "P/IP",
+      "desc": "每局平均用球數"
+    },
+    "wp": {
+      "title": "WP",
+      "desc": "暴投"
+    },
+    "bk": {
+      "title": "BK",
+      "desc": "投手犯規"
+    },
+    "go": {
+      "title": "GO",
+      "desc": "滾地球出局"
+    },
+    "ao": {
+      "title": "AO",
+      "desc": "飛球出局"
+    },
+    "so9": {
+      "title": "SO/9",
+      "desc": "平均九局三振數"
+    },
+    "bb9": {
+      "title": "BB/9",
+      "desc": "平均九局保送數"
+    },
+    "sobb": {
+      "title": "K/BB",
+      "desc": "三振保送比"
     }
   }
 }

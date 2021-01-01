@@ -166,6 +166,98 @@
     "sopa": {
       "title": "SO%",
       "desc": "Strikeout Percentage"
+    },
+    "win": {
+      "title": "W",
+      "desc": "Wins"
+    },
+    "lose": {
+      "title": "L",
+      "desc": "Losses"
+    },
+    "sv": {
+      "title": "SV",
+      "desc": "Saves"
+    },
+    "hld": {
+      "title": "HLD",
+      "desc": "Hold"
+    },
+    "era": {
+      "title": "ERA",
+      "desc": "Earned Run Average"
+    },
+    "gs": {
+      "title": "GS",
+      "desc": "Games Started"
+    },
+    "cg": {
+      "title": "CG",
+      "desc": "Complete Games"
+    },
+    "sho": {
+      "title": "SHO",
+      "desc": "Shutouts"
+    },
+    "gr": {
+      "title": "GR",
+      "desc": "Games in Relief"
+    },
+    "bs": {
+      "title": "BS",
+      "desc": "Blown Saves"
+    },
+    "ip": {
+      "title": "IP",
+      "desc": "Innings Pitched"
+    },
+    "er": {
+      "title": "ER",
+      "desc": "Earned Runs"
+    },
+    "whip": {
+      "title": "WHIP",
+      "desc": "Walks plus hits per inning pitched"
+    },
+    "bf": {
+      "title": "BF",
+      "desc": "Batters Faced"
+    },
+    "np": {
+      "title": "NP",
+      "desc": "Number of Pitches Thrown"
+    },
+    "pip": {
+      "title": "P/IP",
+      "desc": "Pitch count per inning"
+    },
+    "wp": {
+      "title": "WP",
+      "desc": "Wild Pitches"
+    },
+    "bk": {
+      "title": "BK",
+      "desc": "BALK"
+    },
+    "go": {
+      "title": "GO",
+      "desc": "Ground ball Outs"
+    },
+    "ao": {
+      "title": "AO",
+      "desc": "Fly Outs"
+    },
+    "so9": {
+      "title": "SO/9",
+      "desc": "Strikouts per 9 IP"
+    },
+    "bb9": {
+      "title": "BB/9",
+      "desc": "Walks per 9 IP"
+    },
+    "sobb": {
+      "title": "K/BB",
+      "desc": "Strikeout to Walk ratio"
     }
   }
 }
