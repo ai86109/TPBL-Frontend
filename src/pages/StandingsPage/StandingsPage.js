@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
@@ -27,7 +27,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   display: flex;
-  padding: 10px 0;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -98,13 +98,12 @@ const SelectForm = styled.select`
   min-width: 10rem;
   max-width: 20rem;
   border-radius: 0.25rem;
-  font-size: 1.25rem;
   padding: 10px 20px;
   font-size: 1.5rem;
   cursor: pointer;
   ${MEDIA_QUERY_MD} {
     border: 1px solid black;
-    order-radius: 0.25rem;
+    border-radius: 0.25rem;
     height: 5rem;
     margin-right: 1rem;
     width: 10rem;

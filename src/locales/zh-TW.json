@@ -33,5 +33,231 @@
     "vsMonkeys": "vs. 樂天桃猿",
     "vsLions": "vs. 統一7-ELEVEn獅",
     "vsGuardians": "vs. 富邦悍將"
+  },
+  "stats": {
+    "player": "球員",
+    "team": "隊伍",
+    "hitting": "打擊",
+    "pitching": "投球",
+    "games": {
+      "title": "G",
+      "desc": "出賽次數"
+    },
+    "ab": {
+      "title": "AB",
+      "desc": "打數"
+    },
+    "r": {
+      "title": "R",
+      "desc": "得分"
+    },
+    "h": {
+      "title": "H",
+      "desc": "安打"
+    },
+    "1B": {
+      "title": "1B",
+      "desc": "一壘安打"
+    },
+    "2B": {
+      "title": "2B",
+      "desc": "二壘安打"
+    },
+    "3B": {
+      "title": "3B",
+      "desc": "三壘安打"
+    },
+    "hr": {
+      "title": "HR",
+      "desc": "全壘打"
+    },
+    "rbi": {
+      "title": "RBI",
+      "desc": "打點"
+    },
+    "bb": {
+      "title": "BB",
+      "desc": "保送"
+    },
+    "so": {
+      "title": "SO",
+      "desc": "三振"
+    },
+    "sb": {
+      "title": "SB",
+      "desc": "盜壘"
+    },
+    "cs": {
+      "title": "CS",
+      "desc": "盜壘失敗"
+    },
+    "avg": {
+      "title": "AVG",
+      "desc": "打擊率 = 安打 ÷ 打數"
+    },
+    "obp": {
+      "title": "OBP",
+      "desc": "上壘率"
+    },
+    "slg": {
+      "title": "SLG",
+      "desc": "長打率"
+    },
+    "ops": {
+      "title": "OPS",
+      "desc": "整體攻擊指數"
+    },
+    "pa": {
+      "title": "PA",
+      "desc": "打席"
+    },
+    "hbp": {
+      "title": "HBP",
+      "desc": "觸身球"
+    },
+    "sac": {
+      "title": "SH",
+      "desc": "犧牲觸擊"
+    },
+    "sf": {
+      "title": "SF",
+      "desc": "高飛犧牲打"
+    },
+    "gidp": {
+      "title": "GIDP",
+      "desc": "雙殺"
+    },
+    "goao": {
+      "title": "GO/AO",
+      "desc": "滾飛比"
+    },
+    "xbh": {
+      "title": "XBH",
+      "desc": "長打"
+    },
+    "tb": {
+      "title": "TB",
+      "desc": "壘打數"
+    },
+    "ibb": {
+      "title": "IBB",
+      "desc": "故意四壞球"
+    },
+    "babip": {
+      "title": "BABIP",
+      "desc": "場內安打率"
+    },
+    "iso": {
+      "title": "ISO",
+      "desc": "純長打率"
+    },
+    "abhr": {
+      "title": "AB/HR",
+      "desc": "全壘打率"
+    },
+    "bbso": {
+      "title": "BB/K",
+      "desc": "保送、三振比"
+    },
+    "bbpa": {
+      "title": "BB%",
+      "desc": "保送率"
+    },
+    "sopa": {
+      "title": "SO%",
+      "desc": "三振率"
+    },
+    "win": {
+      "title": "W",
+      "desc": "勝投"
+    },
+    "lose": {
+      "title": "L",
+      "desc": "敗投"
+    },
+    "sv": {
+      "title": "SV",
+      "desc": "救援成功"
+    },
+    "hld": {
+      "title": "HLD",
+      "desc": "中繼成功"
+    },
+    "era": {
+      "title": "ERA",
+      "desc": "防禦率"
+    },
+    "gs": {
+      "title": "GS",
+      "desc": "先發"
+    },
+    "cg": {
+      "title": "CG",
+      "desc": "完投"
+    },
+    "sho": {
+      "title": "SHO",
+      "desc": "完封"
+    },
+    "gr": {
+      "title": "GR",
+      "desc": "後援"
+    },
+    "bs": {
+      "title": "BS",
+      "desc": "救援失敗"
+    },
+    "ip": {
+      "title": "IP",
+      "desc": "投球局數"
+    },
+    "er": {
+      "title": "ER",
+      "desc": "自責分"
+    },
+    "whip": {
+      "title": "WHIP",
+      "desc": "每局被上壘率"
+    },
+    "bf": {
+      "title": "BF",
+      "desc": "投球人次"
+    },
+    "np": {
+      "title": "NP",
+      "desc": "投球數"
+    },
+    "pip": {
+      "title": "P/IP",
+      "desc": "每局平均用球數"
+    },
+    "wp": {
+      "title": "WP",
+      "desc": "暴投"
+    },
+    "bk": {
+      "title": "BK",
+      "desc": "投手犯規"
+    },
+    "go": {
+      "title": "GO",
+      "desc": "滾地球出局"
+    },
+    "ao": {
+      "title": "AO",
+      "desc": "飛球出局"
+    },
+    "so9": {
+      "title": "SO/9",
+      "desc": "平均九局三振數"
+    },
+    "bb9": {
+      "title": "BB/9",
+      "desc": "平均九局保送數"
+    },
+    "sobb": {
+      "title": "K/BB",
+      "desc": "三振保送比"
+    }
   }
 }
