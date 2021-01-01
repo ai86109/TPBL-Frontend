@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import HomePage from '../../pages/HomePage';
 import StandingsPage from '../../pages/StandingsPage';
 import StatsPage from '../../pages/StatsPage';
+import SchedulePage from '../../pages/SchedulePage';
 import { useTranslation } from 'react-i18next';
 
 const Root = styled.div``
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/stats">
             <StatsPage />
+          </Route>
+          <Route path="/schedule">
+            <SchedulePage />
           </Route>
         </Switch>
       </Router>
