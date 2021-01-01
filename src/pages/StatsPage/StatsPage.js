@@ -20,12 +20,13 @@ const Container = styled.div`
   background-color: #fff;
   width: 100%;
   min-height: 700px;
-  margin: 2rem auto;
+  margin: 3px auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-size: 16px;
-  ${(props) => props.$active && `padding: 0 2rem;`}
+  padding: 2rem 0;
+  ${(props) => props.$active && `padding: 2rem 2rem;`}
 `
 
 const Header = styled.div`

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
 
 const Root = styled.div`
+  margin-top: 3px;
   background-color: #f3f3f3;
   width: 100%;
   min-height: 700px;
@@ -70,15 +71,20 @@ const GameDate = styled.div`
 const Pages = styled.div`
   display: flex;
   cursor: pointer;
+  align-items: center;
 `
 
 const Date = styled.div`
   display: flex;
   flex-grow: 1;
   justify-content: center;
+  align-items: center;
 `
 
-const GameCalendar = styled.div``
+const GameCalendar = styled.div`
+  display: flex;
+  align-items: center;
+`
 
 const ScheduleContainer = styled.div`
   display: flex;
