@@ -148,7 +148,7 @@ const Teams = styled.div`
   ${MEDIA_QUERY_MD} {
     display: flex;
     flex-direction: column;
-    margin-top: 35px;
+    margin-top: 38px;
   }
 `
 
@@ -163,11 +163,14 @@ const Team = styled.div`
 `
 
 const TeamLogo = styled.div`
-  background: red;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  & img {
+    border-radius: 50%;
+    max-width: 38px;
+    max-height: 38px;
+  }
 `
 
 const TeamInfo = styled.div`
@@ -228,7 +231,7 @@ const Table = styled.table`
     text-align: center;
   }
   td, th {
-    padding: 10px 10px;
+    padding: 14px 10px;
   }
 `
 
@@ -245,30 +248,43 @@ const GamePitcher = styled.div`
   display: flex;
   flex: 1;
   padding: 10px;
+  & + & {
+    border-left: 1px solid grey;
+  }
 `
 
 const PitcherProfilePic = styled.div`
-  background: red;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  & img {
+    border-radius: 50%;
+    max-width: 50px;
+    max-height: 50px;
+  }
 `
 
 const PitcherInfo = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `
 
 const Pitcher = styled.div`
   display: flex;
 `
 
-const WinAndLose = styled.div``
+const WinAndLose = styled.div`
+  display: flex;
+`
 
-const PitcherName = styled.div``
+const PitcherName = styled.div`
+  display: flex;
+`
 
-const PitcherStatus = styled.div``
+const PitcherStatus = styled.div`
+  display: flex;
+`
 
 function SelectButtons() {
   return (
@@ -303,7 +319,9 @@ function Scores() {
           <GameBoard>
             <Teams>
               <Team>
-                <TeamLogo></TeamLogo>
+                <TeamLogo>
+                  <img src="https://i.imgur.com/9p23DQK.png" />
+                </TeamLogo>
                 <TeamInfo>
                   <TeamName>悍將</TeamName>
                   <TeamStandings>38 - 53</TeamStandings>
@@ -311,7 +329,9 @@ function Scores() {
                 <TeamScore>0</TeamScore>
               </Team>
               <Team>
-                <TeamLogo></TeamLogo>
+                <TeamLogo>
+                  <img src="https://i.imgur.com/pEHu3n2.png" />
+                </TeamLogo>
                 <TeamInfo>
                   <TeamName>獅</TeamName>
                   <TeamStandings>43 - 49</TeamStandings>
@@ -374,7 +394,9 @@ function Scores() {
           </GameBoard>
           <GameInfo>
             <GamePitcher>
-              <PitcherProfilePic></PitcherProfilePic>
+              <PitcherProfilePic>
+                <img src="https://i.imgur.com/Wqmh4ZR.png" />
+              </PitcherProfilePic>
               <PitcherInfo>
                 <Pitcher>
                   <WinAndLose>W:</WinAndLose>
@@ -384,7 +406,9 @@ function Scores() {
               </PitcherInfo>
             </GamePitcher>
             <GamePitcher>
-              <PitcherProfilePic></PitcherProfilePic>
+              <PitcherProfilePic>
+                <img src="https://i.imgur.com/kODm5Gg.png" />
+              </PitcherProfilePic>
               <PitcherInfo>
                 <Pitcher>
                   <WinAndLose>L:</WinAndLose>
@@ -402,7 +426,9 @@ function Scores() {
           <GameBoard>
             <Teams>
               <Team>
-                <TeamLogo></TeamLogo>
+                <TeamLogo>
+                  <img src="https://i.imgur.com/XkOy9RG.png" />
+                </TeamLogo>
                 <TeamInfo>
                   <TeamName>兄弟</TeamName>
                   <TeamStandings>52 - 39</TeamStandings>
@@ -410,7 +436,9 @@ function Scores() {
                 <TeamScore>8</TeamScore>
               </Team>
               <Team>
-                <TeamLogo></TeamLogo>
+                <TeamLogo>
+                  <img src="https://i.imgur.com/wbwC9r7.png" />
+                </TeamLogo>
                 <TeamInfo>
                   <TeamName>桃猿</TeamName>
                   <TeamStandings>50 - 42</TeamStandings>
@@ -473,7 +501,9 @@ function Scores() {
           </GameBoard>
           <GameInfo>
             <GamePitcher>
-              <PitcherProfilePic></PitcherProfilePic>
+              <PitcherProfilePic>
+                <img src="https://i.imgur.com/pbTyYYH.png" />
+              </PitcherProfilePic>
               <PitcherInfo>
                 <Pitcher>
                   <WinAndLose>W:</WinAndLose>
@@ -483,7 +513,9 @@ function Scores() {
               </PitcherInfo>
             </GamePitcher>
             <GamePitcher>
-              <PitcherProfilePic></PitcherProfilePic>
+              <PitcherProfilePic>
+                <img src="https://i.imgur.com/pWBATSd.png" />
+              </PitcherProfilePic>
               <PitcherInfo>
                 <Pitcher>
                   <WinAndLose>L:</WinAndLose>
