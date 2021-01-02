@@ -7,6 +7,7 @@ import StandingsPage from '../../pages/StandingsPage';
 import StatsPage from '../../pages/StatsPage';
 import SchedulePage from '../../pages/SchedulePage';
 import ScoresPage from '../../pages/ScoresPage';
+import BoxScoresPage from '../../pages/BoxScoresPage';
 import { useTranslation } from 'react-i18next';
 
 const Root = styled.div``
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/scores">
             <ScoresPage />
+          </Route>
+          <Route path="/boxscores">
+            <BoxScoresPage />
           </Route>
         </Switch>
       </Router>
