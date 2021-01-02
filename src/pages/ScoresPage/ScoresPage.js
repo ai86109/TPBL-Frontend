@@ -170,6 +170,7 @@ const TeamLogo = styled.div`
     border-radius: 50%;
     max-width: 38px;
     max-height: 38px;
+    background-color: #ddd;
   }
 `
 
@@ -206,6 +207,7 @@ const TeamScore = styled.div`
   align-item: center;
   font-size: 2.25rem;
   font-weight: 900;
+  padding-right: 40px;
   ${MEDIA_QUERY_MD} {
     display: none;
   }
@@ -232,6 +234,12 @@ const Table = styled.table`
   }
   td, th {
     padding: 14px 10px;
+  }
+  th {
+    border-bottom: 1px solid #ddd;
+  }
+  colgroup {
+    border-right: 1px solid #ddd;
   }
 `
 
@@ -261,13 +269,15 @@ const PitcherProfilePic = styled.div`
     border-radius: 50%;
     max-width: 50px;
     max-height: 50px;
+    background-color: #ddd;
   }
 `
 
 const PitcherInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  color: grey;
 `
 
 const Pitcher = styled.div`
@@ -276,10 +286,13 @@ const Pitcher = styled.div`
 
 const WinAndLose = styled.div`
   display: flex;
+  margin-right: 5px;
+
 `
 
 const PitcherName = styled.div`
   display: flex;
+  color: black;
 `
 
 const PitcherStatus = styled.div`
@@ -342,7 +355,6 @@ function Scores() {
             <ScoreBoard>
               <Table>
                 <colgroup span="9" />
-                <colgroup span="3" />
                 <thead>
                   <tr>
                     <th>1</th>
@@ -449,7 +461,6 @@ function Scores() {
             <ScoreBoard>
               <Table>
                 <colgroup span="9" />
-                <colgroup span="3" />
                 <thead>
                   <tr>
                     <th>1</th>
