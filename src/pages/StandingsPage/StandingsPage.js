@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
 
 const Root = styled.div`
+  margin-top: 3px;
   background-color: #f3f3f3;
   width: 100%;
   min-height: 700px;

@@ -6,6 +6,7 @@ import HomePage from '../../pages/HomePage';
 import StandingsPage from '../../pages/StandingsPage';
 import StatsPage from '../../pages/StatsPage';
 import SchedulePage from '../../pages/SchedulePage';
+import ScoresPage from '../../pages/ScoresPage';
 import { useTranslation } from 'react-i18next';
 
 const Root = styled.div``
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/schedule">
             <SchedulePage />
+          </Route>
+          <Route path="/scores">
+            <ScoresPage />
           </Route>
         </Switch>
       </Router>
