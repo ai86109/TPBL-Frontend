@@ -137,11 +137,15 @@ const At = styled.div`
 `
 
 const TeamLogo = styled.div`
-  background: red;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  display: flex;
+  align-items: center;
   margin-right: 10px;
+  & img {
+    border-radius: 50%;
+    max-width: 20px;
+    max-height: 20px;
+    background-color: #ddd;
+  }
 `
 
 const TeamName = styled.div`
@@ -181,12 +185,16 @@ function Schedule() {
         <Game>
           <Teams>
             <Team>
-              <TeamLogo></TeamLogo>
+              <TeamLogo>
+                <img src="https://i.imgur.com/9p23DQK.png" />
+              </TeamLogo>
               <TeamName>悍將</TeamName>
             </Team>
             <Team>
               <At>@</At>
-              <TeamLogo></TeamLogo>
+              <TeamLogo>
+                <img src="https://i.imgur.com/pEHu3n2.png" />
+              </TeamLogo>
               <TeamName>獅</TeamName>
             </Team>
           </Teams>
@@ -198,12 +206,16 @@ function Schedule() {
         <Game>
           <Teams>
             <Team>
-              <TeamLogo></TeamLogo>
+              <TeamLogo>
+                <img src="https://i.imgur.com/9p23DQK.png" />
+              </TeamLogo>
               <TeamName>悍將</TeamName>
             </Team>
             <Team>
               <At>@</At>
-              <TeamLogo></TeamLogo>
+              <TeamLogo>
+                <img src="https://i.imgur.com/pEHu3n2.png" />
+              </TeamLogo>
               <TeamName>獅</TeamName>
             </Team>
           </Teams>
@@ -212,12 +224,16 @@ function Schedule() {
         <Game>
           <Teams>
           <Team>
-            <TeamLogo></TeamLogo>
+            <TeamLogo>
+              <img src="https://i.imgur.com/XkOy9RG.png" />
+            </TeamLogo>
             <TeamName>兄弟</TeamName>
           </Team>
           <Team>
             <At>@</At>
-            <TeamLogo></TeamLogo>
+            <TeamLogo>
+              <img src="https://i.imgur.com/wbwC9r7.png" />
+            </TeamLogo>
             <TeamName>桃猿</TeamName>
           </Team>
           </Teams>
