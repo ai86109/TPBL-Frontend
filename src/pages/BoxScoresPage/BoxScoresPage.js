@@ -29,15 +29,19 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 100%
+  width: 100%;
+  border-top: 1px solid grey;
 `
 
 const GamesNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 5px;
-  border-bottom: 2px solid grey;
-  width: 100%
+  width: 100%;
+  ${MEDIA_QUERY_MD} {
+    max-width: 600px;
+    justify-contents: flex-start;
+  }
 `
 
 const GameDate = styled.div`
@@ -76,6 +80,13 @@ const GameBlock = styled.div`
   width: 100%;
   padding: 0 10px;
   border-left: 1px solid grey;
+  ${MEDIA_QUERY_MD} {
+    justify-contents: flex-start;
+    flex-grow: 0;
+    & + & {
+      border-right: 1px solid grey;
+    }
+  }
 `
 
 const Teams = styled.div`
@@ -133,7 +144,7 @@ const ScoreBoardContainer = styled.div`
   display: flex;
   justify-contents: space-around;
   width: 100%;
-  margin: 20px 0;
+  padding: 20px 0;
   border-bottom: 1px solid grey;
   ${MEDIA_QUERY_LG} {
     justify-content: center;
