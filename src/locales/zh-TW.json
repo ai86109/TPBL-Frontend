@@ -93,7 +93,7 @@
     },
     "avg": {
       "title": "AVG",
-      "desc": "打擊率 = 安打 ÷ 打數"
+      "desc": "打擊率"
     },
     "obp": {
       "title": "OBP",
