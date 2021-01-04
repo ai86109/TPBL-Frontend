@@ -17,10 +17,8 @@ const NavbarContainer = styled.div`
   padding: 0 32px;
   justify-content: space-between;
   box-shadow: 1px 2px 5px #000;
-  ${MEDIA_QUERY_SM} {
-    height: 100px;
-    flex-direction: column;
-  }
+  height: 100px;
+  flex-direction: column;
   ${MEDIA_QUERY_LG} {
     height: 70px;
     flex-direction: row;
@@ -34,7 +32,7 @@ const NavbarTop = styled.div`
   margin-top: 10px;
 `
 
-const NavbarMenuButtonContainer = styled.div`
+const HamburgerButtonContainer = styled.div`
   width: 24px;
   height: 18px;
   cursor: pointer;
@@ -99,13 +97,21 @@ const NavbarRight = styled.div`
   align-items: center;
 `
 
-function NavbarMenuButton() {
+const HamburgerMenuContainer = styled.div`
+  postion: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #0A1E40;
+  z-index: 1;
+`
+
+function HamburgerButton({open, setOpen}) {
   return (
-    <NavbarMenuButtonContainer>
+    <HamburgerButtonContainer onClick={() => setOpen(!open)}>
       <MenuSpan />
       <MenuSpan />
       <MenuSpan />
-    </NavbarMenuButtonContainer>
+    </HamburgerButtonContainer>
   )
 }
 
@@ -113,13 +119,17 @@ export default function Header() {
   const query = window.matchMedia(largeDevice)
   const [match, setMatch] = useState(query.matches)
   const { t, i18n } = useTranslation();
+  const [open, setOpen] = useState(false)
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
   }
 
   useEffect(() => {
-    const handleMatch = q => setMatch(q.matches)
+    const handleMatch = q => {
+      setMatch(q.matches)
+      setOpen(!open)
+    }
     query.addListener(handleMatch)
     return () => query.removeListener(handleMatch)
   }, )
@@ -144,17 +154,17 @@ export default function Header() {
     )
   }
   return (
-    <NavbarContainer>
-      <NavbarTop>
-        <NavbarMenuButton />
-        <Logo to="/" ><img src='./TPBL.svg'/></Logo>
-        <Login>{t('navbar.login')}</Login>
-      </NavbarTop>
-      <NavbarBottom>
-        <Nav to="/scores">{t('navbar.scores')}</Nav>
-        <Nav to="/standings">{t('navbar.standings')}</Nav>
-        <Nav to="/stats">{t('navbar.stats')}</Nav>
-      </NavbarBottom>
-    </NavbarContainer>
+  <NavbarContainer>
+    <NavbarTop>
+      <HamburgerButton open={open} setOpen={setOpen} />
+      <Logo to="/" ><img src='./TPBL.svg'/></Logo>
+      <Login>{t('navbar.login')}</Login>
+    </NavbarTop>
+    <NavbarBottom>
+      <Nav to="/scores">{t('navbar.scores')}</Nav>
+      <Nav to="/standings">{t('navbar.standings')}</Nav>
+      <Nav to="/stats">{t('navbar.stats')}</Nav>
+    </NavbarBottom>
+  </NavbarContainer>
   )
 }
