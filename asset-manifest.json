@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/my-app/static/js/main.09328efa.chunk.js",
-    "main.js.map": "/my-app/static/js/main.09328efa.chunk.js.map",
-    "runtime-main.js": "/my-app/static/js/runtime-main.199429e4.js",
-    "runtime-main.js.map": "/my-app/static/js/runtime-main.199429e4.js.map",
-    "static/js/2.ce9490c5.chunk.js": "/my-app/static/js/2.ce9490c5.chunk.js",
-    "static/js/2.ce9490c5.chunk.js.map": "/my-app/static/js/2.ce9490c5.chunk.js.map",
-    "index.html": "/my-app/index.html",
-    "static/js/2.ce9490c5.chunk.js.LICENSE.txt": "/my-app/static/js/2.ce9490c5.chunk.js.LICENSE.txt"
+    "main.js": "/TPBL-Frontend/static/js/main.09328efa.chunk.js",
+    "main.js.map": "/TPBL-Frontend/static/js/main.09328efa.chunk.js.map",
+    "runtime-main.js": "/TPBL-Frontend/static/js/runtime-main.ff3b49a6.js",
+    "runtime-main.js.map": "/TPBL-Frontend/static/js/runtime-main.ff3b49a6.js.map",
+    "static/js/2.14fad827.chunk.js": "/TPBL-Frontend/static/js/2.14fad827.chunk.js",
+    "static/js/2.14fad827.chunk.js.map": "/TPBL-Frontend/static/js/2.14fad827.chunk.js.map",
+    "index.html": "/TPBL-Frontend/index.html",
+    "static/js/2.14fad827.chunk.js.LICENSE.txt": "/TPBL-Frontend/static/js/2.14fad827.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.199429e4.js",
-    "static/js/2.ce9490c5.chunk.js",
+    "static/js/runtime-main.ff3b49a6.js",
+    "static/js/2.14fad827.chunk.js",
     "static/js/main.09328efa.chunk.js"
   ]
 }
