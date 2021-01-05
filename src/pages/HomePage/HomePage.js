@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MEDIA_QUERY_MD, MEDIA_QUERY_MDtoLG, MEDIA_QUERY_LG } from '../../constants/breakpoint';
+import { MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_MD, MEDIA_QUERY_MDtoLG, MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -60,14 +60,18 @@ const SubNavContainer = styled.div`
 const GamesNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 20px 5px;
+  padding: 10px 2px;
   max-width: 100%;
   postion: fixed;
   top: 0;
   left: 0;
   right: 0;
   background: #ffffff;
-  font-size: 16px;
+  font-size: 12px;
+  ${MEDIA_QUERY_SMtoMD} {
+    font-size: 16px;
+    padding: 20px 5px;
+  }
   ${MEDIA_QUERY_MD} {
     max-width: 600px;
     justify-contents: flex-start;
@@ -100,7 +104,10 @@ const DateContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 25px;
+  padding: 0 10px;
+  ${MEDIA_QUERY_SMtoMD} {
+    padding: 0 25px;
+  }
 `
 
 const Day = styled.div`
@@ -201,9 +208,12 @@ const TeamScore = styled.div`
 `
 
 const TeamStandings = styled.div`
-  display: flex;
-  align-items: center;
-  color: grey;
+  display: none;
+  ${MEDIA_QUERY_SM} {
+    display: flex;
+    align-items: center;
+    color: grey;
+  }
   ${MEDIA_QUERY_LG} {
     display: none;
   }

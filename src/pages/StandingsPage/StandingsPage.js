@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
+import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
 
 const Root = styled.div`
   margin-top: 3px;
@@ -96,12 +96,16 @@ const YearsAndStandingsDataType = styled.div`
 
 const SelectForm = styled.select`
   width: 100%;
-  min-width: 10rem;
-  max-width: 20rem;
+  min-width: 5rem;
+  max-width: 10rem;
   border-radius: 0.25rem;
-  padding: 10px 20px;
+  padding: 5px 10px;
   font-size: 1.5rem;
   cursor: pointer;
+  ${MEDIA_QUERY_SMtoMD} {
+    padding: 10px 20px;
+    min-width: 10rem;
+  }
   ${MEDIA_QUERY_MD} {
     border: 1px solid black;
     border-radius: 0.25rem;
@@ -121,12 +125,17 @@ const StandingsDataType = styled.div`
 `
 
 const DataType = styled.button`
-  padding: 10px 20px;
-  min-width: 12rem;
-  max-width: 20rem;
+  padding: 5px 10px;
+  min-width: 8rem;
+  max-width: 15rem;
   cursor: pointer;
   height: 100%;
   ${(props) => props.$active && `background-color: grey;`}
+  ${MEDIA_QUERY_SMtoMD} {
+    padding: 10px 20px;
+    min-width: 12rem;
+    max-width: 20rem;
+  }
 `
 
 const FormContainer = styled.div`
@@ -140,6 +149,7 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   white-space: nowrap;
+  font-size: 12px;
   colgroup {
     border-right: 1px solid grey;
   }
@@ -162,13 +172,19 @@ const Table = styled.table`
     text-align: center;
   }
   td, th {
-    padding: 10px 15px;
+    padding: 5px 10px;
+    ${MEDIA_QUERY_SMtoMD} {
+      padding: 10px 15px;
+    }
   }
   tbody > tr:hover {
     background-color: #efefef;
     & th {
       background-color: #efefef;
     }
+  }
+  ${MEDIA_QUERY_SMtoMD} {
+    font-size: 16px;
   }
   ${MEDIA_QUERY_LG} {
     th:first-child {
