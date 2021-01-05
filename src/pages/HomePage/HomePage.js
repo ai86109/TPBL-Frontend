@@ -209,7 +209,7 @@ const TeamScore = styled.div`
 
 const TeamStandings = styled.div`
   display: none;
-  ${MEDIA_QUERY_SMtoMD} {
+  ${MEDIA_QUERY_SM} {
     display: flex;
     align-items: center;
     color: grey;
