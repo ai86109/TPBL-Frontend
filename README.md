@@ -31,13 +31,14 @@
   - Cheerio
 
 ## 專案架構
-（待補）
+![page component](https://i.imgur.com/TW7jYmg.jpg)
 
 ## 專案 Demo
 （待補）
 
-## 專案後端連結
-（待補）
+## 專案後端
+連接資料庫並提供專案前端的 API 需求，使用 Express + Sequelize 進行開發
+> github 連結：https://github.com/ai86109/TPBL_backend
 
 ## ToDo
 （待補）
