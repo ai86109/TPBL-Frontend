@@ -5,14 +5,18 @@ import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } fr
 
 const Root = styled.div`
   margin-top: 3px;
-  background-color: #f3f3f3;
+  background-color: ${props => props.theme.light.background.white_300};
   width: 100%;
   min-height: 700px;
+  margin-top: 100px;
+  color: ${props => props.theme.light.text.black_200};
+  ${MEDIA_QUERY_LG} {
+    margin-top: 70px;
+  }
 `
 
 const Container = styled.div`
-  background-color: #fff;
-  border-color: #fff;
+  background-color: ${props => props.theme.light.background.white_100};
   max-width: 1400px;
   width: 100%;
   min-height: 700px;
@@ -28,8 +32,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   display: flex;
-  padding: 10px;
-  display: flex;
+  padding: 2rem;
   flex-direction: column;
   justify-content: space-around;
   width: 100%
@@ -37,7 +40,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: #333;
+  color: ${props => props.theme.light.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -52,13 +55,14 @@ const SelectButtonsContainer = styled.div`
   flex-direction: column;
   ${MEDIA_QUERY_MD} {
     flex-direction: row;
+    align-items: flex-end;
   }
 `
 
 const Seasons = styled.div`
   display: flex;
   ${MEDIA_QUERY_MD} {
-    border: 1px solid black;
+    border: 1px solid ${props => props.theme.light.background.light_gray};
     border-radius: 0.25rem;
     height: 5rem;
     margin-right: 1rem;
@@ -69,27 +73,32 @@ const Season = styled.button`
   display: flex;
   flex: 1 1 100%;
   justify-content: center;
-  ${(props) => props.$active && `border-bottom: 3px solid red;`}
-  font-size: 1.5rem;
-  font-weight: 500;
+  outline: none;
+  ${(props) => props.$active && `border-bottom: 3px solid ${props.theme.light.background.dark_red};`}
+  font-size: 1.75rem;
+  font-weight: 700;
   line-height: 1.5;
   cursor: pointer;
+  transition: all 0.5s;
+  padding: 1rem 0;
   ${MEDIA_QUERY_MD} {
+    font-size: 1.5rem;
     width: 10rem;
     padding: 0.5rem;
     align-items: center;
     border-bottom: none;
-    ${(props) => props.$active && `background-color: grey;`}
+    ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08}`}
   }
 `
 
 const YearsAndStandingsDataType = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: #f3f3f3;
+  background-color: ${props => props.theme.light.background.white_300};
   padding: 10px 10px;
+  margin-top: 1rem;
   ${MEDIA_QUERY_MD} {
-    background-color: white;
+    background-color: ${props => props.theme.light.background.white_100};
     padding: 0;
   }
 `
@@ -102,12 +111,13 @@ const SelectForm = styled.select`
   padding: 5px 10px;
   font-size: 1.5rem;
   cursor: pointer;
+  outline: none;
+  font-weight: 700;
   ${MEDIA_QUERY_SMtoMD} {
     padding: 10px 20px;
     min-width: 10rem;
   }
   ${MEDIA_QUERY_MD} {
-    border: 1px solid black;
     border-radius: 0.25rem;
     height: 5rem;
     margin-right: 1rem;
@@ -116,7 +126,7 @@ const SelectForm = styled.select`
 `
 
 const StandingsDataType = styled.div`
-  border: 1px solid black;
+  border: 1px solid ${props => props.theme.light.background.light_gray};
   border-radius: 0.25rem;
   ${MEDIA_QUERY_MD} {
     display: flex;
@@ -130,7 +140,11 @@ const DataType = styled.button`
   max-width: 15rem;
   cursor: pointer;
   height: 100%;
-  ${(props) => props.$active && `background-color: grey;`}
+  outline: none;
+  transition: all 0.5s;
+  font-size: 1.5rem;
+  font-weight: 700;
+  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08};`}
   ${MEDIA_QUERY_SMtoMD} {
     padding: 10px 20px;
     min-width: 12rem;
@@ -142,45 +156,47 @@ const FormContainer = styled.div`
   overflow: scroll;
   width: 100%;
   position: relative;
-  border-bottom: 1px solid #0A1E40;
+  border-bottom: 1px solid ${props => props.theme.light.background.black_100};
 `
 
 const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   white-space: nowrap;
-  font-size: 12px;
+  font-size: 1.5rem;
   colgroup {
-    border-right: 1px solid grey;
+    border-right: 1px solid ${props => props.theme.light.background.white_300};
   }
   th {
-    border-right: 1px solid #0A1E40;
-    background-color: #0A1E40;
-    color: white;
+    border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
+    background-color: ${props => props.theme.light.background.guardians_blue};
+    color: ${props => props.theme.light.text.white_opacity08};
+    font-weight: 700;
+    font-size: 1.6rem;
     &:first-child {
       position: sticky;
       left: 0;
-      z-index: 1;
+      padding: 7px;
     }
   }
    tbody tr th {
-    background-color: #ffffff;
+    background-color: ${props => props.theme.light.background.white_100};
     color: black;
   }
   tbody tr {
-    background-color: #ffffff;
+    background-color: ${props => props.theme.light.background.white_100};
     text-align: center;
   }
   td, th {
-    padding: 5px 10px;
+    padding: 7px 12px;
     ${MEDIA_QUERY_SMtoMD} {
-      padding: 10px 15px;
+      padding: 12px 17px;
     }
   }
   tbody > tr:hover {
-    background-color: #efefef;
+    background-color: ${props => props.theme.light.background.white_200};
     & th {
-      background-color: #efefef;
+      background-color: ${props => props.theme.light.background.white_200};
     }
   }
   ${MEDIA_QUERY_SMtoMD} {

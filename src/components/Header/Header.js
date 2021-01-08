@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MEDIA_QUERY_SM, MEDIA_QUERY_LG } from '../../constants/breakpoint';
+import { MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
+import logo from '../../image/TPBL-logo.svg'
 
 const largeDevice = `(min-width: 1024px)`
 
 const NavbarContainer = styled.div`
-  max-width: 100%;
-  postion: fixed;
+  max-width: 1600px;
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: #0A1E40;
+  background: ${props => props.theme.light.background.dark_gray};
   display: flex;
   padding: 0 32px;
   justify-content: space-between;
   box-shadow: 1px 2px 5px #000;
   height: 100px;
   flex-direction: column;
+  z-index: 2;
   ${MEDIA_QUERY_LG} {
     height: 70px;
     flex-direction: row;
@@ -45,8 +48,14 @@ const MenuSpan = styled.div`
   display: block;
   height: 2px;
   width: 24px;
-  background: #fff;
+  background: ${props => props.theme.light.background.white_100};
   border-radius: 3px;
+`
+
+const MenuCross = styled.div`
+  color: ${props => props.theme.light.text.white_opacity10};
+  font-size: 2.2rem;
+  font-weight: 600;
 `
 
 const Logo = styled(Link)`
@@ -65,15 +74,18 @@ const NavbarBottom = styled.div`
 `
 
 const Login = styled(Link)`
-  color: #fff;
+  color: ${props => props.theme.light.text.white_opacity08};
   font-weight: 700;
   font-size: 20px;
   display: flex;
   justify-content: center;
+  &:hover {
+    color: ${props => props.theme.light.text.white_opacity10};
+  }
 `
 
 const Nav = styled(Link)`
-  color: #fff;
+  color: ${props => props.theme.light.text.white_opacity08};
   text-align: center;
   font-weight: 700;
   font-size: 20px;
@@ -84,6 +96,9 @@ const Nav = styled(Link)`
   white-space: nowrap;
   ${MEDIA_QUERY_LG} {
     padding: 10px 25px;
+  }
+  &:hover {
+    color: ${props => props.theme.light.text.white_opacity10};
   }
 `
 
@@ -97,20 +112,56 @@ const NavbarRight = styled.div`
   align-items: center;
 `
 
-const HamburgerMenuContainer = styled.div`
-  postion: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #0A1E40;
+const Hamburger = styled.div`
+  position: relative;
   z-index: 1;
+`
+
+const HamburgerMenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 100px;
+  bottom: 0;
+  height: 60%;
+  width: 300px;
+  opacity: 0.9;
+  background: ${props => props.theme.light.background.dark_gray};
+  z-index: 2;
+`
+
+const MenuBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 2rem;
+  font-weight: 700;
+`
+
+const Menu = styled(Link)`
+  color: ${props => props.theme.light.text.white_opacity08};
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px;
+  &:hover {
+    color: ${props => props.theme.light.text.white_opacity10};
+    border-bottom: 2px solid ${props => props.theme.light.text.white_opacity10};
+    transition: all 1s;
+  }
 `
 
 function HamburgerButton({open, setOpen}) {
   return (
     <HamburgerButtonContainer onClick={() => setOpen(!open)}>
-      <MenuSpan />
-      <MenuSpan />
-      <MenuSpan />
+      {!open && 
+        <>
+          <MenuSpan />
+          <MenuSpan />
+          <MenuSpan />
+        </>
+      }
+      {open && <MenuCross>X</MenuCross>}
     </HamburgerButtonContainer>
   )
 }
@@ -120,6 +171,7 @@ export default function Header() {
   const [match, setMatch] = useState(query.matches)
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false)
+  const currentLng = i18n.language
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
@@ -138,7 +190,7 @@ export default function Header() {
     return (
       <NavbarContainer>
         <NavbarLeft>
-          <Logo to="/" ><img src='./TPBL.svg'/></Logo>
+          <Logo to="/" ><img src={logo} /></Logo>
           <Nav to="/news">{t('navbar.news')}</Nav>
           <Nav to="/scores">{t('navbar.scores')}</Nav>
           <Nav to="/standings">{t('navbar.standings')}</Nav>
@@ -146,25 +198,46 @@ export default function Header() {
           <Nav to="/schedule">{t('navbar.schedule')}</Nav>
         </NavbarLeft>
         <NavbarRight>
-          <Nav onClick={() => changeLanguage("zh-TW")}>中文</Nav>
-          <Nav onClick={() => changeLanguage("en")}>EN</Nav>
+          {currentLng === 'zh-TW' ? 
+            <Nav onClick={() => changeLanguage("en")}>{t('navbar.language')}</Nav> :
+            <Nav onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Nav>
+          }
           <Nav>{t('navbar.login')}</Nav>
         </NavbarRight>
       </NavbarContainer>
     )
   }
   return (
-  <NavbarContainer>
-    <NavbarTop>
-      <HamburgerButton open={open} setOpen={setOpen} />
-      <Logo to="/" ><img src='./TPBL.svg'/></Logo>
-      <Login>{t('navbar.login')}</Login>
-    </NavbarTop>
-    <NavbarBottom>
-      <Nav to="/scores">{t('navbar.scores')}</Nav>
-      <Nav to="/standings">{t('navbar.standings')}</Nav>
-      <Nav to="/stats">{t('navbar.stats')}</Nav>
-    </NavbarBottom>
-  </NavbarContainer>
+  <Hamburger>
+    <NavbarContainer>
+      <NavbarTop>
+        <HamburgerButton open={open} setOpen={setOpen} />
+        <Logo to="/" ><img src={logo} /></Logo>
+        <Login>{t('navbar.login')}</Login>
+      </NavbarTop>
+      {!open && 
+        <NavbarBottom>
+          <Nav to="/scores">{t('navbar.scores')}</Nav>
+          <Nav to="/standings">{t('navbar.standings')}</Nav>
+          <Nav to="/stats">{t('navbar.stats')}</Nav>
+        </NavbarBottom>
+      }
+    </NavbarContainer>
+    {open && 
+      <HamburgerMenuContainer>
+        <MenuBlock>
+          <Menu to="/news">{t('navbar.news')}</Menu>
+          <Menu to="/scores">{t('navbar.scores')}</Menu>
+          <Menu to="/standings">{t('navbar.standings')}</Menu>
+          <Menu to="/stats">{t('navbar.stats')}</Menu>
+          <Menu to="/schedule">{t('navbar.schedule')}</Menu>
+          {currentLng === 'zh-TW' ? 
+            <Menu onClick={() => changeLanguage("en")}>{t('navbar.language')}</Menu> :
+            <Menu onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Menu>
+          }
+        </MenuBlock>
+      </HamburgerMenuContainer>
+    }
+  </Hamburger>
   )
 }
