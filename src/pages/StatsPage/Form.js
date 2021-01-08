@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
+import { MEDIA_QUERY_LG } from '../../constants/breakpoint';
 
 const FormContainer = styled.div`
     display: flex;
@@ -35,14 +35,15 @@ const FormContainer = styled.div`
     display: flex;
     align-items: flex-end;
     font-weight: 900;
-    color: grey;
+    font-size: 2rem;
+    cursor: pointer;
+    color: ${props => props.theme.light.text.black_100};
   `
 
   const CaretItem = styled.div`
     height: 10px;
     width: 20px;
-    cursor: pointer;
-    ${(props) => props.$active && `color: #0A1E40;`}
+    ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue};`}
   `
 
   const BoxBody = styled.div`
@@ -108,7 +109,7 @@ const FormContainer = styled.div`
 
   const PlayerTeam = styled.div`
     font-size: 14px;
-    color: grey;
+    color: ${props => props.theme.light.text.black_100};
   `
 
   const TeamName = styled.div`
@@ -120,7 +121,7 @@ const FormContainer = styled.div`
     overflow: scroll;
     width: 100%;
     position: relative;
-    border-bottom: 1px solid #0A1E40;
+    border-bottom: 1px solid ${props => props.theme.light.background.guardians_blue};
   `
 
   const Table = styled.table`
@@ -128,16 +129,15 @@ const FormContainer = styled.div`
     width: 100%;
     white-space: nowrap;
     colgroup {
-      border-right: 1px solid grey;
+      border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
     }
     th {
-      border-right: 1px solid #0A1E40;
-      background-color: #0A1E40;
+      border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
+      background-color: ${props => props.theme.light.background.guardians_blue};
       color: white;
       &:first-child {
         position: sticky;
         left: 0;
-        z-index: 1;
         border-right: none;
       }
       &:nth-child(n+3) {
@@ -145,20 +145,20 @@ const FormContainer = styled.div`
       }
     }
     tbody tr th {
-      background-color: #ffffff;
-      color: black;
+      background-color: ${props => props.theme.light.background.white_100};
+      color: ${props => props.theme.light.text.black_300};
     }
     tbody tr {
-      background-color: #ffffff;
+      background-color: ${props => props.theme.light.background.white_100};
       text-align: center;
     }
     td, th {
       padding: 10px 15px;
     }
     tbody > tr:hover {
-      background-color: #efefef;
+      background-color: ${props => props.theme.light.background.white_200};
       & th {
-        background-color: #efefef;
+        background-color: ${props => props.theme.light.background.white_200};
       }
     }
     ${MEDIA_QUERY_LG} {

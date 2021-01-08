@@ -7,17 +7,19 @@ import Form from './Form';
 const largeDevice = `(min-width: 600px)`
 
 const Root = styled.div`
-  background-color: #f3f3f3;
+  background-color: ${props => props.theme.light.background.white_300};
   width: 100%;
   min-height: 700px;
-  padding: 0;
+  margin-top: 100px;
+  color: ${props => props.theme.light.text.black_200};
   ${MEDIA_QUERY_LG} {
     padding: 0 2rem;
+    margin-top: 70px;
   }
 `
 
 const Container = styled.div`
-  background-color: #fff;
+  background-color: ${props => props.theme.light.background.white_100};
   width: 100%;
   min-height: 700px;
   margin: 3px auto;
@@ -26,13 +28,12 @@ const Container = styled.div`
   align-items: flex-start;
   font-size: 16px;
   padding: 2rem 0;
-  ${(props) => props.$active && `padding: 2rem 2rem;`}
+  ${(props) => props.$active && `padding: 2rem;`}
 `
 
 const Header = styled.div`
   display: flex;
   padding: 10px;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 100%
@@ -40,7 +41,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: #333;
+  color: ${props => props.theme.light.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -58,7 +59,7 @@ const SelectButtonsContainer = styled.div`
 const NavList = styled.div`
   display: flex;
   margin: 10px 0;
-  color: grey;
+  color: ${props => props.theme.light.text.black_100};
 `
 
 const Nav = styled.div`
@@ -66,7 +67,8 @@ const Nav = styled.div`
   font-size: 24px;
   font-weight: 900;
   cursor: pointer;
-  ${(props) => props.$active && `color: #0A1E40;`}
+  transition: all 0.5s;
+  ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue};`}
 `
 
 const SubNav = styled.div`
@@ -75,7 +77,8 @@ const SubNav = styled.div`
   font-size: 18px;
   font-weight: 900;
   cursor: pointer;
-  ${(props) => props.$active && `color: #0A1E40; border-bottom: 3px solid #0A1E40;`}
+  transition: all 0.5s;
+  ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue}; border-bottom: 3px solid ${props.theme.light.background.guardians_blue};`}
 `
 
 const YearsAndStatsType = styled.div`
@@ -89,15 +92,17 @@ const SelectForm = styled.select`
   font-size: 1.5rem;
   cursor: pointer;
   margin-right: 1rem;
+  outline: none;
   ${MEDIA_QUERY_MD} {
-    border: 1px solid black;
+    border: 1px solid ${props => props.theme.light.background.light_gray};
     border-radius: 0.25rem;
   }
 `
 
 const StatsDataType = styled.div`
-  border: 1px solid black;
+  border: 1px solid ${props => props.theme.light.background.light_gray};
   border-radius: 0.25rem;
+  transition: all 0.5s;
   ${MEDIA_QUERY_MD} {
     display: flex;
     align-items: center;
@@ -110,7 +115,9 @@ const DataType = styled.button`
   max-width: 20rem;
   cursor: pointer;
   height: 100%;
-  ${(props) => props.$active && `background-color: grey;`}
+  transition: all 0.5s;
+  outline: none;
+  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray};`}
 `
 
 const StatsType = styled.div`
@@ -124,14 +131,20 @@ const StatsType = styled.div`
 `
 
 const Type = styled.button`
-  border: 1px solid grey;
+  border: 1px solid ${props => props.theme.light.background.black_100};
   border-radius: 1rem;
-  padding: 7px 5px;
+  padding: 7px;
   margin: 2px 10px;
-  min-width: 5rem;
+  min-width: 7rem;
   width: 100%;
   cursor: pointer;
-  ${(props) => props.$active && `background-color: #0A1E40; color: #fff`}
+  font-weight: 700;
+  outline: none;
+  ${(props) => props.$active && `background-color: ${props.theme.light.background.dark_gray}; color: ${props.theme.light.text.white_opacity08};`}
+  &:hover {
+    background-color: ${props => props.theme.light.background.dark_gray};
+    color: ${props => props.theme.light.text.white_opacity10};
+  }
 `
 
 function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, batterStatsTypeTitles, pitcherStatsTypeTitles, dataType, setDataType, match, teamBatterStatsTypeTitles, teamPitcherStatsTypeTitles}) {

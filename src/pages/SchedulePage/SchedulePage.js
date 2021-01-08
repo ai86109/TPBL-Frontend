@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
 
 const Root = styled.div`
   margin-top: 3px;
-  background-color: #f3f3f3;
+  background-color: ${props => props.theme.light.background.black_300};
   width: 100%;
   min-height: 700px;
+  margin-top: 100px;
+  color: ${props => props.theme.light.text.black_200};
+  ${MEDIA_QUERY_LG} {
+    margin-top: 70px;
+  }
 `
 
 const Container = styled.div`
-  background-color: #fff;
-  border-color: #fff;
+  background-color: ${props => props.theme.light.background.white_100};
   max-width: 1440px;
   width: 100%;
   min-height: 700px;
@@ -25,7 +29,7 @@ const Container = styled.div`
     padding: 2rem;
   }
   ${MEDIA_QUERY_SMtoMD} {
-    background-color: #f3f3f3;
+    background-color: ${props => props.theme.light.background.white_200};
   }
 `
 
@@ -40,7 +44,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: #333;
+  color: ${props => props.theme.light.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -54,7 +58,7 @@ const SelectButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
-  border-bottom: 2px solid grey;
+  border-bottom: 2px solid ${props => props.theme.light.background.dark_gray};
   ${MEDIA_QUERY_SMtoMD} {
     max-width: 400px;
     justify-content: flex-start;
@@ -111,7 +115,7 @@ const Game = styled.div`
   padding: 10px 0;
   width: 100%;
   ${MEDIA_QUERY_SMtoMD} {
-    background-color: #fff;
+    background-color: ${props => props.theme.light.background.white_100};
     border-radius: 4px;
     padding: 15px;
   }
@@ -144,7 +148,6 @@ const TeamLogo = styled.div`
     border-radius: 50%;
     max-width: 20px;
     max-height: 20px;
-    background-color: #ddd;
   }
 `
 
@@ -158,9 +161,9 @@ const TeamName = styled.div`
 const GameInfo = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: grey;
+  color: ${props => props.theme.light.text.black_300};
   margin-left: 20px;
 `
 

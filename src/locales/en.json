@@ -1,12 +1,13 @@
 {
   "blank": "",
   "navbar": {
-    "news": "News",
-    "scores": "Scores",
-    "standings": "Standings",
-    "stats": "Stats",
-    "schedule": "Schedule",
-    "login": "Login"
+    "news": "NEWS",
+    "scores": "SCORES",
+    "standings": "STANDINGS",
+    "stats": "STATS",
+    "schedule": "SCHEDULE",
+    "login": "LOGIN",
+    "language": "中文"
   },
   "standings": {
     "firstHalf": "1st Half",
