@@ -18,7 +18,7 @@ const NavbarContainer = styled.div`
   display: flex;
   padding: 0 32px;
   justify-content: space-between;
-  box-shadow: 1px 2px 5px #000;
+  box-shadow: 1px 1px 2px ${props => props.theme.light.background.black_100};
   height: 100px;
   flex-direction: column;
   z-index: 2;

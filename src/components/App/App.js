@@ -3,6 +3,7 @@ import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../Header/Header';
 import HomePage from '../../pages/HomePage';
+import NewsPage from '../../pages/NewsPage';
 import StandingsPage from '../../pages/StandingsPage';
 import StatsPage from '../../pages/StatsPage';
 import SchedulePage from '../../pages/SchedulePage';
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route path="/news">
+            <NewsPage />
           </Route>
           <Route path="/standings">
             <StandingsPage />
