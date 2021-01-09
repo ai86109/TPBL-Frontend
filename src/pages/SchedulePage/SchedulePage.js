@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
+import Calendar from 'react-calendar';
+import calendarLogo from '../../image/calendar.svg'
+import 'react-calendar/dist/Calendar.css';
 
 const Root = styled.div`
   margin-top: 3px;
@@ -56,6 +59,7 @@ const PageTitle = styled.h1`
 
 const SelectButtonsContainer = styled.div`
   display: flex;
+  position: relative;
   justify-content: space-between;
   padding: 20px 0;
   border-bottom: 2px solid ${props => props.theme.light.background.dark_gray};
@@ -88,6 +92,11 @@ const Date = styled.div`
 const GameCalendar = styled.div`
   display: flex;
   align-items: center;
+  padding: 0 20px;
+  cursor: pointer;
+  img {
+    width: 30px;
+  }
 `
 
 const ScheduleContainer = styled.div`
@@ -167,7 +176,7 @@ const GameInfo = styled.div`
   margin-left: 20px;
 `
 
-function SelectButtons() {
+function SelectButtons({clickCalendar, setClickCalendar, value, onChange, locale}) {
   return (
     <SelectButtonsContainer>
       <GameDate>
@@ -175,7 +184,15 @@ function SelectButtons() {
         <Date>9月 7 - 13日, 2020</Date>
         <Pages>＞</Pages>
       </GameDate>
-      <GameCalendar>日曆</GameCalendar>
+      <GameCalendar>
+        <img src={calendarLogo} onClick={() =>setClickCalendar(!clickCalendar)} />
+        {clickCalendar &&
+        <Calendar
+          value={value}
+          onChange={onChange}
+          locale={locale}
+        />}
+      </GameCalendar>
     </SelectButtonsContainer>
   )
 }
@@ -250,13 +267,27 @@ function Schedule() {
 export default function SchedulePage() {
   const { t, i18n } = useTranslation();
   const currentLng = i18n.language
+  const [clickCalendar, setClickCalendar] = useState(false)
+  const [value, onChange] = useState(new window.Date())
+  const [locale, setLocale] = useState("zh-Hant")
+
+  useEffect(() => {
+    currentLng === 'en' ? setLocale("en-US") : setLocale("zh-Hant")
+    console.log(value)
+  }, [value, currentLng])
 
   return (
     <Root>
       <Container>
         <Header>
           <PageTitle>{t('navbar.schedule')}</PageTitle>
-          <SelectButtons />
+          <SelectButtons
+            clickCalendar={clickCalendar}
+            setClickCalendar={setClickCalendar}
+            value={value}
+            onChange={onChange}
+            locale={locale}
+          />
         </Header>
         <Schedule />
       </Container>

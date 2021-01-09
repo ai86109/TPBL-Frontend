@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
-import logo from '../../image/TPBL-logo.svg'
+import TPBLlogo from '../../image/TPBL-logo.svg'
 
 const largeDevice = `(min-width: 1024px)`
 
@@ -190,7 +190,7 @@ export default function Header() {
     return (
       <NavbarContainer>
         <NavbarLeft>
-          <Logo to="/" ><img src={logo} /></Logo>
+          <Logo to="/" ><img src={TPBLlogo} /></Logo>
           <Nav to="/news">{t('navbar.news')}</Nav>
           <Nav to="/scores">{t('navbar.scores')}</Nav>
           <Nav to="/standings">{t('navbar.standings')}</Nav>
@@ -212,7 +212,7 @@ export default function Header() {
     <NavbarContainer>
       <NavbarTop>
         <HamburgerButton open={open} setOpen={setOpen} />
-        <Logo to="/" ><img src={logo} /></Logo>
+        <Logo to="/" ><img src={TPBLlogo} /></Logo>
         <Login>{t('navbar.login')}</Login>
       </NavbarTop>
       {!open && 
