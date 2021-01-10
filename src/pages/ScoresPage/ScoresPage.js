@@ -5,6 +5,7 @@ import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } fr
 import Calendar from 'react-calendar';
 import calendarLogo from '../../image/calendar.svg'
 import 'react-calendar/dist/Calendar.css';
+import { Link } from 'react-router-dom';
 
 const Root = styled.div`
   margin-top: 3px;
@@ -82,12 +83,18 @@ const Pages = styled.div`
   align-items: center;
 `
 
-const DateContainer = styled.div`
+const DateContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  color: ${props => props.theme.light.text.black_100};
+  text-decoration: none;
+  &:hover {
+    color: ${props => props.theme.light.text.black_300};
+  }
 `
 
 const Day = styled.div``
@@ -319,7 +326,7 @@ function SelectButtons({clickCalendar, setClickCalendar, value, onChange, locale
           <Day>星期二</Day>
           <Date>9月8日</Date>
         </DateContainer>
-        <DateContainer>
+        <DateContainer to="/boxscores">
           <Day>星期三</Day>
           <Date>9月9日</Date>
         </DateContainer>

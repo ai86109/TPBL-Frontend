@@ -5,6 +5,7 @@ import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } fr
 import Calendar from 'react-calendar';
 import calendarLogo from '../../image/calendar.svg'
 import 'react-calendar/dist/Calendar.css';
+import { Link } from 'react-router-dom';
 
 const Root = styled.div`
   margin-top: 3px;
@@ -87,6 +88,7 @@ const Date = styled.div`
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `
 
 const GameCalendar = styled.div`
@@ -167,13 +169,14 @@ const TeamName = styled.div`
   font-weight: 900;
 `
 
-const GameInfo = styled.div`
+const GameInfo = styled(Link)`
   display: flex;
   align-items: center;
   font-size: 1.75rem;
   font-weight: 700;
   color: ${props => props.theme.light.text.black_300};
   margin-left: 20px;
+  cursor: pointer;
 `
 
 function SelectButtons({clickCalendar, setClickCalendar, value, onChange, locale}) {
@@ -239,7 +242,7 @@ function Schedule() {
               <TeamName>獅</TeamName>
             </Team>
           </Teams>
-          <GameInfo>悍將 0, 獅 6</GameInfo>
+          <GameInfo to="/boxscores">悍將 0, 獅 6</GameInfo>
         </Game>
         <Game>
           <Teams>

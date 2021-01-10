@@ -172,56 +172,56 @@ function News() {
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/ylp2mqpnal6acpq9sum4" />
           </NewsImg>
           <NewsTitle>Mets deal for Lindor, Cookie in blockbuster</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/t32czsotb3fovdh1extv" />
           </NewsImg>
           <NewsTitle>Dodgers icon Tommy Lasorda dies at 93</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/uqxy7iigpyfgfffincf3" />
           </NewsImg>
           <NewsTitle>'A legend': Baseball world mourns Lasorda</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/j07scgfhr0osl1zs6ywd" />
           </NewsImg>
           <NewsTitle>Another star trade target on Mets' radar?</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/krgzw69osyspmzyjgwrx" />
           </NewsImg>
           <NewsTitle>Here are the ripple effects of Mets' big trade</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/fbmq1ciqe2lxoll91hws" />
           </NewsImg>
           <NewsTitle>Bauer, in Mets cap, praises blockbuster</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/qzerlqdvqfye6byy5pym" />
           </NewsImg>
           <NewsTitle>2021 breakout prospects -- 1 for each team</NewsTitle>
           <ReadMore>看更多</ReadMore>
         </NewsBlock>
         <NewsBlock>
           <NewsImg>
-            <img src="https://i.imgur.com/uAOXfQl.jpg" />
+            <img src="https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w2208/mlb/d2zsfw7hehqtv7zptsgp" />
           </NewsImg>
           <NewsTitle>Remembering Lasorda's 11 funniest moments</NewsTitle>
           <ReadMore>看更多</ReadMore>
