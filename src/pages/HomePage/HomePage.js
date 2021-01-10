@@ -154,11 +154,13 @@ const Teams = styled.div`
   width: 100%;
 `
 
-const Team = styled.div`
+const Team = styled(Link)`
   display: flex;
   flex-direction: row;
   width: 100%;
   cursor: pointer;
+  text-decoration: none;
+  color: ${props => props.theme.light.text.black_200};
   ${MEDIA_QUERY_SMtoMD} {
     justify-content: space-between;
   }
@@ -466,7 +468,7 @@ function GamesNav() {
       </GameDate>
       <GameBlock>
         <Teams>
-          <Team>
+          <Team to="/boxscores">
             <TeamLogo>
               <img src="https://i.imgur.com/9p23DQK.png" />
             </TeamLogo>

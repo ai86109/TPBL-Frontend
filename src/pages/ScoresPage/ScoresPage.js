@@ -83,15 +83,13 @@ const Pages = styled.div`
   align-items: center;
 `
 
-const DateContainer = styled(Link)`
+const DateContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: ${props => props.theme.light.text.black_100};
-  text-decoration: none;
   &:hover {
     color: ${props => props.theme.light.text.black_300};
   }
@@ -123,11 +121,13 @@ const ScoresContainer = styled.div`
   }
 `
 
-const ScoresBlock = styled.div`
+const ScoresBlock = styled(Link)`
   display: flex;
   flex-direction: column;
   margin: 20px;
   border-bottom: 2px solid ${props => props.theme.light.background.light_gray};
+  color: ${props => props.theme.light.text.black_200};
+  text-decoration: none;
   ${MEDIA_QUERY_SMtoMD} {
     border-bottom: 0;
   }
@@ -326,7 +326,7 @@ function SelectButtons({clickCalendar, setClickCalendar, value, onChange, locale
           <Day>星期二</Day>
           <Date>9月8日</Date>
         </DateContainer>
-        <DateContainer to="/boxscores">
+        <DateContainer>
           <Day>星期三</Day>
           <Date>9月9日</Date>
         </DateContainer>
@@ -352,7 +352,7 @@ function SelectButtons({clickCalendar, setClickCalendar, value, onChange, locale
 function Scores() {
   return (
     <ScoresContainer>
-      <ScoresBlock>
+      <ScoresBlock to="/boxscores">
         <Game>
           <GameStatus>Final</GameStatus>
           <GameBoard>
