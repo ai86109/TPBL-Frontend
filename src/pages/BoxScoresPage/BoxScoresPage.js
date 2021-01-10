@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
+import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_SM, MEDIA_QUERY_MDtoLG } from '../../constants/breakpoint';
 
 const Root = styled.div`
   background-color: ${props => props.theme.light.background.black_300};
@@ -103,6 +103,8 @@ const Team = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
 `
 
 const TeamLogo = styled.div`
@@ -131,8 +133,15 @@ const TeamName = styled.div`
 `
 
 const TeamStandings = styled.div`
-  display: flex;
-  align-items: center;
+  display: none;
+  ${MEDIA_QUERY_SMtoMD} {
+    display: flex;
+    align-items: center;
+    color: ${props => props.theme.light.text.black_100};
+  }
+  ${MEDIA_QUERY_LG} {
+    display: none;
+  }
 `
 
 const TeamScore = styled.div`
@@ -165,11 +174,13 @@ const GameTeamLogo = styled.div`
   margin-bottom: 10px;
   & img {
     border-radius: 50%;
-    max-width: 70px;
-    max-height: 70px;
-  }
-  ${MEDIA_QUERY_MD} {
-    & img {
+    max-width: 45px;
+    max-height: 45px;
+    ${MEDIA_QUERY_SMtoMD} {
+      max-width: 70px;
+      max-height: 70px;
+    }
+    ${MEDIA_QUERY_MD} {
       max-width: 110px;
       max-height: 110px;
     }
@@ -179,6 +190,10 @@ const GameTeamLogo = styled.div`
 const GameTeamStandings = styled.div`
   display: flex;
   justify-content: center;
+  font-size: 12px;
+  ${MEDIA_QUERY_SMtoMD} {
+    font-size: 16px;
+  }
 `
 
 const ScoreBoardBlock = styled.div`
@@ -188,7 +203,9 @@ const ScoreBoardBlock = styled.div`
   justify-contents: space-between;
   align-items: center;
   width: 100%;
-  margin: 10px;
+  ${MEDIA_QUERY_SM} {
+    margin: 10px;
+  }
   ${MEDIA_QUERY_SMtoMD} {
     margin: 10px 50px;
   }
@@ -199,10 +216,13 @@ const ScoreBoardBlock = styled.div`
 
 const GameScore = styled.div`
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: ${props => props.theme.light.text.black_100};
   font-weight: 600;
   margin-top: 30px;
+  ${MEDIA_QUERY_SM} {
+    font-size: 2rem;
+  }
   ${MEDIA_QUERY_LG} {
     font-size: 3rem;
   }
@@ -226,7 +246,12 @@ const GameTable = styled.table`
     text-align: center;
   }
   td, th {
-    padding: 10px 5px;
+    padding: 8px 5px;
+    font-size: 14px;
+    ${MEDIA_QUERY_MD} {
+      padding: 14px 10px;
+      font-size: 16px;
+    }
   }
   tr td {
     background-color: ${props => props.theme.light.background.white_200};
@@ -234,17 +259,16 @@ const GameTable = styled.table`
   colgroup {
     border-right: 1px solid ${props => props.theme.light.background.white_100};
   }
-  ${MEDIA_QUERY_MD} {
-    td, th {
-      padding: 14px 10px;
-    }
-  }
 `
 
 const GamePitcher = styled.div`
   display: flex;
   padding: 5px 25px;
   justify-contents: flex-start;
+  font-size: 14px;
+  ${MEDIA_QUERY_MD} {
+    font-size: 16px;
+  }
 `
 
 const Pitcher = styled.div``
@@ -279,6 +303,7 @@ const SelectButton = styled.button`
   height: 100%;
   font-size: 1.5rem;
   font-weight: 700;
+  outline: none;
   ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08};`}
   &:hover {
     background-color: ${props => props.theme.light.background.light_gray};
@@ -300,8 +325,12 @@ const VisitingTeamBoxScoresTable = styled.table`
   margin: 20px 0;
   border-bottom: 1px solid ${props => props.theme.light.background.black_100};
   td, th {
-    padding: 10px 15px;
-    font-size: 1.5rem;
+    padding: 10px 10px;
+    font-size: 1.25rem;
+    ${MEDIA_QUERY_SMtoMD} {
+      padding: 10px 15px;
+      font-size: 1.5rem;
+    }
   }
   th {
     background-color: ${props => props.theme.light.background.guardians_blue};
@@ -376,7 +405,7 @@ const HomeTeamBoxScoresNote = styled.div`
     display: flex;
     width: 100%;
     justify-contents: flex-start;
-    padding: 0 0 30px 5px;   
+    padding: 0 0 30px 5px;
   }
 `
 
@@ -585,9 +614,9 @@ function BoxScores() {
             </tr>
             <tr>
               <td>4 蔣智賢 3B</td>
+              <td>4</td>
               <td>0</td>
               <td>1</td>
-              <td>0</td>
               <td>0</td>
               <td>0</td>
               <td>0</td>
@@ -745,7 +774,7 @@ function BoxScores() {
         <HomeTeamBoxScoresTable>
           <thead>
             <tr>
-              <th>富邦打者</th>
+              <th>統一打者</th>
               <th>AB</th>
               <th>R</th>
               <th>H</th>
@@ -758,51 +787,29 @@ function BoxScores() {
           </thead>
           <tbody>
             <tr>
-              <td>1 李宗賢 SS</td>
-              <td>3</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0.311</td>
-            </tr>
-            <tr>
-              <td>2 張正偉 RF</td>
+              <td>1 陳傑憲 CF</td>
               <td>4</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
               <td>1</td>
               <td>0</td>
-              <td>0.276</td>
+              <td>0</td>
+              <td>0.382</td>
             </tr>
             <tr>
-              <td>3 高國輝 DH</td>
-              <td>3</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
+              <td>2 林祖傑 SS</td>
+              <td>2</td>
               <td>1</td>
               <td>1</td>
               <td>0</td>
-              <td>0.324</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0.270</td>
             </tr>
             <tr>
-              <td>4 蔣智賢 3B</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0.312</td>
-            </tr>
-            <tr>
-              <td>5 林益全 1B</td>
+              <td>3 郭阜林 3B</td>
               <td>3</td>
               <td>0</td>
               <td>0</td>
@@ -810,21 +817,65 @@ function BoxScores() {
               <td>0</td>
               <td>2</td>
               <td>0</td>
-              <td>0.290</td>
+              <td>0.327</td>
             </tr>
             <tr>
-              <td>6 林哲瑄 CF</td>
-              <td>4</td>
-              <td>0</td>
+              <td>4 陳鏞基 DH</td>
               <td>2</td>
               <td>0</td>
               <td>0</td>
               <td>1</td>
+              <td>1</td>
+              <td>1</td>
               <td>0</td>
-              <td>0.262</td>
+              <td>0.336</td>
             </tr>
             <tr>
-              <td>7 申皓瑋 LF</td>
+              <td>5 蘇智傑 LF</td>
+              <td>5</td>
+              <td>1</td>
+              <td>3</td>
+              <td>4</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0.304</td>
+            </tr>
+            <tr>
+              <td>6 吳桀睿 1B</td>
+              <td>4</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0.323</td>
+            </tr>
+            <tr>
+              <td>7 唐肇廷 RF</td>
+              <td>4</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>3</td>
+              <td>0</td>
+              <td>0.375</td>
+            </tr>
+            <tr>
+              <td>8 林靖凱 2B</td>
+              <td>5</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0.226</td>
+            </tr>
+            <tr>
+              <td>9 林祐樂 C</td>
               <td>3</td>
               <td>0</td>
               <td>1</td>
@@ -832,50 +883,28 @@ function BoxScores() {
               <td>0</td>
               <td>1</td>
               <td>0</td>
-              <td>0.301</td>
-            </tr>
-            <tr>
-              <td>8 王正棠 2B</td>
-              <td>4</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0.263</td>
-            </tr>
-            <tr>
-              <td>9 林宥穎 C</td>
-              <td>2</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0.245</td>
+              <td>0.254</td>
             </tr>
             <tr>
               <td>TOTALS</td>
-              <td>33</td>
-              <td>0</td>
+              <td>35</td>
               <td>6</td>
-              <td>0</td>
-              <td>2</td>
-              <td>8</td>
-              <td>2</td>
+              <td>10</td>
+              <td>6</td>
+              <td>7</td>
+              <td>11</td>
+              <td>3</td>
               <td></td>
             </tr>
           </tbody>
         </HomeTeamBoxScoresTable>
         <HomeTeamBoxScoresNote>
-          E: 李宗賢
+          HR: 蘇智傑(25, 吳世豪 6局)
         </HomeTeamBoxScoresNote>
         <HomeTeamBoxScoresTable>
           <thead>
             <tr>
-              <th>富邦投手</th>
+              <th>統一投手</th>
               <th>IP</th>
               <th>H</th>
               <th>R</th>
@@ -888,64 +917,64 @@ function BoxScores() {
           </thead>
           <tbody>
             <tr>
-              <td>邦威 (L,2-3)</td>
-              <td>4.0</td>
+              <td>泰迪 (W,2-0)</td>
+              <td>6.0</td>
+              <td>5</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
               <td>7</td>
-              <td>4</td>
-              <td>3</td>
-              <td>3</td>
-              <td>6</td>
               <td>0</td>
-              <td>3.60</td>
+              <td>5.17</td>
             </tr>
             <tr>
-              <td>吳世豪</td>
-              <td>1.1</td>
-              <td>3</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>1</td>
-              <td>4.26</td>
+              <td>劉軒荅</td>
+              <td>1.0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>6.75</td>
             </tr>
             <tr>
-              <td>歐書誠</td>
-              <td>2.0</td>
+              <td>傅于剛</td>
+              <td>1.0</td>
               <td>0</td>
               <td>0</td>
               <td>0</td>
-              <td>2</td>
               <td>1</td>
               <td>0</td>
-              <td>4.22</td>
+              <td>0</td>
+              <td>3.77</td>
             </tr>
             <tr>
-              <td>王尉永</td>
-              <td>0.2</td>
+              <td>江承峰</td>
+              <td>1.0</td>
+              <td>1</td>
               <td>0</td>
               <td>0</td>
               <td>0</td>
+              <td>1</td>
               <td>0</td>
-              <td>2</td>
-              <td>0</td>
-              <td>7.00</td>
+              <td>4.15</td>
             </tr>
             <tr>
               <td>TOTALS</td>
-              <td>8.0</td>
-              <td>10</td>
+              <td>9.0</td>
               <td>6</td>
-              <td>5</td>
-              <td>7</td>
-              <td>11</td>
-              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+              <td>8</td>
+              <td>0</td>
               <td></td>
             </tr>
           </tbody>
         </HomeTeamBoxScoresTable>
         <HomeTeamBoxScoresNote>
-          E: 邦威
+          <p>&nbsp;</p>
         </HomeTeamBoxScoresNote>
       </BoxScoresBlock>
     </BoxScoresContainer>

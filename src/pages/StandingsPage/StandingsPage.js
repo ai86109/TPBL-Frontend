@@ -233,7 +233,6 @@ function SelectButtons({t, season, setSeason, year, setYear, dataType, setDataTy
         <SelectForm value={year} onChange={(e) => setYear(e.target.value)}>
           <option value="2020">2020</option>
           <option value="2019">2019</option>
-          <option value="2018">2018</option>
         </SelectForm>
         <StandingsDataType>
           <DataType

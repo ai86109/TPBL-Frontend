@@ -158,6 +158,7 @@ const Team = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  cursor: pointer;
   ${MEDIA_QUERY_SMtoMD} {
     justify-content: space-between;
   }
