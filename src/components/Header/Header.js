@@ -8,7 +8,7 @@ import TPBLlogo from '../../image/TPBL-logo.svg'
 const largeDevice = `(min-width: 1024px)`
 
 const NavbarContainer = styled.div`
-  max-width: 1600px;
+  margin: 0 auto;
   width: 100%;
   position: fixed;
   top: 0;

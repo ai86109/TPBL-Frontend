@@ -9,12 +9,13 @@ const largeDevice = `(min-width: 600px)`
 const Root = styled.div`
   background-color: ${props => props.theme.light.background.white_300};
   width: 100%;
+  max-width: 1600px;
   min-height: 700px;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
   color: ${props => props.theme.light.text.black_200};
   ${MEDIA_QUERY_LG} {
     padding: 0 2rem;
-    margin-top: 70px;
+    margin: 70px auto 0 auto;
   }
 `
 

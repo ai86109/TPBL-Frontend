@@ -7,11 +7,12 @@ const Root = styled.div`
   margin-top: 3px;
   background-color: ${props => props.theme.light.background.white_300};
   width: 100%;
+  max-width: 1600px;
   min-height: 700px;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
   color: ${props => props.theme.light.text.black_200};
   ${MEDIA_QUERY_LG} {
-    margin-top: 70px;
+    margin: 70px auto 0 auto;
   }
 `
 

@@ -8,10 +8,10 @@ const Root = styled.div`
   max-width: 1600px;
   min-height: 700px;
   font-size: 16px;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
   color: ${props => props.theme.light.text.black_200};
   ${MEDIA_QUERY_LG} {
-    margin-top: 70px;
+    margin: 70px auto 0 auto;
   }
 `
 

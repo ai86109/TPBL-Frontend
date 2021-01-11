@@ -6,11 +6,12 @@ import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_SM, MED
 const Root = styled.div`
   background-color: ${props => props.theme.light.background.black_300};
   width: 100%;
+  max-width: 1600px;
   min-height: 700px;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
   color: ${props => props.theme.light.text.black_200};
   ${MEDIA_QUERY_LG} {
-    margin-top: 70px;
+    margin: 70px auto 0 auto;
   }
 `
 
