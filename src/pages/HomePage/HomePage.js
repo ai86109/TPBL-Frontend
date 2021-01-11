@@ -7,14 +7,14 @@ import { useTranslation } from 'react-i18next';
 const Root = styled.div`
   width: 100%;
   max-width: 1600px;
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
   background-color: ${props => props.theme.light.background.white_200};
   min-height: 700px;
   font-size: 16px;
   ${MEDIA_QUERY_LG} {
     display: flex;
     padding: 2rem;
-    margin-top: 70px;
+    margin-top: 70px auto 0 auto;
   }
 `
 
