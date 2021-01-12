@@ -44,7 +44,7 @@
 ![RWD](https://github.com/ai86109/TPBL-Frontend/blob/main/rwd.gif)
 
 ### **・網頁語言切換**
-![i18n](https://github.com/ai86109/TPBL-Frontend/blob/main/i18n.gif)
+![i18n](https://github.com/ai86109/TPBL-Frontend/blob/main/I18n.gif)
 
 ## 專案後端
 連接資料庫並提供專案前端的 API 需求，使用 Express + Sequelize 進行開發
