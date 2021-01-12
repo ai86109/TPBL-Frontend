@@ -31,19 +31,19 @@
 ![page component](https://i.imgur.com/YHkFI32.jpg)
 
 ## 專案 Demo
-- **網頁動線**
+### **・網頁動線**
 ![website traffic flow](https://github.com/ai86109/TPBL-Frontend/blob/main/trafficFlow.gif)
 
-- **戰績查詢(Standings)**
+### **・戰績查詢(Standings)**
 ![standings](https://github.com/ai86109/TPBL-Frontend/blob/main/standings.gif)
 
-- **數據查詢(Stats)**
+### **・數據查詢(Stats)**
 ![stats](https://github.com/ai86109/TPBL-Frontend/blob/main/stats.gif)
 
-- **網頁 RWD**
+### **・網頁 RWD**
 ![RWD](https://github.com/ai86109/TPBL-Frontend/blob/main/rwd.gif)
 
-- **網頁語言切換**
+### **・網頁語言切換**
 ![i18n](https://github.com/ai86109/TPBL-Frontend/blob/main/i18n.gif)
 
 ## 專案後端
