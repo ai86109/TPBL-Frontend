@@ -192,7 +192,7 @@ const FormContainer = styled.div`
     )
   }
 
-export default function Form({nav, year, subNav, dataType, statsType, setStatsType, stats, sort, setSort, currentLng, match}) {
+export default function Form({nav, subNav, dataType, statsType, setStatsType, stats, sort, setSort, currentLng, match}) {
   const { t } = useTranslation();
 
   const batterStandardTitles = [
@@ -246,13 +246,13 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
                   {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
                     <th 
                       key={key}
-                      onClick={() => setStatsType(title[1])}
+                      onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
                     >{title[0]}</th>
                   ))}
                   {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
                     <th 
                       key={key}
-                      onClick={() => setStatsType(title[1])}
+                      onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
                     >{title[0]}</th>
                   ))}
                 </tr>
@@ -290,13 +290,13 @@ export default function Form({nav, year, subNav, dataType, statsType, setStatsTy
                 {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
                   <th 
                     key={key}
-                    onClick={() => setStatsType(title[1])}
+                    onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
                   >{title[0]}</th>
                 ))}
                 {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
                   <th 
                     key={key}
-                    onClick={() => setStatsType(title[1])}
+                    onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
                   >{title[0]}</th>
                 ))}
               </tr>

@@ -180,7 +180,6 @@ export default function Header() {
   useEffect(() => {
     const handleMatch = q => {
       setMatch(q.matches)
-      setOpen(!open)
     }
     query.addListener(handleMatch)
     return () => query.removeListener(handleMatch)
@@ -212,8 +211,8 @@ export default function Header() {
     <NavbarContainer>
       <NavbarTop>
         <HamburgerButton open={open} setOpen={setOpen} />
-        <Logo to="/" ><img src={TPBLlogo} /></Logo>
-        <Login>{t('navbar.login')}</Login>
+        <Logo to="/" onClick={() => setOpen(false)}><img src={TPBLlogo} /></Logo>
+        <Login onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
       </NavbarTop>
       {!open && 
         <NavbarBottom>
@@ -226,11 +225,11 @@ export default function Header() {
     {open && 
       <HamburgerMenuContainer>
         <MenuBlock>
-          <Menu to="/news">{t('navbar.news')}</Menu>
-          <Menu to="/scores">{t('navbar.scores')}</Menu>
-          <Menu to="/standings">{t('navbar.standings')}</Menu>
-          <Menu to="/stats">{t('navbar.stats')}</Menu>
-          <Menu to="/schedule">{t('navbar.schedule')}</Menu>
+          <Menu to="/news" onClick={() => setOpen(false)}>{t('navbar.news')}</Menu>
+          <Menu to="/scores" onClick={() => setOpen(false)}>{t('navbar.scores')}</Menu>
+          <Menu to="/standings" onClick={() => setOpen(false)}>{t('navbar.standings')}</Menu>
+          <Menu to="/stats" onClick={() => setOpen(false)}>{t('navbar.stats')}</Menu>
+          <Menu to="/schedule" onClick={() => setOpen(false)}>{t('navbar.schedule')}</Menu>
           {currentLng === 'zh-TW' ? 
             <Menu onClick={() => changeLanguage("en")}>{t('navbar.language')}</Menu> :
             <Menu onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Menu>

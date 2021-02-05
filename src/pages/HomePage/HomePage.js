@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MEDIA_QUERY_SMtoMD, MEDIA_QUERY_MD, MEDIA_QUERY_MDtoLG, MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
+import { getHittingStatsLeader, getPitchingStatsLeader, getStandings } from '../../WebAPI';
 
 const Root = styled.div`
   width: 100%;
@@ -687,43 +688,14 @@ export default function HomePage() {
   const currentLng = i18n.language
 
   useEffect(() => {
-    fetch(`https://floating-river-74889.herokuapp.com/standingsApi/2020/full`)
-      .then(res => res.json())
-      .then(data => setStandings(data))
-      .catch(err => console.log(err))
+    getStandings(2020, 'full').then(data => setStandings(data))
   }, [])
 
   useEffect(() => {
     if(statsType === 'hitting') {
-      Promise.all([
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/hitting/avg`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/hitting/h`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/hitting/hr`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/hitting/rbi`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/hitting/sb`)
-      ]).then(async([hitting1, hitting2, hitting3, hitting4, hitting5]) => {
-        const h1 = await hitting1.json()
-        const h2 = await hitting2.json()
-        const h3 = await hitting3.json()
-        const h4 = await hitting4.json()
-        const h5 = await hitting5.json()
-        return [[h1, 'avg'], [h2, 'h'], [h3, 'hr'], [h4, 'rbi'], [h5, 'sb']]
-      }).then(data => setHittingStats(data))
+      getHittingStatsLeader(2020).then(data => setHittingStats(data))
     } else if (statsType === 'pitching') {
-      Promise.all([
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/pitching/era`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/pitching/win`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/pitching/sv`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/pitching/hld`),
-        fetch(`https://floating-river-74889.herokuapp.com/topStatsApi/2020/pitching/so`)
-      ]).then(async([pitching1, pitching2, pitching3, pitching4, pitching5]) => {
-        const p1 = await pitching1.json()
-        const p2 = await pitching2.json()
-        const p3 = await pitching3.json()
-        const p4 = await pitching4.json()
-        const p5 = await pitching5.json()
-        return [[p1, 'era'], [p2, 'win'], [p3, 'sv'], [p4, 'hld'], [p5, 'so']]
-      }).then(data => setPitchingStats(data))
+      getPitchingStatsLeader(2020).then(data => setPitchingStats(data))
     }
   }, [statsType])
 

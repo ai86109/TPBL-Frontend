@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
+import { getStandings } from '../../WebAPI';
 
 const Root = styled.div`
   margin-top: 3px;
@@ -376,10 +377,7 @@ export default function StandingsPage() {
   }
   
   useEffect(() => {
-    fetch(`https://floating-river-74889.herokuapp.com/standingsApi/${year}/${season}`)
-      .then(res => res.json())
-      .then(data => setStandings(data))
-      .catch(err => console.log(err))
+    getStandings(year, season).then(data => setStandings(data))
   }, [year, season])
 
   return (

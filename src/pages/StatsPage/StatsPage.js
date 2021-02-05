@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
 import Form from './Form';
+import { getStats } from '../../WebAPI';
 
 const largeDevice = `(min-width: 600px)`
 
@@ -290,32 +291,8 @@ export default function StandingsPage() {
   ]
 
   useEffect(() => {
-    if(nav === 'player') {
-      if(subNav === 'hitting') {
-        fetch(`https://floating-river-74889.herokuapp.com/batterStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      } else if (subNav === 'pitching') {
-        fetch(`https://floating-river-74889.herokuapp.com/pitcherStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      }
-    } else if(nav === 'team') {
-      if(subNav === 'hitting') {
-        fetch(`https://floating-river-74889.herokuapp.com/teamBatterStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      } else if (subNav === 'pitching') {
-        fetch(`https://floating-river-74889.herokuapp.com/teamPitcherStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      }
-    }
-  }, [nav, subNav, year, statsType, sort, stats])
+    getStats(nav, subNav, year, statsType, sort).then(data => setStats(data))
+  }, [nav, subNav, year, statsType, sort])
 
   useEffect(() => {
     const handleMatch = q => setMatch(q.matches)
