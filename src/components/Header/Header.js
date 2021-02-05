@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import { MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
 import TPBLlogo from '../../image/TPBL-logo.svg'
+import sunIcon from '../../image/sunIcon.png'
+import moonIcon from '../../image/moonIcon.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { setLightOrDarkMode } from '../../redux/reducers/styleReducer'
 
 const largeDevice = `(min-width: 1024px)`
 
@@ -14,11 +18,11 @@ const NavbarContainer = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  background: ${props => props.theme.light.background.dark_gray};
+  background: ${({theme}) => theme.background.dark_gray};
   display: flex;
   padding: 0 32px;
   justify-content: space-between;
-  box-shadow: 1px 1px 2px ${props => props.theme.light.background.black_100};
+  box-shadow: 1px 1px 2px ${({theme}) => theme.background.black_100};
   height: 100px;
   flex-direction: column;
   z-index: 2;
@@ -48,12 +52,12 @@ const MenuSpan = styled.div`
   display: block;
   height: 2px;
   width: 24px;
-  background: ${props => props.theme.light.background.white_100};
+  background: ${({theme}) => theme.background.white_100};
   border-radius: 3px;
 `
 
 const MenuCross = styled.div`
-  color: ${props => props.theme.light.text.white_opacity10};
+  color: ${({theme}) => theme.text.white_opacity10};
   font-size: 2.2rem;
   font-weight: 600;
 `
@@ -71,21 +75,22 @@ const Logo = styled(Link)`
 const NavbarBottom = styled.div`
   display: flex;
   justify-content: space-around;
+  ${(props) => props.$active && `justify-content: flex-end; margin-bottom: 10px;`}
 `
 
 const Login = styled(Link)`
-  color: ${props => props.theme.light.text.white_opacity08};
+  color: ${({theme}) => theme.text.white_opacity08};
   font-weight: 700;
   font-size: 20px;
   display: flex;
   justify-content: center;
   &:hover {
-    color: ${props => props.theme.light.text.white_opacity10};
+    color: ${({theme}) => theme.text.white_opacity10};
   }
 `
 
 const Nav = styled(Link)`
-  color: ${props => props.theme.light.text.white_opacity08};
+  color: ${({theme}) => theme.text.white_opacity08};
   text-align: center;
   font-weight: 700;
   font-size: 20px;
@@ -98,7 +103,29 @@ const Nav = styled(Link)`
     padding: 10px 25px;
   }
   &:hover {
-    color: ${props => props.theme.light.text.white_opacity10};
+    color: ${({theme}) => theme.text.white_opacity10};
+  }
+`
+
+const CircleButton = styled.div`
+  display: flex;
+  align-items: center;
+  background: ${({theme}) => theme.background.white_100};
+  opacity: 0.9;
+  min-width: 30px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+  img {
+    position: relative;
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 50%;
+    transform: translateX(-10%);
+    border: 2px solid ${({theme}) => theme.background.black_100};
+    ${(props) => props.$active && `transform: translateX(5px);`}
+    transition: all 0.4s;
   }
 `
 
@@ -126,7 +153,7 @@ const HamburgerMenuContainer = styled.div`
   height: 60%;
   width: 300px;
   opacity: 0.9;
-  background: ${props => props.theme.light.background.dark_gray};
+  background: ${({theme}) => theme.background.dark_gray};
   z-index: 2;
 `
 
@@ -139,14 +166,14 @@ const MenuBlock = styled.div`
 `
 
 const Menu = styled(Link)`
-  color: ${props => props.theme.light.text.white_opacity08};
+  color: ${({theme}) => theme.text.white_opacity08};
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   padding: 10px;
   &:hover {
-    color: ${props => props.theme.light.text.white_opacity10};
-    border-bottom: 2px solid ${props => props.theme.light.text.white_opacity10};
+    color: ${({theme}) => theme.text.white_opacity10};
+    border-bottom: 2px solid ${({theme}) => theme.text.white_opacity10};
     transition: all 1s;
   }
 `
@@ -166,12 +193,28 @@ function HamburgerButton({open, setOpen}) {
   )
 }
 
+function CircleButtonContainer({LightOrDarkMode, setLightOrDarkMode, dispatch}) {
+  return (
+    <CircleButton 
+      $active={LightOrDarkMode === 'dark'}
+      onClick={() => dispatch(setLightOrDarkMode(LightOrDarkMode === 'light' ? 'dark' : 'light'))}
+    >
+      {LightOrDarkMode === 'light' ?
+        <img src={sunIcon} /> :
+        <img src={moonIcon} />
+      }
+    </CircleButton>
+  )
+}
+
 export default function Header() {
   const query = window.matchMedia(largeDevice)
   const [match, setMatch] = useState(query.matches)
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false)
   const currentLng = i18n.language
+  const dispatch = useDispatch()
+  const LightOrDarkMode = useSelector(store => store.styles.lightOrDarkMode)
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
@@ -197,6 +240,11 @@ export default function Header() {
           <Nav to="/schedule">{t('navbar.schedule')}</Nav>
         </NavbarLeft>
         <NavbarRight>
+          <CircleButtonContainer 
+            LightOrDarkMode={LightOrDarkMode} 
+            setLightOrDarkMode={setLightOrDarkMode} 
+            dispatch={dispatch}
+          />
           {currentLng === 'zh-TW' ? 
             <Nav onClick={() => changeLanguage("en")}>{t('navbar.language')}</Nav> :
             <Nav onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Nav>
@@ -214,13 +262,22 @@ export default function Header() {
         <Logo to="/" onClick={() => setOpen(false)}><img src={TPBLlogo} /></Logo>
         <Login onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
       </NavbarTop>
-      {!open && 
-        <NavbarBottom>
-          <Nav to="/scores">{t('navbar.scores')}</Nav>
-          <Nav to="/standings">{t('navbar.standings')}</Nav>
-          <Nav to="/stats">{t('navbar.stats')}</Nav>
-        </NavbarBottom>
-      }
+        <NavbarBottom $active={open}>
+        {!open && 
+          <>
+            <Nav to="/scores">{t('navbar.scores')}</Nav>
+            <Nav to="/standings">{t('navbar.standings')}</Nav>
+            <Nav to="/stats">{t('navbar.stats')}</Nav>
+          </>
+        }
+        {open &&
+          <CircleButtonContainer 
+            LightOrDarkMode={LightOrDarkMode} 
+            setLightOrDarkMode={setLightOrDarkMode} 
+            dispatch={dispatch}
+          />
+        }
+      </NavbarBottom>
     </NavbarContainer>
     {open && 
       <HamburgerMenuContainer>

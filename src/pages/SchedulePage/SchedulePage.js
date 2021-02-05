@@ -9,19 +9,19 @@ import { Link } from 'react-router-dom';
 
 const Root = styled.div`
   margin-top: 3px;
-  background-color: ${props => props.theme.light.background.black_300};
+  background-color: ${({theme}) => theme.background.black_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     margin: 70px auto 0 auto;
   }
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   max-width: 1440px;
   width: 100%;
   min-height: 700px;
@@ -34,7 +34,7 @@ const Container = styled.div`
     padding: 2rem;
   }
   ${MEDIA_QUERY_SMtoMD} {
-    background-color: ${props => props.theme.light.background.white_200};
+    background-color: ${({theme}) => theme.background.white_200};
   }
 `
 
@@ -49,7 +49,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -64,7 +64,7 @@ const SelectButtonsContainer = styled.div`
   position: relative;
   justify-content: space-between;
   padding: 20px 0;
-  border-bottom: 2px solid ${props => props.theme.light.background.dark_gray};
+  border-bottom: 2px solid ${({theme}) => theme.background.dark_gray};
   ${MEDIA_QUERY_SMtoMD} {
     max-width: 400px;
     justify-content: flex-start;
@@ -127,7 +127,7 @@ const Game = styled.div`
   padding: 10px 0;
   width: 100%;
   ${MEDIA_QUERY_SMtoMD} {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     border-radius: 4px;
     padding: 15px;
   }
@@ -175,7 +175,7 @@ const GameInfo = styled(Link)`
   align-items: center;
   font-size: 1.75rem;
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
   margin-left: 20px;
   cursor: pointer;
 `

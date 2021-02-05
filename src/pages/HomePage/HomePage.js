@@ -9,18 +9,18 @@ const Root = styled.div`
   width: 100%;
   max-width: 1600px;
   margin: 100px auto 0 auto;
-  background-color: ${props => props.theme.light.background.white_200};
+  background-color: ${({theme}) => theme.background.white_200};
   min-height: 700px;
   font-size: 16px;
   ${MEDIA_QUERY_LG} {
     display: flex;
     padding: 2rem;
-    margin-top: 70px auto 0 auto;
+    margin-top: 70px;
   }
 `
 
 const TwoColumnContainer = styled.div`
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_MDtoLG} {
     display: flex;
     flex-direction: row;
@@ -51,7 +51,7 @@ const TwoColumnRight = styled.div`
 `
 
 const SubNavContainer = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   box-shadow: 1px 1px 5px #000;
   ${MEDIA_QUERY_LG} {
     box-shadow: none;
@@ -69,9 +69,9 @@ const GamesNavContainer = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  background: ${props => props.theme.light.background.white_100};
+  background: ${({theme}) => theme.background.white_100};
   font-size: 12px;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_SMtoMD} {
     font-size: 16px;
     padding: 20px 5px;
@@ -129,12 +129,12 @@ const GameBlock = styled.div`
   flex-grow: 1;
   width: 100%;
   padding: 0 10px;
-  border-left: 1px solid ${props => props.theme.light.background.dark_gray};
+  border-left: 1px solid ${({theme}) => theme.background.dark_gray};
   ${MEDIA_QUERY_MD} {
     justify-contents: flex-start;
     flex-grow: 0;
     & + & {
-      border-right: 1px solid ${props => props.theme.light.background.dark_gray};
+      border-right: 1px solid ${({theme}) => theme.background.dark_gray};
     }
   }
   ${MEDIA_QUERY_LG} {
@@ -143,7 +143,7 @@ const GameBlock = styled.div`
     border: none;
     & + & {
       border-right: none;
-      border-top: 1px solid ${props => props.theme.light.background.dark_gray};
+      border-top: 1px solid ${({theme}) => theme.background.dark_gray};
     }
   }
 `
@@ -161,7 +161,7 @@ const Team = styled(Link)`
   width: 100%;
   cursor: pointer;
   text-decoration: none;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_SMtoMD} {
     justify-content: space-between;
   }
@@ -221,7 +221,7 @@ const TeamStandings = styled.div`
   ${MEDIA_QUERY_SMtoMD} {
     display: flex;
     align-items: center;
-    color: ${props => props.theme.light.text.black_100};
+    color: ${({theme}) => theme.text.black_100};
   }
   ${MEDIA_QUERY_LG} {
     display: none;
@@ -232,7 +232,7 @@ const NewsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   border-radius: 4px;
 `
 
@@ -248,7 +248,7 @@ const HeadlineImg = styled.image`
 `
 
 const HeadlineTitle = styled.h1`
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
   font-size: 2.5rem;
   font-weight: 700;
   padding: 2rem 2rem 1rem 2rem;
@@ -261,7 +261,7 @@ const HeadlineContent = styled.div`
 `
 
 const Divider = styled.div`
-  background-color: ${props => props.theme.light.background.white_200};
+  background-color: ${({theme}) => theme.background.white_200};
   width: 100%;
   height: 20px;
 `
@@ -273,9 +273,9 @@ const LatestNews = styled.div`
 const LatestNewsTitle = styled.h1`
   font-size: 1.75rem;
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   padding-bottom: 2rem;
-  border-bottom: 1px solid ${props => props.theme.light.background.dark_gray};
+  border-bottom: 1px solid ${({theme}) => theme.background.dark_gray};
 `
 
 const NewsTitle = styled.div`
@@ -290,7 +290,7 @@ const NewsTitle = styled.div`
 const StandingsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   margin: 20px 0;
   border-radius: 4px;
   ${MEDIA_QUERY_MDtoLG} {
@@ -303,7 +303,7 @@ const DataHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2rem;
-  border-bottom: 1px solid ${props => props.theme.light.background.dark_gray};
+  border-bottom: 1px solid ${({theme}) => theme.background.dark_gray};
   ${MEDIA_QUERY_MDtoLG} {
     padding: 2rem 0;
   }
@@ -314,7 +314,13 @@ const DataTitle = styled.h1`
   font-weight: 700;
 `
 
-const DataLink = styled(Link)``
+const DataLink = styled(Link)`
+  text-decoration: none;
+  color: ${({theme}) => theme.text.black_200};
+  &:hover {
+    color: ${({theme}) => theme.text.black_100};
+  }
+`
 
 const StandingsBox = styled.div`
   padding: 2rem;
@@ -334,7 +340,7 @@ const Table = styled.table`
       text-align: center;
     }
     &:first-child {
-      background-color: ${props => props.theme.light.background.white_100};
+      background-color: ${({theme}) => theme.background.white_100};
       ${MEDIA_QUERY_MDtoLG} {
         position: sticky;
         left: 0;
@@ -352,7 +358,7 @@ const Table = styled.table`
 const StatsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   margin: 20px 0;
   width: 100%;
   border-radius: 4px;
@@ -372,17 +378,18 @@ const SelectButton = styled.button`
   padding: 1rem 10rem;
   border-collapse: collapse;
   min-width: 15rem;
-  border: 1px solid ${props => props.theme.light.background.light_gray};
+  border: 1px solid ${({theme}) => theme.background.light_gray};
   cursor: pointer;
   height: 100%;
   font-size: 1.6rem;
   font-weight: 700;
   outline: none;
   transition: all 0.5s;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08};`}
+  color: ${({theme}) => theme.text.black_300};
+  ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
   &:hover {
-    background-color: ${props => props.theme.light.background.light_gray};
-    color: ${props => props.theme.light.text.white_opacity08};
+    background-color: ${({theme}) => theme.background.light_gray};
+    color: ${({theme}) => theme.text.white_opacity08};
   }
   ${MEDIA_QUERY_MDtoLG} {
     padding: 0.75rem 0;
@@ -411,7 +418,7 @@ const StatsData = styled.div`
 const DataUnit = styled.div`
   font-size: 1.3rem;
   text-align: right;
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
   font-weight: 500;
 `
 
@@ -421,7 +428,7 @@ const ProfileContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 15px 0;
-    border-bottom: 1px solid ${props => props.theme.light.background.dark_gray};
+    border-bottom: 1px solid ${({theme}) => theme.background.dark_gray};
   `
 
 const PlayerProfilePic = styled.div`
@@ -448,12 +455,12 @@ const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 600;
   margin: 4px 0;
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
 `
 
 const PlayerTeamAndPosition = styled.div`
   font-size: 1.2rem;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
 `
 
 function GamesNav() {

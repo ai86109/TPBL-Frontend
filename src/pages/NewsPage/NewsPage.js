@@ -9,7 +9,7 @@ const Root = styled.div`
   min-height: 700px;
   font-size: 16px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     margin: 70px auto 0 auto;
   }
@@ -19,13 +19,13 @@ const Container = styled.div``
 
 const Header = styled.div`
   padding: 2rem;
-  background-color: ${props => props.theme.light.background.white_100};
-  box-shadow: 1px 3px 10px ${props => props.theme.light.background.black_100};
+  background-color: ${({theme}) => theme.background.white_100};
+  box-shadow: 1px 3px 10px ${({theme}) => theme.background.black_100};
 `
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -36,7 +36,7 @@ const PageTitle = styled.h1`
 `
 
 const NewsContainer = styled.div`
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   ${MEDIA_QUERY_LG} {
     display: flex;
   }
@@ -55,8 +55,8 @@ const NewsBlock = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px 0;
-  background-color: ${props => props.theme.light.background.white_100};
-  box-shadow: 1px 3px 5px ${props => props.theme.light.background.light_gray};
+  background-color: ${({theme}) => theme.background.white_100};
+  box-shadow: 1px 3px 5px ${({theme}) => theme.background.light_gray};
   & + & {
     margin-top: 20px;
     ${MEDIA_QUERY_LG} {
@@ -68,7 +68,7 @@ const NewsBlock = styled.div`
     flex-direction: row;
     padding: 15px;
     &:hover {
-      background-color: ${props => props.theme.light.background.light_gray};
+      background-color: ${({theme}) => theme.background.light_gray};
     }
   }
 `
@@ -83,7 +83,7 @@ const NewsImg = styled.image`
 `
 
 const NewsTitle = styled.h1`
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
   font-size: 2.5rem;
   font-weight: 700;
   padding: 2rem 2rem 1rem 2rem;
@@ -98,7 +98,7 @@ const NewsTitle = styled.h1`
     width: 300px;
     display: flex;
     &:hover {
-      color: ${props => props.theme.light.text.white_opacity10};
+      color: ${({theme}) => theme.text.white_opacity10};
     }
   }
 `
@@ -106,16 +106,16 @@ const NewsTitle = styled.h1`
 const ReadMore = styled.div`
   display: flex;
   justify-content: center;
-  border: 1px solid ${props => props.theme.light.background.light_gray};
+  border: 1px solid ${({theme}) => theme.background.light_gray};
   padding: 12px 40px;
   margin: 10px auto;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   font-weight: 500;
   cursor: pointer;
   outline: none;
   &:hover {
-    background-color: ${props => props.theme.light.background.light_gray};
-    color: ${props => props.theme.light.text.white_opacity08};
+    background-color: ${({theme}) => theme.background.light_gray};
+    color: ${({theme}) => theme.text.white_opacity08};
   }
   ${MEDIA_QUERY_LG} {
     display: none;
@@ -131,12 +131,12 @@ const WholeArticle = styled.div`
     flex: 1;
     width: 100%;
     height: 1020px;
-    background-color: ${props => props.theme.light.background.white_200}
+    background-color: ${({theme}) => theme.background.white_200}
   }
 `
 
 const ArticleTitle = styled.h1`
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
   font-size: 3rem;
   font-weight: 700;
   padding: 2rem;

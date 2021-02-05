@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import { ResetStyle, GlobalStyle } from './components/globalStyle';
 import './i18n'
-import { ThemeProvider } from 'styled-components';
-import { theme } from './constants/colors';
+import store from './redux/store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <Provider store={store}>
     <ResetStyle />
     <GlobalStyle />
     <App />
-  </ThemeProvider>,
+  </Provider>,
   document.getElementById('root')
 );

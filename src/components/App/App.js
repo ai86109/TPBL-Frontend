@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import styled from 'styled-components';
 import Header from '../Header/Header';
 import HomePage from '../../pages/HomePage';
 import NewsPage from '../../pages/NewsPage';
@@ -9,14 +8,14 @@ import StatsPage from '../../pages/StatsPage';
 import SchedulePage from '../../pages/SchedulePage';
 import ScoresPage from '../../pages/ScoresPage';
 import BoxScoresPage from '../../pages/BoxScoresPage';
-import { useTranslation } from 'react-i18next';
-
-const Root = styled.div``
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../../constants/colors';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const { i18n } = useTranslation();
+  const LightOrDarkMode = useSelector(store => store.styles.lightOrDarkMode)
   return (
-    <Root>
+    <ThemeProvider theme={theme[LightOrDarkMode]}>
       <Router>
         <Header />
         <Switch>
@@ -43,7 +42,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </Root>
+    </ThemeProvider>
   )
 }
 

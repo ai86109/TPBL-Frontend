@@ -37,13 +37,13 @@ const FormContainer = styled.div`
     font-weight: 900;
     font-size: 2rem;
     cursor: pointer;
-    color: ${props => props.theme.light.text.black_100};
+    color: ${({theme}) => theme.text.black_100};
   `
 
   const CaretItem = styled.div`
     height: 10px;
     width: 20px;
-    ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue};`}
+    ${(props) => props.$active && `color: ${props.theme.text.guardians_blue};`}
   `
 
   const BoxBody = styled.div`
@@ -109,7 +109,7 @@ const FormContainer = styled.div`
 
   const PlayerTeam = styled.div`
     font-size: 14px;
-    color: ${props => props.theme.light.text.black_100};
+    color: ${({theme}) => theme.text.black_100};
   `
 
   const TeamName = styled.div`
@@ -121,7 +121,7 @@ const FormContainer = styled.div`
     overflow: scroll;
     width: 100%;
     position: relative;
-    border-bottom: 1px solid ${props => props.theme.light.background.guardians_blue};
+    border-bottom: 1px solid ${({theme}) => theme.background.guardians_blue};
   `
 
   const Table = styled.table`
@@ -129,11 +129,11 @@ const FormContainer = styled.div`
     width: 100%;
     white-space: nowrap;
     colgroup {
-      border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
+      border-right: 1px solid ${({theme}) => theme.background.guardians_blue};
     }
     th {
-      border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
-      background-color: ${props => props.theme.light.background.guardians_blue};
+      border-right: 1px solid ${({theme}) => theme.background.guardians_blue};
+      background-color: ${({theme}) => theme.background.guardians_blue};
       color: white;
       &:first-child {
         position: sticky;
@@ -145,20 +145,21 @@ const FormContainer = styled.div`
       }
     }
     tbody tr th {
-      background-color: ${props => props.theme.light.background.white_100};
-      color: ${props => props.theme.light.text.black_300};
+      background-color: ${({theme}) => theme.background.white_100};
+      color: ${({theme}) => theme.text.black_300};
     }
     tbody tr {
-      background-color: ${props => props.theme.light.background.white_100};
+      background-color: ${({theme}) => theme.background.white_100};
       text-align: center;
     }
     td, th {
+      text-align: center;
       padding: 10px 15px;
     }
     tbody > tr:hover {
-      background-color: ${props => props.theme.light.background.white_200};
+      background-color: ${({theme}) => theme.background.white_200};
       & th {
-        background-color: ${props => props.theme.light.background.white_200};
+        background-color: ${({theme}) => theme.background.white_200};
       }
     }
     ${MEDIA_QUERY_LG} {

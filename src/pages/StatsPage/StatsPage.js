@@ -8,12 +8,12 @@ import { getStats } from '../../WebAPI';
 const largeDevice = `(min-width: 600px)`
 
 const Root = styled.div`
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     padding: 0 2rem;
     margin: 70px auto 0 auto;
@@ -21,7 +21,7 @@ const Root = styled.div`
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   width: 100%;
   min-height: 700px;
   margin: 3px auto;
@@ -43,7 +43,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -61,7 +61,7 @@ const SelectButtonsContainer = styled.div`
 const NavList = styled.div`
   display: flex;
   margin: 10px 0;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
 `
 
 const Nav = styled.div`
@@ -70,7 +70,7 @@ const Nav = styled.div`
   font-weight: 900;
   cursor: pointer;
   transition: all 0.5s;
-  ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue};`}
+  ${(props) => props.$active && `color: ${props.theme.text.guardians_blue};`}
 `
 
 const SubNav = styled.div`
@@ -80,7 +80,7 @@ const SubNav = styled.div`
   font-weight: 900;
   cursor: pointer;
   transition: all 0.5s;
-  ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue}; border-bottom: 3px solid ${props.theme.light.background.guardians_blue};`}
+  ${(props) => props.$active && `color: ${props.theme.text.guardians_blue}; border-bottom: 3px solid ${props.theme.text.guardians_blue};`}
 `
 
 const YearsAndStatsType = styled.div`
@@ -95,14 +95,16 @@ const SelectForm = styled.select`
   cursor: pointer;
   margin-right: 1rem;
   outline: none;
+  background-color: ${({theme}) => theme.background.white_100};
+  color: ${({theme}) => theme.text.black_300};
   ${MEDIA_QUERY_MD} {
-    border: 1px solid ${props => props.theme.light.background.light_gray};
+    border: 1px solid ${({theme}) => theme.background.light_gray};
     border-radius: 0.25rem;
   }
 `
 
 const StatsDataType = styled.div`
-  border: 1px solid ${props => props.theme.light.background.light_gray};
+  border: 1px solid ${({theme}) => theme.background.light_gray};
   border-radius: 0.25rem;
   transition: all 0.5s;
   ${MEDIA_QUERY_MD} {
@@ -119,7 +121,14 @@ const DataType = styled.button`
   height: 100%;
   transition: all 0.5s;
   outline: none;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray};`}
+  color: ${({theme}) => theme.text.black_300};
+  ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
+  font-weight: 700;
+  font-size: 1.5rem;
+  &:hover {
+    background-color: ${({theme}) => theme.background.light_gray};
+    color: ${({theme}) => theme.text.white_opacity08};
+  }
 `
 
 const StatsType = styled.div`
@@ -133,7 +142,7 @@ const StatsType = styled.div`
 `
 
 const Type = styled.button`
-  border: 1px solid ${props => props.theme.light.background.black_100};
+  border: 1px solid ${({theme}) => theme.background.black_100};
   border-radius: 1rem;
   padding: 7px;
   margin: 2px 10px;
@@ -142,10 +151,11 @@ const Type = styled.button`
   cursor: pointer;
   font-weight: 700;
   outline: none;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.dark_gray}; color: ${props.theme.light.text.white_opacity08};`}
+  color: ${({theme}) => theme.text.black_300};
+  ${(props) => props.$active && `background-color: ${props.theme.background.dark_gray}; color: ${props.theme.text.white_opacity08};`}
   &:hover {
-    background-color: ${props => props.theme.light.background.dark_gray};
-    color: ${props => props.theme.light.text.white_opacity10};
+    background-color: ${({theme}) => theme.background.dark_gray};
+    color: ${({theme}) => theme.text.white_opacity10};
   }
 `
 

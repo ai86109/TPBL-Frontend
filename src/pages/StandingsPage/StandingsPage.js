@@ -6,19 +6,19 @@ import { getStandings } from '../../WebAPI';
 
 const Root = styled.div`
   margin-top: 3px;
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     margin: 70px auto 0 auto;
   }
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   max-width: 1400px;
   width: 100%;
   min-height: 700px;
@@ -42,7 +42,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -64,7 +64,7 @@ const SelectButtonsContainer = styled.div`
 const Seasons = styled.div`
   display: flex;
   ${MEDIA_QUERY_MD} {
-    border: 1px solid ${props => props.theme.light.background.light_gray};
+    border: 1px solid ${({theme}) => theme.background.light_gray};
     border-radius: 0.25rem;
     height: 5rem;
     margin-right: 1rem;
@@ -76,7 +76,8 @@ const Season = styled.button`
   flex: 1 1 100%;
   justify-content: center;
   outline: none;
-  ${(props) => props.$active && `border-bottom: 3px solid ${props.theme.light.background.dark_red};`}
+  ${(props) => props.$active && `border-bottom: 3px solid ${props.theme.background.dark_red};`}
+  color: ${({theme}) => theme.text.black_300};
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.5;
@@ -89,18 +90,22 @@ const Season = styled.button`
     padding: 0.5rem;
     align-items: center;
     border-bottom: none;
-    ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08}`}
+    ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
+    &:hover {
+      background-color: ${({theme}) => theme.background.light_gray};
+      color: ${({theme}) => theme.text.white_opacity08};
+    }
   }
 `
 
 const YearsAndStandingsDataType = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   padding: 10px 10px;
   margin-top: 1rem;
   ${MEDIA_QUERY_MD} {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     padding: 0;
   }
 `
@@ -115,6 +120,8 @@ const SelectForm = styled.select`
   cursor: pointer;
   outline: none;
   font-weight: 700;
+  background-color: ${({theme}) => theme.background.white_100};
+  color: ${({theme}) => theme.text.black_300};
   ${MEDIA_QUERY_SMtoMD} {
     padding: 10px 20px;
     min-width: 10rem;
@@ -128,7 +135,7 @@ const SelectForm = styled.select`
 `
 
 const StandingsDataType = styled.div`
-  border: 1px solid ${props => props.theme.light.background.light_gray};
+  border: 1px solid ${({theme}) => theme.background.light_gray};
   border-radius: 0.25rem;
   ${MEDIA_QUERY_MD} {
     display: flex;
@@ -146,11 +153,16 @@ const DataType = styled.button`
   transition: all 0.5s;
   font-size: 1.5rem;
   font-weight: 700;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08};`}
+  color: ${({theme}) => theme.text.black_300};
+  ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
   ${MEDIA_QUERY_SMtoMD} {
     padding: 10px 20px;
     min-width: 12rem;
     max-width: 20rem;
+    &:hover {
+      background-color: ${({theme}) => theme.background.light_gray};
+      color: ${({theme}) => theme.text.white_opacity08};
+    }
   }
 `
 
@@ -158,7 +170,7 @@ const FormContainer = styled.div`
   overflow: scroll;
   width: 100%;
   position: relative;
-  border-bottom: 1px solid ${props => props.theme.light.background.black_100};
+  border-bottom: 1px solid ${({theme}) => theme.background.black_100};
 `
 
 const Table = styled.table`
@@ -167,12 +179,12 @@ const Table = styled.table`
   white-space: nowrap;
   font-size: 1.5rem;
   colgroup {
-    border-right: 1px solid ${props => props.theme.light.background.white_300};
+    border-right: 1px solid ${({theme}) => theme.background.white_300};
   }
   th {
-    border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
-    background-color: ${props => props.theme.light.background.guardians_blue};
-    color: ${props => props.theme.light.text.white_opacity08};
+    border-right: 1px solid ${({theme}) => theme.background.guardians_blue};
+    background-color: ${({theme}) => theme.background.guardians_blue};
+    color: ${({theme}) => theme.text.white_opacity08};
     font-weight: 700;
     font-size: 1.6rem;
     &:first-child {
@@ -182,23 +194,24 @@ const Table = styled.table`
     }
   }
    tbody tr th {
-    background-color: ${props => props.theme.light.background.white_100};
-    color: black;
+    background-color: ${({theme}) => theme.background.white_100};
+    color: ${({theme}) => theme.text.black_300};
   }
   tbody tr {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     text-align: center;
   }
   td, th {
+    text-align: center;
     padding: 7px 12px;
     ${MEDIA_QUERY_SMtoMD} {
       padding: 12px 17px;
     }
   }
   tbody > tr:hover {
-    background-color: ${props => props.theme.light.background.white_200};
+    background-color: ${({theme}) => theme.background.white_200};
     & th {
-      background-color: ${props => props.theme.light.background.white_200};
+      background-color: ${({theme}) => theme.background.white_200};
     }
   }
   ${MEDIA_QUERY_SMtoMD} {
