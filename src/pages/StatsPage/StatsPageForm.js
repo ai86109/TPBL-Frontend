@@ -2,6 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG } from '../../constants/breakpoint';
+import { 
+  statsBatterStandardTableTitles,
+  statsBatterAdvancedTableTitles,
+  statsPitcherStandardTableTitles,
+  statsPitcherAdvancedTableTitles,
+  statsTeamBatterTableTitles,
+  statsTeamPitcherTableTitles
+} from '../../ListTitles'
 
 const FormContainer = styled.div`
     display: flex;
@@ -193,42 +201,8 @@ const FormContainer = styled.div`
     )
   }
 
-export default function Form({nav, subNav, dataType, statsType, setStatsType, stats, sort, setSort, currentLng, match}) {
+export default function StatsPageForm({nav, subNav, dataType, statsType, setStatsType, stats, sort, setSort, currentLng, match}) {
   const { t } = useTranslation();
-
-  const batterStandardTitles = [
-    ['G', 'games'], ['AB', 'ab'], ['R', 'r'], ['H', 'h'], ['1B', '1B'], ['2B', '2B'], ['3B', '3B'], 
-    ['HR', 'hr'], ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], ['SB', 'sb'], ['CS', 'cs'], ['AVG', 'avg'], 
-    ['OBP', 'obp'], ['SLG', 'slg'], ['OPS', 'ops']
-  ]
-
-  const batterAdvancedTitles = [
-    ['PA', 'pa'], ['HBP', 'hbp'], ['SH', 'sac'], ['SF', 'sf'], ['GIDP', 'gidp'], ['GO/AO', 'goao'], 
-    ['XBH', 'xbh'], ['TB', 'tb'], ['IBB', 'ibb'], ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], 
-    ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
-  ]
-
-  const pitcherStandardTitles = [
-    ['W', 'win'], ['L', 'lose'], ['SV', 'sv'], ['HLD', 'hld'], ['ERA', 'era'], ['G', 'games'], ['GS', 'gs'], 
-    ['CG', 'cg'], ['SHO', 'sho'], ['GR', 'gr'], ['BS', 'bs'], ['IP', 'ip'], ['H', 'h'], ['R', 'r'], 
-    ['ER', 'er'], ['BB', 'bb'], ['HBP', 'hbp'], ['SO', 'so'], ['WHIP', 'whip']
-  ]
-
-  const pitcherAdvancedTitles = [
-    ['BF', 'bf'], ['NP', 'np'], ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], 
-    ['AO', 'GO/AO'], ['SO/9', 'so9'], ['BB/9', 'bb9'], ['K/BB', 'sobb']
-  ]
-
-  const teamBatterStatsTitles = [
-    ['G','games'], ['AB', 'ab'], ['R', 'r'], ['H', 'h'], ['HR', 'hr'], ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'],
-    ['SB', 'sb'], ['AVG', 'avg'], ['OBP', 'obp'], ['SLG', 'slg'], ['OPS', 'ops'], ['AB/HR', 'abhr']
-  ]
-
-  const teamPitcherStatsTitles = [
-    ['W', 'win'], ['L', 'lose'], ['T', 'tied'], ['ERA', 'era'], ['G', 'games'], ['H', 'h'], ['R', 'r'], ['ER', 'er'], 
-    ['BB', 'bb'], ['SO', 'so'], ['WHIP', 'whip'], ['BF', 'bf'], ['NP', 'np'], ['WP', 'wp'], ['BK', 'bk'], 
-    ['SO/BB', 'sobb']
-  ]
 
   if(match){
     if(nav === 'player') {
@@ -244,13 +218,13 @@ export default function Form({nav, subNav, dataType, statsType, setStatsType, st
                 <tr>
                   <th>PLAYER</th>
                   <th>TEAM</th>
-                  {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                  {subNav === 'hitting' && statsBatterAdvancedTableTitles.map((title, key) => (
                     <th 
                       key={key}
                       onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
                     >{title[0]}</th>
                   ))}
-                  {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
+                  {subNav === 'pitching' && statsPitcherAdvancedTableTitles.map((title, key) => (
                     <th 
                       key={key}
                       onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
@@ -263,10 +237,10 @@ export default function Form({nav, subNav, dataType, statsType, setStatsType, st
                   <tr key={x}>
                     <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                     <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
-                    {subNav === 'hitting' && batterAdvancedTitles.map((title, key) => (
+                    {subNav === 'hitting' && statsBatterAdvancedTableTitles.map((title, key) => (
                       <td key={key}>{stat[title[1]]}</td>
                     ))}
-                    {subNav === 'pitching' && pitcherAdvancedTitles.map((title, key) => (
+                    {subNav === 'pitching' && statsPitcherAdvancedTableTitles.map((title, key) => (
                       <td key={key}>{stat[title[1]]}</td>
                     ))}
                   </tr>
@@ -288,13 +262,13 @@ export default function Form({nav, subNav, dataType, statsType, setStatsType, st
               <tr>
                 <th>PLAYER</th>
                 <th>TEAM</th>
-                {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
+                {subNav === 'hitting' && statsBatterStandardTableTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
                   >{title[0]}</th>
                 ))}
-                {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
+                {subNav === 'pitching' && statsPitcherStandardTableTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => statsType === title[1] ? setSort(sort === 'desc' ? 'asc' : 'desc') : setStatsType(title[1])}
@@ -307,10 +281,10 @@ export default function Form({nav, subNav, dataType, statsType, setStatsType, st
                 <tr key={x}>
                   <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                   <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
-                  {subNav === 'hitting' && batterStandardTitles.map((title, key) => (
+                  {subNav === 'hitting' && statsBatterStandardTableTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
-                  {subNav === 'pitching' && pitcherStandardTitles.map((title, key) => (
+                  {subNav === 'pitching' && statsPitcherStandardTableTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
                 </tr>
@@ -329,13 +303,13 @@ export default function Form({nav, subNav, dataType, statsType, setStatsType, st
             <thead>
               <tr>
                 <th>TEAM</th>
-                {subNav === 'hitting' && teamBatterStatsTitles.map((title, key) => (
+                {subNav === 'hitting' && statsTeamBatterTableTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => setStatsType(title[1])}
                   >{title[0]}</th>
                 ))}
-                {subNav === 'pitching' && teamPitcherStatsTitles.map((title, key) => (
+                {subNav === 'pitching' && statsTeamPitcherTableTitles.map((title, key) => (
                   <th 
                     key={key}
                     onClick={() => setStatsType(title[1])}
@@ -347,10 +321,10 @@ export default function Form({nav, subNav, dataType, statsType, setStatsType, st
               {stats.map((stat, x) => (
                 <tr key={x}>
                   <th>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</th>
-                  {subNav === 'hitting' && teamBatterStatsTitles.map((title, key) => (
+                  {subNav === 'hitting' && statsTeamBatterTableTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
-                  {subNav === 'pitching' && teamPitcherStatsTitles.map((title, key) => (
+                  {subNav === 'pitching' && statsTeamPitcherTableTitles.map((title, key) => (
                     <td key={key}>{stat[title[1]]}</td>
                   ))}
                 </tr>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_SM, MEDIA_QUERY_MDtoLG } from '../../constants/breakpoint';
+import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
 
 const Root = styled.div`
   background-color: ${({theme}) => theme.background.black_300};

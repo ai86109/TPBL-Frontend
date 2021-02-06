@@ -108,7 +108,7 @@ const GameCalendar = styled.div`
   img {
     width: 30px;
   }
-  z-index: 2;
+  z-index: 1;
 `
 
 const ScoresContainer = styled.div`

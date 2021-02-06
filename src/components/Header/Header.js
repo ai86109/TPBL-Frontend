@@ -255,45 +255,47 @@ export default function Header() {
     )
   }
   return (
-  <Hamburger>
-    <NavbarContainer>
-      <NavbarTop>
-        <HamburgerButton open={open} setOpen={setOpen} />
-        <Logo to="/" onClick={() => setOpen(false)}><img src={TPBLlogo} /></Logo>
-        <Login onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
-      </NavbarTop>
+    <Hamburger>
+      <NavbarContainer>
+        <NavbarTop>
+          <HamburgerButton open={open} setOpen={setOpen} />
+          <Logo to="/" onClick={() => setOpen(false)}>
+            <img src={TPBLlogo} />
+          </Logo>
+          <Login onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
+        </NavbarTop>
         <NavbarBottom $active={open}>
-        {!open && 
-          <>
-            <Nav to="/scores">{t('navbar.scores')}</Nav>
-            <Nav to="/standings">{t('navbar.standings')}</Nav>
-            <Nav to="/stats">{t('navbar.stats')}</Nav>
-          </>
-        }
-        {open &&
-          <CircleButtonContainer 
-            LightOrDarkMode={LightOrDarkMode} 
-            setLightOrDarkMode={setLightOrDarkMode} 
-            dispatch={dispatch}
-          />
-        }
-      </NavbarBottom>
-    </NavbarContainer>
-    {open && 
-      <HamburgerMenuContainer>
-        <MenuBlock>
-          <Menu to="/news" onClick={() => setOpen(false)}>{t('navbar.news')}</Menu>
-          <Menu to="/scores" onClick={() => setOpen(false)}>{t('navbar.scores')}</Menu>
-          <Menu to="/standings" onClick={() => setOpen(false)}>{t('navbar.standings')}</Menu>
-          <Menu to="/stats" onClick={() => setOpen(false)}>{t('navbar.stats')}</Menu>
-          <Menu to="/schedule" onClick={() => setOpen(false)}>{t('navbar.schedule')}</Menu>
-          {currentLng === 'zh-TW' ? 
-            <Menu onClick={() => changeLanguage("en")}>{t('navbar.language')}</Menu> :
-            <Menu onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Menu>
+          {!open &&
+            <>
+              <Nav to="/scores">{t('navbar.scores')}</Nav>
+              <Nav to="/standings">{t('navbar.standings')}</Nav>
+              <Nav to="/stats">{t('navbar.stats')}</Nav>
+            </>
           }
-        </MenuBlock>
-      </HamburgerMenuContainer>
-    }
-  </Hamburger>
+          {open &&
+            <CircleButtonContainer 
+              LightOrDarkMode={LightOrDarkMode} 
+              setLightOrDarkMode={setLightOrDarkMode} 
+              dispatch={dispatch}
+            />
+          }
+        </NavbarBottom>
+      </NavbarContainer>
+      {open && 
+        <HamburgerMenuContainer>
+          <MenuBlock>
+            <Menu to="/news" onClick={() => setOpen(false)}>{t('navbar.news')}</Menu>
+            <Menu to="/scores" onClick={() => setOpen(false)}>{t('navbar.scores')}</Menu>
+            <Menu to="/standings" onClick={() => setOpen(false)}>{t('navbar.standings')}</Menu>
+            <Menu to="/stats" onClick={() => setOpen(false)}>{t('navbar.stats')}</Menu>
+            <Menu to="/schedule" onClick={() => setOpen(false)}>{t('navbar.schedule')}</Menu>
+            {currentLng === 'zh-TW' ? 
+              <Menu onClick={() => changeLanguage("en")}>{t('navbar.language')}</Menu> :
+              <Menu onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Menu>
+            }
+          </MenuBlock>
+        </HamburgerMenuContainer>
+      }
+    </Hamburger>
   )
 }
