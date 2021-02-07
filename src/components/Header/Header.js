@@ -249,7 +249,7 @@ export default function Header() {
             <Nav onClick={() => changeLanguage("en")}>{t('navbar.language')}</Nav> :
             <Nav onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Nav>
           }
-          <Nav>{t('navbar.login')}</Nav>
+          <Nav to='login'>{t('navbar.login')}</Nav>
         </NavbarRight>
       </NavbarContainer>
     )
@@ -262,7 +262,7 @@ export default function Header() {
           <Logo to="/" onClick={() => setOpen(false)}>
             <img src={TPBLlogo} />
           </Logo>
-          <Login onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
+          <Login to='/login' onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
         </NavbarTop>
         <NavbarBottom $active={open}>
           {!open &&

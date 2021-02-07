@@ -8,6 +8,7 @@ import StatsPage from '../../pages/StatsPage';
 import SchedulePage from '../../pages/SchedulePage';
 import ScoresPage from '../../pages/ScoresPage';
 import BoxScoresPage from '../../pages/BoxScoresPage';
+import LoginPage from '../../pages/LoginPage';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../constants/colors';
 import { useSelector } from 'react-redux';
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/boxscores">
             <BoxScoresPage />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
           </Route>
         </Switch>
       </Router>

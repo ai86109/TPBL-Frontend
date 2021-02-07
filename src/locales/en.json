@@ -7,7 +7,10 @@
     "stats": "STATS",
     "schedule": "SCHEDULE",
     "login": "LOGIN",
-    "language": "中文"
+    "language": "中文",
+    "username": "USERNAME:",
+    "password": "PASSWORD:",
+    "send": "SEND"
   },
   "standings": {
     "firstHalf": "1st Half",
