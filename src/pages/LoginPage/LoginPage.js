@@ -5,19 +5,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser, login, setErrorMessage } from '../../redux/reducers/userReducer';
 import { getAuthToken } from '../../utils';
 import { useHistory } from 'react-router-dom';
+import { MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
 
 const FormContainer = styled.div`
   background-color: ${({theme}) => theme.background.white_200};
-  height: 696px;
+  height: 812px;
   display: flex;
   align-items: center;
+  ${MEDIA_QUERY_SMtoMD} {
+    height: 696px;
+  }
 `
 
 const FormBlock = styled.form`
   margin: 0 auto;
-  width: 450px;
+  width: 320px;
   height: 300px;
-  padding: 60px;
+  padding: 10px;
   color: ${({theme}) => theme.text.black_300};
   border: solid 3px ${({theme}) => theme.background.black_300};
   background-color: ${({theme}) => theme.background.white_100};
@@ -25,6 +29,10 @@ const FormBlock = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  ${MEDIA_QUERY_SMtoMD} {
+    width: 450px;
+    padding: 60px;
+  }
 `
 
 const FormTitle = styled.h1`
@@ -43,11 +51,15 @@ const FormInputTitle = styled.div`
 const FormInput = styled.input`
   text-decoration: none;
   border: solid 1px ${({theme}) => theme.background.black_100};
-  width: 287px;
+  width: 200px;
   height: 23px;
-  margin: 10px 20px;
+  margin: 10px 10px;
   padding: 2px 4px;
   font-size: 1.5rem;
+  ${MEDIA_QUERY_SMtoMD} {
+    width: 287px;
+    margin: 10px 20px;
+  }
 `
 
 const SubmitButton = styled.button`
