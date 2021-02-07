@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.js": "/TPBL-Frontend/static/js/main.db828b3e.chunk.js",
-    "main.js.map": "/TPBL-Frontend/static/js/main.db828b3e.chunk.js.map",
+    "main.js": "/TPBL-Frontend/static/js/main.a5fa1b26.chunk.js",
+    "main.js.map": "/TPBL-Frontend/static/js/main.a5fa1b26.chunk.js.map",
     "runtime-main.js": "/TPBL-Frontend/static/js/runtime-main.ff3b49a6.js",
     "runtime-main.js.map": "/TPBL-Frontend/static/js/runtime-main.ff3b49a6.js.map",
     "static/css/2.f7fceeef.chunk.css": "/TPBL-Frontend/static/css/2.f7fceeef.chunk.css",
-    "static/js/2.b9820737.chunk.js": "/TPBL-Frontend/static/js/2.b9820737.chunk.js",
-    "static/js/2.b9820737.chunk.js.map": "/TPBL-Frontend/static/js/2.b9820737.chunk.js.map",
+    "static/js/2.ef6509a5.chunk.js": "/TPBL-Frontend/static/js/2.ef6509a5.chunk.js",
+    "static/js/2.ef6509a5.chunk.js.map": "/TPBL-Frontend/static/js/2.ef6509a5.chunk.js.map",
     "index.html": "/TPBL-Frontend/index.html",
     "static/css/2.f7fceeef.chunk.css.map": "/TPBL-Frontend/static/css/2.f7fceeef.chunk.css.map",
-    "static/js/2.b9820737.chunk.js.LICENSE.txt": "/TPBL-Frontend/static/js/2.b9820737.chunk.js.LICENSE.txt",
+    "static/js/2.ef6509a5.chunk.js.LICENSE.txt": "/TPBL-Frontend/static/js/2.ef6509a5.chunk.js.LICENSE.txt",
     "static/media/TPBL-logo.28fb8f85.svg": "/TPBL-Frontend/static/media/TPBL-logo.28fb8f85.svg",
-    "static/media/calendar.f5bece88.svg": "/TPBL-Frontend/static/media/calendar.f5bece88.svg"
+    "static/media/calendar.f5bece88.svg": "/TPBL-Frontend/static/media/calendar.f5bece88.svg",
+    "static/media/moonIcon.7030e600.png": "/TPBL-Frontend/static/media/moonIcon.7030e600.png",
+    "static/media/sunIcon.f9126cd2.png": "/TPBL-Frontend/static/media/sunIcon.f9126cd2.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ff3b49a6.js",
     "static/css/2.f7fceeef.chunk.css",
-    "static/js/2.b9820737.chunk.js",
-    "static/js/main.db828b3e.chunk.js"
+    "static/js/2.ef6509a5.chunk.js",
+    "static/js/main.a5fa1b26.chunk.js"
   ]
 }
