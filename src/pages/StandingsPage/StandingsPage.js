@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
+import { getStandings } from '../../WebAPI';
+import StandingsPageForm from './StandingsPageForm';
 
 const Root = styled.div`
   margin-top: 3px;
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     margin: 70px auto 0 auto;
   }
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   max-width: 1400px;
   width: 100%;
   min-height: 700px;
@@ -41,7 +43,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -63,7 +65,7 @@ const SelectButtonsContainer = styled.div`
 const Seasons = styled.div`
   display: flex;
   ${MEDIA_QUERY_MD} {
-    border: 1px solid ${props => props.theme.light.background.light_gray};
+    border: 1px solid ${({theme}) => theme.background.light_gray};
     border-radius: 0.25rem;
     height: 5rem;
     margin-right: 1rem;
@@ -75,7 +77,8 @@ const Season = styled.button`
   flex: 1 1 100%;
   justify-content: center;
   outline: none;
-  ${(props) => props.$active && `border-bottom: 3px solid ${props.theme.light.background.dark_red};`}
+  ${(props) => props.$active && `border-bottom: 3px solid ${props.theme.background.dark_red};`}
+  color: ${({theme}) => theme.text.black_300};
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.5;
@@ -88,18 +91,22 @@ const Season = styled.button`
     padding: 0.5rem;
     align-items: center;
     border-bottom: none;
-    ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08}`}
+    ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
+    &:hover {
+      background-color: ${({theme}) => theme.background.light_gray};
+      color: ${({theme}) => theme.text.white_opacity08};
+    }
   }
 `
 
 const YearsAndStandingsDataType = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   padding: 10px 10px;
   margin-top: 1rem;
   ${MEDIA_QUERY_MD} {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     padding: 0;
   }
 `
@@ -114,6 +121,8 @@ const SelectForm = styled.select`
   cursor: pointer;
   outline: none;
   font-weight: 700;
+  background-color: ${({theme}) => theme.background.white_100};
+  color: ${({theme}) => theme.text.black_300};
   ${MEDIA_QUERY_SMtoMD} {
     padding: 10px 20px;
     min-width: 10rem;
@@ -127,7 +136,7 @@ const SelectForm = styled.select`
 `
 
 const StandingsDataType = styled.div`
-  border: 1px solid ${props => props.theme.light.background.light_gray};
+  border: 1px solid ${({theme}) => theme.background.light_gray};
   border-radius: 0.25rem;
   ${MEDIA_QUERY_MD} {
     display: flex;
@@ -145,67 +154,15 @@ const DataType = styled.button`
   transition: all 0.5s;
   font-size: 1.5rem;
   font-weight: 700;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08};`}
+  color: ${({theme}) => theme.text.black_300};
+  ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
   ${MEDIA_QUERY_SMtoMD} {
     padding: 10px 20px;
     min-width: 12rem;
     max-width: 20rem;
-  }
-`
-
-const FormContainer = styled.div`
-  overflow: scroll;
-  width: 100%;
-  position: relative;
-  border-bottom: 1px solid ${props => props.theme.light.background.black_100};
-`
-
-const Table = styled.table`
-  border-collapse: collapse;
-  width: 100%;
-  white-space: nowrap;
-  font-size: 1.5rem;
-  colgroup {
-    border-right: 1px solid ${props => props.theme.light.background.white_300};
-  }
-  th {
-    border-right: 1px solid ${props => props.theme.light.background.guardians_blue};
-    background-color: ${props => props.theme.light.background.guardians_blue};
-    color: ${props => props.theme.light.text.white_opacity08};
-    font-weight: 700;
-    font-size: 1.6rem;
-    &:first-child {
-      position: sticky;
-      left: 0;
-      padding: 7px;
-    }
-  }
-   tbody tr th {
-    background-color: ${props => props.theme.light.background.white_100};
-    color: black;
-  }
-  tbody tr {
-    background-color: ${props => props.theme.light.background.white_100};
-    text-align: center;
-  }
-  td, th {
-    padding: 7px 12px;
-    ${MEDIA_QUERY_SMtoMD} {
-      padding: 12px 17px;
-    }
-  }
-  tbody > tr:hover {
-    background-color: ${props => props.theme.light.background.white_200};
-    & th {
-      background-color: ${props => props.theme.light.background.white_200};
-    }
-  }
-  ${MEDIA_QUERY_SMtoMD} {
-    font-size: 16px;
-  }
-  ${MEDIA_QUERY_LG} {
-    th:first-child {
-      position: static;
+    &:hover {
+      background-color: ${({theme}) => theme.background.light_gray};
+      color: ${({theme}) => theme.text.white_opacity08};
     }
   }
 `
@@ -252,80 +209,6 @@ function SelectButtons({t, season, setSeason, year, setYear, dataType, setDataTy
   )
 }
 
-function Form({standardTitles, advancedTitles, standings, currentLng, handleStrkLng, dataType}) {
-  if(dataType === 'advanced') {
-    return (
-      <FormContainer>
-        <Table>
-          <colgroup span="6" />
-          <colgroup span="2" />
-          <thead>
-            <tr>
-              {advancedTitles.map((title, key) => (
-                <th key={key}>{title}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {standings.map((standing, x) => (
-              <tr key={x}>
-                <th>{currentLng === 'zh-TW' ? standing.zhtwTeam : standing.enTeam}</th>
-                <td>{standing.win}</td>
-                <td>{standing.lose}</td>
-                <td>{standing.tied}</td>
-                <td>{standing.pct}</td>
-                <td>{standing.gb}</td>
-                <td>{standing.xtra}</td>
-                <td>{standing.oneRun}</td>
-                <td>{standing.vsBrothers}</td>
-                <td>{standing.vsMonkeys}</td>
-                <td>{standing.vsLions}</td>
-                <td>{standing.vsGuardians}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </FormContainer>
-    )
-  }
-  return (
-    <FormContainer>
-      <Table>
-        <colgroup span="7" />
-        <colgroup span="2" />
-        <colgroup span="3" />
-        <thead>
-          <tr>
-            {standardTitles.map((title, key) => (
-              <th key={key}>{title}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {standings.map((standing, x) => (
-            <tr key={x}>
-              <th>{currentLng === 'zh-TW' ? standing.zhtwTeam : standing.enTeam}</th>
-              <td>{standing.win}</td>
-              <td>{standing.lose}</td>
-              <td>{standing.tied}</td>
-              <td>{standing.pct}</td>
-              <td>{standing.gb}</td>
-              <td>{standing.eIndex}</td>
-              <td>{standing.home}</td>
-              <td>{standing.away}</td>
-              <td>{standing.rs}</td>
-              <td>{standing.ra}</td>
-              <td>{(standing.rs - standing.ra)}</td>
-              <td>{(currentLng === 'zh-TW' ? standing.strk : handleStrkLng(standing.strk))}</td>
-              <td>{standing.l10}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </FormContainer>
-  )
-}
-
 export default function StandingsPage() {
   const [ year, setYear ] = useState(2020)
   const [ season, setSeason ] = useState('full')
@@ -333,53 +216,9 @@ export default function StandingsPage() {
   const { t, i18n } = useTranslation();
   const [ standings, setStandings ] = useState([])
   const currentLng = i18n.language
-
-  const standardTitles = [
-    t('blank'),
-    t('standings.win'),
-    t('standings.lose'),
-    t('standings.tied'),
-    t('standings.pct'),
-    t('standings.gb'),
-    t('standings.eliminationNum'),
-    t('standings.home'),
-    t('standings.away'),
-    t('standings.rs'),
-    t('standings.ra'),
-    t('standings.diff'),
-    t('standings.strk'),
-    t('standings.l10'),
-  ]
-
-  const advancedTitles = [
-    t('blank'),
-    t('standings.win'),
-    t('standings.lose'),
-    t('standings.tied'),
-    t('standings.pct'),
-    t('standings.gb'),
-    t('standings.xtra'),
-    t('standings.oneRun'),
-    t('standings.vsBrothers'),
-    t('standings.vsMonkeys'),
-    t('standings.vsLions'),
-    t('standings.vsGuardians'),
-  ]
-
-  const handleStrkLng = (strk) => {
-    const charMap = {
-      '勝': 'W',
-      '敗': 'L',
-    }
-    const char = strk.split('')
-    return charMap[char[0]] + char[1]
-  }
   
   useEffect(() => {
-    fetch(`https://floating-river-74889.herokuapp.com/standingsApi/${year}/${season}`)
-      .then(res => res.json())
-      .then(data => setStandings(data))
-      .catch(err => console.log(err))
+    getStandings(year, season).then(data => setStandings(data))
   }, [year, season])
 
   return (
@@ -397,12 +236,10 @@ export default function StandingsPage() {
             setDataType={setDataType}
           />
         </Header>
-        <Form 
-          standardTitles={standardTitles} 
-          advancedTitles={advancedTitles}
+        <StandingsPageForm
+          t={t}  
           standings={standings} 
           currentLng={currentLng}
-          handleStrkLng={handleStrkLng} 
           dataType={dataType}
         />
       </Container>

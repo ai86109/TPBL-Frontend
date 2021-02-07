@@ -7,7 +7,10 @@
     "stats": "數據",
     "schedule": "賽程",
     "login": "登入",
-    "language": "EN"
+    "language": "EN",
+    "username": "帳號:",
+    "password": "密碼:",
+    "send": "送出"
   },
   "standings": {
     "firstHalf": "上半季",

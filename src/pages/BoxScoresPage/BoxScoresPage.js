@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_SM, MEDIA_QUERY_MDtoLG } from '../../constants/breakpoint';
+import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SMtoMD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
 
 const Root = styled.div`
-  background-color: ${props => props.theme.light.background.black_300};
+  background-color: ${({theme}) => theme.background.black_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     margin: 70px auto 0 auto;
   }
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   max-width: 1440px;
   width: 100%;
   min-height: 700px;
@@ -34,7 +34,7 @@ const Header = styled.div`
   flex-direction: column;
   justify-content: space-around;
   width: 100%;
-  border-top: 1px solid ${props => props.theme.light.background.black_100};
+  border-top: 1px solid ${({theme}) => theme.background.black_100};
 `
 
 const GamesNavContainer = styled.div`
@@ -83,12 +83,12 @@ const GameBlock = styled.div`
   flex-grow: 1;
   width: 100%;
   padding: 0 10px;
-  border-left: 1px solid ${props => props.theme.light.background.black_100};
+  border-left: 1px solid ${({theme}) => theme.background.black_100};
   ${MEDIA_QUERY_MD} {
     justify-contents: flex-start;
     flex-grow: 0;
     & + & {
-      border-right: 1px solid ${props => props.theme.light.background.black_100};
+      border-right: 1px solid ${({theme}) => theme.background.black_100};
     }
   }
 `
@@ -116,7 +116,7 @@ const TeamLogo = styled.div`
     border-radius: 50%;
     max-width: 20px;
     max-height: 20px;
-    background-color: ${props => props.theme.light.background.white_300};
+    background-color: ${({theme}) => theme.background.white_300};
   }
 `
 
@@ -138,7 +138,7 @@ const TeamStandings = styled.div`
   ${MEDIA_QUERY_SMtoMD} {
     display: flex;
     align-items: center;
-    color: ${props => props.theme.light.text.black_100};
+    color: ${({theme}) => theme.text.black_100};
   }
   ${MEDIA_QUERY_LG} {
     display: none;
@@ -157,7 +157,7 @@ const ScoreBoardContainer = styled.div`
   justify-contents: space-around;
   width: 100%;
   padding: 20px 0;
-  border-bottom: 1px solid ${props => props.theme.light.background.black_200};
+  border-bottom: 1px solid ${({theme}) => theme.background.black_200};
   ${MEDIA_QUERY_LG} {
     justify-content: center;
   }
@@ -218,7 +218,7 @@ const ScoreBoardBlock = styled.div`
 const GameScore = styled.div`
   text-align: center;
   font-size: 1.75rem;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   font-weight: 600;
   margin-top: 30px;
   ${MEDIA_QUERY_SM} {
@@ -243,7 +243,7 @@ const GameTable = styled.table`
   border-collapse: collapse;
   width: 100%;
   tbody tr, th {
-    background-color: ${props => props.theme.light.background.white_300};
+    background-color: ${({theme}) => theme.background.white_300};
     text-align: center;
   }
   td, th {
@@ -255,10 +255,10 @@ const GameTable = styled.table`
     }
   }
   tr td {
-    background-color: ${props => props.theme.light.background.white_200};
+    background-color: ${({theme}) => theme.background.white_200};
   }
   colgroup {
-    border-right: 1px solid ${props => props.theme.light.background.white_100};
+    border-right: 1px solid ${({theme}) => theme.background.white_100};
   }
 `
 
@@ -299,16 +299,16 @@ const SelectButton = styled.button`
   padding: 10px 20px;
   border-collapse: collapse;
   min-width: 15rem;
-  border: 1px solid ${props => props.theme.light.background.light_gray};
+  border: 1px solid ${({theme}) => theme.background.light_gray};
   cursor: pointer;
   height: 100%;
   font-size: 1.5rem;
   font-weight: 700;
   outline: none;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray}; color: ${props.theme.light.text.white_opacity08};`}
+  ${(props) => props.$active && `background-color: ${props.theme.background.light_gray}; color: ${props.theme.text.white_opacity08};`}
   &:hover {
-    background-color: ${props => props.theme.light.background.light_gray};
-    color: ${props => props.theme.light.text.white_opacity08};
+    background-color: ${({theme}) => theme.background.light_gray};
+    color: ${({theme}) => theme.text.white_opacity08};
   }
 `
 
@@ -324,7 +324,7 @@ const VisitingTeamBoxScoresTable = styled.table`
   width: 100%;
   white-space: nowrap;
   margin: 20px 0;
-  border-bottom: 1px solid ${props => props.theme.light.background.black_100};
+  border-bottom: 1px solid ${({theme}) => theme.background.black_100};
   td, th {
     padding: 10px 10px;
     font-size: 1.25rem;
@@ -334,18 +334,18 @@ const VisitingTeamBoxScoresTable = styled.table`
     }
   }
   th {
-    background-color: ${props => props.theme.light.background.guardians_blue};
-    color: ${props => props.theme.light.text.white_opacity10};
+    background-color: ${({theme}) => theme.background.guardians_blue};
+    color: ${({theme}) => theme.text.white_opacity10};
     text-align: center;
     &:first-child {
       text-align: left;
     }
   }
   tbody tr {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     text-align: center;
     &:nth-child(2n) {
-      background-color: ${props => props.theme.light.background.white_200};
+      background-color: ${({theme}) => theme.background.white_200};
     }
     & td:first-child {
       text-align: left;
@@ -371,24 +371,24 @@ const HomeTeamBoxScoresTable = styled.table`
     width: 100%;
     white-space: nowrap;
     margin: 20px 0;
-    border-bottom: 1px solid ${props => props.theme.light.background.black_100};
+    border-bottom: 1px solid ${({theme}) => theme.background.black_100};
     td, th {
       padding: 10px 15px;
       font-size: 1.5rem;
     }
     th {
-      background-color: ${props => props.theme.light.background.lions_orange};
-      color: ${props => props.theme.light.text.white_opacity10};
+      background-color: ${({theme}) => theme.background.lions_orange};
+      color: ${({theme}) => theme.text.white_opacity10};
       text-align: center;
       &:first-child {
         text-align: left;
       }
     }
     tbody tr {
-      background-color: ${props => props.theme.light.background.white_100};
+      background-color: ${({theme}) => theme.background.white_100};
       text-align: center;
       &:nth-child(2n) {
-        background-color: ${props => props.theme.light.background.white_200};
+        background-color: ${({theme}) => theme.background.white_200};
       }
       & td:first-child {
         text-align: left;

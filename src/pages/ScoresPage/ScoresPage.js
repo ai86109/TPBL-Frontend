@@ -9,19 +9,19 @@ import { Link } from 'react-router-dom';
 
 const Root = styled.div`
   margin-top: 3px;
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     margin: 70px auto 0 auto;
   }
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   max-width: 1440px;
   width: 100%;
   min-height: 700px;
@@ -35,7 +35,7 @@ const Container = styled.div`
     padding: 2rem;
   }
   ${MEDIA_QUERY_SMtoMD} {
-    background-color: ${props => props.theme.light.background.white_200};
+    background-color: ${({theme}) => theme.background.white_200};
   }
 `
 
@@ -49,7 +49,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -64,7 +64,7 @@ const SelectButtonsContainer = styled.div`
   position: relative;
   justify-content: space-between;
   padding: 20px 0;
-  border-bottom: 2px solid ${props => props.theme.light.background.dark_gray};
+  border-bottom: 2px solid ${({theme}) => theme.background.dark_gray};
   ${MEDIA_QUERY_SMtoMD} {
     max-width: 400px;
     justify-content: flex-start;
@@ -92,7 +92,7 @@ const DateContainer = styled.div`
   align-items: center;
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.light.text.black_300};
+    color: ${({theme}) => theme.text.black_300};
   }
 `
 
@@ -108,7 +108,7 @@ const GameCalendar = styled.div`
   img {
     width: 30px;
   }
-  z-index: 2;
+  z-index: 1;
 `
 
 const ScoresContainer = styled.div`
@@ -126,8 +126,8 @@ const ScoresBlock = styled(Link)`
   display: flex;
   flex-direction: column;
   margin: 20px;
-  border-bottom: 2px solid ${props => props.theme.light.background.light_gray};
-  color: ${props => props.theme.light.text.black_200};
+  border-bottom: 2px solid ${({theme}) => theme.background.light_gray};
+  color: ${({theme}) => theme.text.black_200};
   text-decoration: none;
   ${MEDIA_QUERY_SMtoMD} {
     border-bottom: 0;
@@ -141,7 +141,7 @@ const ScoresBlock = styled(Link)`
 
 const Game = styled.div`
   ${MEDIA_QUERY_SMtoMD} {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     border-radius: 4px;
     padding: 15px;
   }
@@ -150,14 +150,14 @@ const Game = styled.div`
 const GameStatus = styled.div`
   padding-left: 20px;
   ${MEDIA_QUERY_SMtoMD} {
-    border-bottom: 1px solid ${props => props.theme.light.background.light_gray};
+    border-bottom: 1px solid ${({theme}) => theme.background.light_gray};
     padding: 0 0 10px 20px;
   }
 `
 
 const GameBoard = styled.div`
   ${MEDIA_QUERY_SMtoMD} {
-    border-bottom: 1px solid ${props => props.theme.light.background.light_gray};
+    border-bottom: 1px solid ${({theme}) => theme.background.light_gray};
     padding-bottom: 10px;
   }
   ${MEDIA_QUERY_MD} {
@@ -212,7 +212,7 @@ const TeamName = styled.div`
 
 const TeamStandings = styled.div`
   font-size: 1rem;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   align-item: flex-end;
   margin-top: 5px;
   ${MEDIA_QUERY_SMtoMD} {
@@ -249,17 +249,17 @@ const Table = styled.table`
   width: 100%;
   justify-content: space-between;
   tbody tr, th {
-    background-color: ${props => props.theme.light.background.white_100};
+    background-color: ${({theme}) => theme.background.white_100};
     text-align: center;
   }
   td, th {
     padding: 14px 10px;
   }
   th {
-    border-bottom: 1px solid ${props => props.theme.light.background.white_300};
+    border-bottom: 1px solid ${({theme}) => theme.background.white_300};
   }
   colgroup {
-    border-right: 1px solid ${props => props.theme.light.background.white_300};
+    border-right: 1px solid ${({theme}) => theme.background.white_300};
   }
 `
 
@@ -277,7 +277,7 @@ const GamePitcher = styled.div`
   flex: 1;
   padding: 10px;
   & + & {
-    border-left: 1px solid ${props => props.theme.light.background.black_100};
+    border-left: 1px solid ${({theme}) => theme.background.black_100};
   }
 `
 
@@ -296,7 +296,7 @@ const PitcherInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
 `
 
 const Pitcher = styled.div`
@@ -311,7 +311,7 @@ const WinAndLose = styled.div`
 
 const PitcherName = styled.div`
   display: flex;
-  color: ${props => props.theme.light.text.black_300};
+  color: ${({theme}) => theme.text.black_300};
 `
 
 const PitcherStatus = styled.div`

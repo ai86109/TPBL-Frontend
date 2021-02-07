@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM, MEDIA_QUERY_SMtoMD } from '../../constants/breakpoint';
-import Form from './Form';
+import { MEDIA_QUERY_LG, MEDIA_QUERY_MD, MEDIA_QUERY_SM } from '../../constants/breakpoint';
+import StatsPageSelectButton from './StatsPageSelectButton';
+import StatsPageForm from './StatsPageForm';
+import { getStats } from '../../WebAPI';
 
 const largeDevice = `(min-width: 600px)`
 
 const Root = styled.div`
-  background-color: ${props => props.theme.light.background.white_300};
+  background-color: ${({theme}) => theme.background.white_300};
   width: 100%;
   max-width: 1600px;
   min-height: 700px;
   margin: 100px auto 0 auto;
-  color: ${props => props.theme.light.text.black_200};
+  color: ${({theme}) => theme.text.black_200};
   ${MEDIA_QUERY_LG} {
     padding: 0 2rem;
     margin: 70px auto 0 auto;
@@ -20,7 +22,7 @@ const Root = styled.div`
 `
 
 const Container = styled.div`
-  background-color: ${props => props.theme.light.background.white_100};
+  background-color: ${({theme}) => theme.background.white_100};
   width: 100%;
   min-height: 700px;
   margin: 3px auto;
@@ -42,7 +44,7 @@ const Header = styled.div`
 
 const PageTitle = styled.h1`
   font-weight: 700;
-  color: ${props => props.theme.light.text.black_100};
+  color: ${({theme}) => theme.text.black_100};
   margin-bottom: 2rem;
   ${MEDIA_QUERY_SM} {
     font-size: 3rem;
@@ -52,204 +54,7 @@ const PageTitle = styled.h1`
   }
 `
 
-const SelectButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const NavList = styled.div`
-  display: flex;
-  margin: 10px 0;
-  color: ${props => props.theme.light.text.black_100};
-`
-
-const Nav = styled.div`
-  padding-right: 18px;
-  font-size: 24px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.5s;
-  ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue};`}
-`
-
-const SubNav = styled.div`
-  margin-right: 14px;
-  padding-bottom: 5px;
-  font-size: 18px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.5s;
-  ${(props) => props.$active && `color: ${props.theme.light.background.guardians_blue}; border-bottom: 3px solid ${props.theme.light.background.guardians_blue};`}
-`
-
-const YearsAndStatsType = styled.div`
-  display: flex;
-`
-
-const SelectForm = styled.select`
-  width: 10rem;
-  border-radius: 0.5rem;
-  padding: 7px 20px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  margin-right: 1rem;
-  outline: none;
-  ${MEDIA_QUERY_MD} {
-    border: 1px solid ${props => props.theme.light.background.light_gray};
-    border-radius: 0.25rem;
-  }
-`
-
-const StatsDataType = styled.div`
-  border: 1px solid ${props => props.theme.light.background.light_gray};
-  border-radius: 0.25rem;
-  transition: all 0.5s;
-  ${MEDIA_QUERY_MD} {
-    display: flex;
-    align-items: center;
-  }
-`
-
-const DataType = styled.button`
-  padding: 10px 20px;
-  min-width: 12rem;
-  max-width: 20rem;
-  cursor: pointer;
-  height: 100%;
-  transition: all 0.5s;
-  outline: none;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.light_gray};`}
-`
-
-const StatsType = styled.div`
-  display: flex;
-  align-items: center;
-  overflow: scroll;
-  margin-top: 10px;
-  ${MEDIA_QUERY_SMtoMD} {
-    display: none;
-  }
-`
-
-const Type = styled.button`
-  border: 1px solid ${props => props.theme.light.background.black_100};
-  border-radius: 1rem;
-  padding: 7px;
-  margin: 2px 10px;
-  min-width: 7rem;
-  width: 100%;
-  cursor: pointer;
-  font-weight: 700;
-  outline: none;
-  ${(props) => props.$active && `background-color: ${props.theme.light.background.dark_gray}; color: ${props.theme.light.text.white_opacity08};`}
-  &:hover {
-    background-color: ${props => props.theme.light.background.dark_gray};
-    color: ${props => props.theme.light.text.white_opacity10};
-  }
-`
-
-function SelectButtons({t, nav, setNav, subNav, setSubNav, year, setYear, statsType, setStatsType, batterStatsTypeTitles, pitcherStatsTypeTitles, dataType, setDataType, match, teamBatterStatsTypeTitles, teamPitcherStatsTypeTitles}) {
-  return (
-    <SelectButtonsContainer>
-      <NavList>
-        <Nav
-          onClick={() => setNav('player')}
-          $active={nav === 'player'}
-        >
-          {t('stats.player')}
-        </Nav>
-        <Nav
-          onClick={() => setNav('team')}
-          $active={nav === 'team'}
-        >
-          {t('stats.team')}
-        </Nav>
-      </NavList>
-      <NavList>
-        <SubNav
-          onClick={() => {
-            setSubNav('hitting')
-            setDataType('standard')
-            setStatsType('avg')
-          }}
-          $active={subNav === 'hitting'}
-        >
-          {t('stats.hitting')}
-        </SubNav>
-        <SubNav
-          onClick={() => {
-            setSubNav('pitching')
-            setDataType('standard')
-            setStatsType('win')
-          }}
-          $active={subNav === 'pitching'}
-        >
-          {t('stats.pitching')}
-        </SubNav>
-      </NavList>
-      <YearsAndStatsType>
-        <SelectForm value={year} onChange={(e) => setYear(e.target.value)}>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
-        </SelectForm>
-        {match && nav === 'player' &&
-          <StatsDataType>
-            <DataType
-              onClick={() => setDataType('standard')}
-              $active={dataType === 'standard'}
-            >{t('standings.standard')}
-            </DataType>
-            <DataType
-              onClick={() => setDataType('advanced')}
-              $active={dataType === 'advanced'}
-            >{t('standings.advanced')}
-            </DataType>
-          </StatsDataType>
-        }
-      </YearsAndStatsType>
-      <StatsType>
-          {nav === 'player' && subNav === 'hitting' && batterStatsTypeTitles.map((title, key) => (
-            <Type
-              key={key}
-              onClick={() => setStatsType(title[1])}
-              $active={statsType === title[1]}
-            >
-              {title[0]}
-            </Type>
-          ))}
-          {nav === 'player' && subNav === 'pitching' && pitcherStatsTypeTitles.map((title, key) => (
-            <Type
-              key={key}
-              onClick={() => setStatsType(title[1])}
-              $active={statsType === title[1]}
-            >
-              {title[0]}
-            </Type>
-          ))}
-          {nav === 'team' && subNav === 'hitting' && teamBatterStatsTypeTitles.map((title, key) => (
-            <Type
-              key={key}
-              onClick={() => setStatsType(title[1])}
-              $active={statsType === title[1]}
-            >
-              {title[0]}
-            </Type>
-          ))}
-          {nav === 'team' && subNav === 'pitching' && teamPitcherStatsTypeTitles.map((title, key) => (
-            <Type
-              key={key}
-              onClick={() => setStatsType(title[1])}
-              $active={statsType === title[1]}
-            >
-              {title[0]}
-            </Type>
-          ))}
-        </StatsType>
-    </SelectButtonsContainer>
-  )
-}
-
-export default function StandingsPage() {
+export default function StatsPage() {
   const { t, i18n } = useTranslation();
   const [ year, setYear ] = useState(2020)
   const [ nav, setNav ] = useState('player')
@@ -262,60 +67,9 @@ export default function StandingsPage() {
   const query = window.matchMedia(largeDevice)
   const [ match, setMatch ] = useState(query.matches)
 
-  const batterStatsTypeTitles = [
-    ['AVG', 'avg'], ['OPS', 'ops'], ['HR', 'hr'], ['H', 'h'], ['1B', '1B'], ['2B', '2B'], ['3B', '3B'],
-    ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], ['R', 'r'], ['G','games'], ['AB', 'ab'], ['SB', 'sb'], 
-    ['CS', 'cs'], ['OBP', 'obp'], ['SLG', 'slg'], ['PA', 'pa'], ['HBP', 'hbp'], ['SAC', 'sac'], 
-    ['SF', 'sf'], ['GIDP', 'gidp'], ['GO/AO', 'goao'], ['XBH', 'xbh'], ['TB', 'tb'], ['IBB', 'ibb'], 
-    ['BABIP', 'babip'], ['ISO', 'iso'], ['AB/HR', 'abhr'], ['BB/K', 'bbso'], ['BB%', 'bbpa'], ['SO%', 'sopa']
-  ]
-
-  const pitcherStatsTypeTitles = [
-    ['W', 'win'], ['L', 'lose'], ['SV', 'sv'], ['HLD', 'hld'], ['ERA', 'era'], ['G', 'games'], ['GS', 'gs'],
-    ['CG', 'cg'], ['SHO', 'sho'], ['GR', 'gr'], ['BS', 'bs'], ['IP','ip'], ['H', 'h'], ['R', 'r'], 
-    ['ER', 'er'], ['BB', 'bb'], ['HBP', 'hbp'], ['SO', 'so'], ['WHIP', 'whip'], ['TBF', 'tbf'], ['NP', 'np'], 
-    ['P/IP', 'pip'], ['IBB', 'ibb'], ['WP', 'wp'], ['BK', 'bk'], ['GO', 'go'], ['AO', 'ao'], ['GO/AO', 'goao'],
-    ['SO/9', 'so9'], ['BB/9', 'bb9'], ['SO/BB', 'sobb']
-  ]
-
-  const teamBatterStatsTypeTitles = [
-    ['AVG', 'avg'], ['OPS', 'ops'], ['HR', 'hr'], ['H', 'h'], ['RBI', 'rbi'], ['BB', 'bb'], ['SO', 'so'], 
-    ['R', 'r'], ['G','games'], ['AB', 'ab'], ['SB', 'sb'], ['CS', 'cs'], ['OBP', 'obp'], ['SLG', 'slg'], ['AB/HR', 'abhr']
-  ]
-
-  const teamPitcherStatsTypeTitles = [
-    ['W', 'win'], ['L', 'lose'], ['T', 'tied'], ['ERA', 'era'], ['G', 'games'], ['H', 'h'], ['R', 'r'], ['ER', 'er'], 
-    ['BB', 'bb'], ['SO', 'so'], ['WHIP', 'whip'], ['BF', 'bf'], ['NP', 'np'], ['WP', 'wp'], ['BK', 'bk'], 
-    ['SO/BB', 'sobb']
-  ]
-
   useEffect(() => {
-    if(nav === 'player') {
-      if(subNav === 'hitting') {
-        fetch(`https://floating-river-74889.herokuapp.com/batterStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      } else if (subNav === 'pitching') {
-        fetch(`https://floating-river-74889.herokuapp.com/pitcherStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      }
-    } else if(nav === 'team') {
-      if(subNav === 'hitting') {
-        fetch(`https://floating-river-74889.herokuapp.com/teamBatterStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      } else if (subNav === 'pitching') {
-        fetch(`https://floating-river-74889.herokuapp.com/teamPitcherStatsApi/${year}/${statsType}/${sort}`)
-          .then(res => res.json())
-          .then(data => setStats(data))
-          .catch(err => console.log(err))
-      }
-    }
-  }, [nav, subNav, year, statsType, sort, stats])
+    getStats(nav, subNav, year, statsType, sort).then(data => setStats(data))
+  }, [nav, subNav, year, statsType, sort])
 
   useEffect(() => {
     const handleMatch = q => setMatch(q.matches)
@@ -328,7 +82,7 @@ export default function StandingsPage() {
       <Container $active={!match}>
         <Header>
           <PageTitle>{t('navbar.stats')}</PageTitle>
-          <SelectButtons 
+          <StatsPageSelectButton
             t={t}
             nav={nav}
             setNav={setNav}
@@ -340,14 +94,10 @@ export default function StandingsPage() {
             dataType={dataType}
             setDataType={setDataType}
             setStatsType={setStatsType}
-            batterStatsTypeTitles={batterStatsTypeTitles}
-            pitcherStatsTypeTitles={pitcherStatsTypeTitles}
-            teamBatterStatsTypeTitles={teamBatterStatsTypeTitles}
-            teamPitcherStatsTypeTitles={teamPitcherStatsTypeTitles}
             match={match}
           />
         </Header>
-        <Form 
+        <StatsPageForm 
           nav={nav}
           year={year}
           subNav={subNav}
