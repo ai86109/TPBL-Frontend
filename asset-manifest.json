@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/TPBL-Frontend/static/js/main.932c57e4.chunk.js",
-    "main.js.map": "/TPBL-Frontend/static/js/main.932c57e4.chunk.js.map",
+    "main.js": "/TPBL-Frontend/static/js/main.20de2c18.chunk.js",
+    "main.js.map": "/TPBL-Frontend/static/js/main.20de2c18.chunk.js.map",
     "runtime-main.js": "/TPBL-Frontend/static/js/runtime-main.ff3b49a6.js",
     "runtime-main.js.map": "/TPBL-Frontend/static/js/runtime-main.ff3b49a6.js.map",
     "static/css/2.f7fceeef.chunk.css": "/TPBL-Frontend/static/css/2.f7fceeef.chunk.css",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.ff3b49a6.js",
     "static/css/2.f7fceeef.chunk.css",
     "static/js/2.c1e6fa75.chunk.js",
-    "static/js/main.932c57e4.chunk.js"
+    "static/js/main.20de2c18.chunk.js"
   ]
 }
