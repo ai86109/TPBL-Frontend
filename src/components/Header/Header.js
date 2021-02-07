@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { MEDIA_QUERY_LG } from '../../constants/breakpoint';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,8 @@ import sunIcon from '../../image/sunIcon.png'
 import moonIcon from '../../image/moonIcon.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { setLightOrDarkMode } from '../../redux/reducers/styleReducer'
+import { getUser, setUser } from '../../redux/reducers/userReducer';
+import { setAuthToken } from '../../utils';
 
 const largeDevice = `(min-width: 1024px)`
 
@@ -215,9 +217,20 @@ export default function Header() {
   const currentLng = i18n.language
   const dispatch = useDispatch()
   const LightOrDarkMode = useSelector(store => store.styles.lightOrDarkMode)
+  const user = useSelector(store => store.users.user)
+  const location = useLocation()
+  const history = useHistory()
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
+  }
+
+  const handleLogout = () => {
+    setAuthToken('')
+    dispatch(setUser(null))
+    if(location.pathname !== "/") {
+      history.push("/")
+    }
   }
 
   useEffect(() => {
@@ -227,6 +240,10 @@ export default function Header() {
     query.addListener(handleMatch)
     return () => query.removeListener(handleMatch)
   }, )
+
+  useEffect(() => {
+    dispatch(getUser())
+  }, [dispatch])
   
   if(match) {
     return (
@@ -249,7 +266,9 @@ export default function Header() {
             <Nav onClick={() => changeLanguage("en")}>{t('navbar.language')}</Nav> :
             <Nav onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Nav>
           }
-          <Nav to='login'>{t('navbar.login')}</Nav>
+          {user && <Nav onClick={() => alert("網頁建置中")}>{t('navbar.cms')}</Nav>}
+          {!user && <Nav to='/login'>{t('navbar.login')}</Nav>}
+          {user && <Nav onClick={handleLogout}>{t('navbar.logout')}</Nav>}
         </NavbarRight>
       </NavbarContainer>
     )
@@ -262,7 +281,8 @@ export default function Header() {
           <Logo to="/" onClick={() => setOpen(false)}>
             <img src={TPBLlogo} />
           </Logo>
-          <Login to='/login' onClick={() => setOpen(false)}>{t('navbar.login')}</Login>
+          {!user && <Login to='/login' onClick={() => setOpen(false)}>{t('navbar.login')}</Login>}
+          {user && <Login onClick={() => setOpen(false)}>{t('navbar.logout')}</Login>}
         </NavbarTop>
         <NavbarBottom $active={open}>
           {!open &&
@@ -293,6 +313,7 @@ export default function Header() {
               <Menu onClick={() => changeLanguage("en")}>{t('navbar.language')}</Menu> :
               <Menu onClick={() => changeLanguage("zh-TW")}>{t('navbar.language')}</Menu>
             }
+            {user && <Menu onClick={() => alert("網頁建置中")}>{t('navbar.cms')}</Menu>}
           </MenuBlock>
         </HamburgerMenuContainer>
       }

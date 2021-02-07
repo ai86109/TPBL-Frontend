@@ -1,5 +1,9 @@
 {
   "blank": "",
+  "error": {
+    "1": "Please fill in all the required fields.",
+    "2": "The username or password is incorrect."
+  },
   "navbar": {
     "news": "NEWS",
     "scores": "SCORES",
@@ -7,6 +11,8 @@
     "stats": "STATS",
     "schedule": "SCHEDULE",
     "login": "LOGIN",
+    "logout": "LOGOUT",
+    "cms": "CMS",
     "language": "中文",
     "username": "USERNAME:",
     "password": "PASSWORD:",

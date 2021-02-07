@@ -1,5 +1,9 @@
 {
   "blank": "",
+  "error": {
+    "1": "必填欄位請勿留白",
+    "2": "帳號或密碼有誤"
+  },
   "navbar": {
     "news": "新聞",
     "scores": "比賽",
@@ -7,6 +11,8 @@
     "stats": "數據",
     "schedule": "賽程",
     "login": "登入",
+    "logout": "登出",
+    "cms": "管理後台",
     "language": "EN",
     "username": "帳號:",
     "password": "密碼:",

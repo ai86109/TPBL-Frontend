@@ -63,6 +63,7 @@ const SubmitButton = styled.button`
 
 const ErrorMessage = styled.div`
   color: red;
+  font-size: 1.3rem;
 `
 
 export default function LoginPage() {
@@ -78,6 +79,7 @@ export default function LoginPage() {
     dispatch(login(username, password)).then(() => {
       if(getAuthToken()) {
         dispatch(getUser()).then((res) => {
+          console.log(res)
           if(res.ok === 1) return history.push("/")
         })
       }
@@ -96,7 +98,11 @@ export default function LoginPage() {
           <FormInputTitle>{t('navbar.password')}</FormInputTitle>
           <FormInput type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </FormInputContainer>
-        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        {errorMessage && 
+          <ErrorMessage>
+            {t(`error.${errorMessage}`)}
+          </ErrorMessage>
+        }
         <SubmitButton>{t('navbar.send')}</SubmitButton>
       </FormBlock>
     </FormContainer>
