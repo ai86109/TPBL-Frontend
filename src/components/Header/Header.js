@@ -238,7 +238,6 @@ export default function Header() {
       setMatch(q.matches)
     }
     query.addListener(handleMatch)
-    return () => query.removeListener(handleMatch)
   }, )
 
   useEffect(() => {

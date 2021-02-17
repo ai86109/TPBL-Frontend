@@ -111,7 +111,7 @@ export default function HomePageStandings({t, standings, currentLng}) {
             </tr>
           </thead>
           <tbody>
-            {standings.map((standing, x) => (
+            {standings && standings.map((standing, x) => (
               <tr key={x}>
                 <th>{currentLng === 'zh-TW' ? zhtwTeamMap[standing.zhtwTeam] : enTeamMap[standing.enTeam]}</th>
                 <td>{standing.win}</td>

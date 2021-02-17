@@ -233,7 +233,7 @@ export default function StatsPageForm({nav, subNav, dataType, statsType, setStat
                 </tr>
               </thead>
               <tbody>
-                {stats.map((stat, x) => (
+                {stats && stats.map((stat, x) => (
                   <tr key={x}>
                     <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                     <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
@@ -277,7 +277,7 @@ export default function StatsPageForm({nav, subNav, dataType, statsType, setStat
               </tr>
             </thead>
             <tbody>
-              {stats.map((stat, x) => (
+              {stats && stats.map((stat, x) => (
                 <tr key={x}>
                   <th>{currentLng === 'zh-TW' ? stat.zhtwPlayerName : stat.enPlayerName}</th>
                   <td>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</td>
@@ -318,7 +318,7 @@ export default function StatsPageForm({nav, subNav, dataType, statsType, setStat
               </tr>
             </thead>
             <tbody>
-              {stats.map((stat, x) => (
+              {stats && stats.map((stat, x) => (
                 <tr key={x}>
                   <th>{currentLng === 'zh-TW' ? stat.zhtwTeam : stat.enTeam}</th>
                   {subNav === 'hitting' && statsTeamBatterTableTitles.map((title, key) => (
@@ -354,7 +354,7 @@ export default function StatsPageForm({nav, subNav, dataType, statsType, setStat
           >∨</CaretItem>
         </Caret>
       </BoxHeader>
-      {stats.map((stat, key) => (
+      {stats && stats.map((stat, key) => (
         <BoxBody key={key}>
           <BoxBodyLeft>
             <Rank>1</Rank>

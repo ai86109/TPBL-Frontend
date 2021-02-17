@@ -116,7 +116,7 @@ export default function StandingsPageForm({t, standings, currentLng, dataType}) 
             </tr>
           </thead>
           <tbody>
-            {standings.map((standing, x) => (
+            {standings && standings.map((standing, x) => (
               <tr key={x}>
                 <th>{currentLng === 'zh-TW' ? standing.zhtwTeam : standing.enTeam}</th>
                 <td>{standing.win}</td>
@@ -151,7 +151,7 @@ export default function StandingsPageForm({t, standings, currentLng, dataType}) 
           </tr>
         </thead>
         <tbody>
-          {standings.map((standing, x) => (
+          {standings && standings.map((standing, x) => (
             <tr key={x}>
               <th>{currentLng === 'zh-TW' ? standing.zhtwTeam : standing.enTeam}</th>
               <td>{standing.win}</td>

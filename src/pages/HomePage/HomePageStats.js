@@ -175,6 +175,7 @@ export default function HomePageStats({hittingStats, pitchingStats, statsType, s
         >投球</SelectButton>
       </SelectButtons>
       {statsType === 'hitting' &&
+        hittingStats &&
         hittingStats.map((stat, key) => (
           <StatsBox key={key}>
             <PlayerProfilePic>
@@ -185,6 +186,7 @@ export default function HomePageStats({hittingStats, pitchingStats, statsType, s
         ))
       }
       {statsType === 'pitching' &&
+        pitchingStats &&
         pitchingStats.map((stat, key) => (
           <StatsBox key={key}>
             <PlayerProfilePic>
