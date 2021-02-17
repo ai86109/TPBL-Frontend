@@ -74,7 +74,6 @@ export default function StatsPage() {
   useEffect(() => {
     const handleMatch = q => setMatch(q.matches)
     query.addListener(handleMatch)
-    return () => query.removeListener(handleMatch)
   }, )
 
   return (
